@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GI xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0">
+  <exchangeMetadata>
+    <datasetCitation>
+      <title>vvis</title>
+      <date>
+        <date>2018-01-16</date>
+        <dateType>Creation</dateType>
+      </date>
+      <citedResponsibleParty>
+        <organisationName>TNE</organisationName>
+        <role>resourceProvider</role>
+      </citedResponsibleParty>
+    </datasetCitation>
+    <applicationSchemaCitation>
+      <title>SS637004:2009</title>
+      <date>
+        <date>2009-08-18</date>
+        <dateType>Publication</dateType>
+      </date>
+      <edition>Utgåva 2</edition>
+      <citedResponsibleParty>
+        <organisationName>SIS</organisationName>
+        <role>Publisher</role>
+      </citedResponsibleParty>
+      <otherCitationDetails>http://www.sis.se/Office/SS637004-1_ver104.zip</otherCitationDetails>
+    </applicationSchemaCitation>
+    <encoding>
+      <ruleCitation>
+        <title>NVDB - Formatspecifikation för XML</title>
+        <date>
+          <date>2011-07-12</date>
+          <dateType>Revision</dateType>
+        </date>
+        <edition>3.2</edition>
+      </ruleCitation>
+      <toolName>TNE</toolName>
+      <toolVersion>2.7</toolVersion>
+    </encoding>
+  </exchangeMetadata>
+  <dataset>
+    <FT_FeatureCatalogue>
+      <name>VIS_DK</name>
+      <scope>
+        <CharacterString />
+      </scope>
+      <versionNumber>0.0.0</versionNumber>
+      <versionDate>1900-01-01</versionDate>
+      <definitionSource>
+        <title>VIS_DK - Specifikation av innehåll - Företeelsetyper</title>
+        <date>
+          <date>1900-01-01</date>
+          <dateType>Publication</dateType>
+        </date>
+        <edition>0.0</edition>
+        <citedResponsibleParty>
+          <contactInfo>
+            <address>
+              <electronicMailAddress>info@triona.se</electronicMailAddress>
+            </address>
+            <onlineResource>
+              <linkage>www.triona.se</linkage>
+            </onlineResource>
+          </contactInfo>
+          <role>Publisher</role>
+        </citedResponsibleParty>
+      </definitionSource>
+      <producer>
+        <contactInfo>
+          <address>
+            <electronicMailAddress>info@triona.se</electronicMailAddress>
+          </address>
+          <onlineResource>
+            <linkage>www.triona.se</linkage>
+          </onlineResource>
+        </contactInfo>
+        <role>Owner</role>
+      </producer>
+      <entries>
+        <FT_FeatureType id="i1545" uuid="VIS_DK;0.0.0;17">
+          <nameOrCode>VVIS</nameOrCode>
+          <definition>VVIS avser VVIS-stolpar. Dessa är väderstationer som levererar väderdata. 
+VVIS står för VägVäderInformationsSystem.</definition>
+          <codeOrName>17</codeOrName>
+          <aliases>VVIS</aliases>
+          <restrictedValidity>
+            <begin>
+              <position>
+                <date8601>1899-12-30</date8601>
+              </position>
+            </begin>
+            <end>
+              <position>
+                <date8601>9999-12-31</date8601>
+              </position>
+            </end>
+          </restrictedValidity>
+          <isAbstract>false</isAbstract>
+          <instanceHistory>AlwaysHistory</instanceHistory>
+          <attributeTypes id="i1546" uuid="VIS_DK;0.0.0;17;36">
+            <isMandatory>true</isMandatory>
+            <name>typ</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1547" />
+          </attributeTypes>
+          <attributeTypes id="i1548" uuid="VIS_DK;0.0.0;17;34">
+            <isMandatory>false</isMandatory>
+            <name>namn</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1549" />
+          </attributeTypes>
+          <attributeTypes id="i1550" uuid="VIS_DK;0.0.0;17;35">
+            <isMandatory>false</isMandatory>
+            <name>nummer</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1551" />
+          </attributeTypes>
+          <attributeTypes id="i1552" uuid="VIS_DK;0.0.0;17;33">
+            <isMandatory>false</isMandatory>
+            <name>kameranr</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1553" />
+          </attributeTypes>
+          <attributeTypes id="i1554" uuid="VIS_DK;0.0.0;17;32">
+            <isMandatory>false</isMandatory>
+            <name>kameraantal</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1555" />
+          </attributeTypes>
+          <attributeTypes id="i1556" uuid="VIS_DK;0.0.0;17;37">
+            <isMandatory>false</isMandatory>
+            <name>xkoordinat</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1557" />
+          </attributeTypes>
+          <attributeTypes id="i1558" uuid="VIS_DK;0.0.0;17;38">
+            <isMandatory>false</isMandatory>
+            <name>ykoordinat</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1559" />
+          </attributeTypes>
+          <attributeTypes id="i1560" uuid="VIS_DK;0.0.0;17;39">
+            <isMandatory>false</isMandatory>
+            <name>zkoordinat</name>
+            <definition />
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1899-12-30</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1561" />
+          </attributeTypes>
+          <attributeTypes id="i1577" uuid="VIS_DK;0.0.0;17;Punktutbredning">
+            <isMandatory>true</isMandatory>
+            <name>Punktutbredning</name>
+            <definition>---</definition>
+            <multiplicity>
+              <range>
+                <lower>1</lower>
+                <upper>*</upper>
+              </range>
+            </multiplicity>
+            <domain idref="i1578" />
+          </attributeTypes>
+          <associationTypes idref="i1576" />
+        </FT_FeatureType>
+      </entries>
+      <entries>
+        <FT_FeatureType id="i1562" uuid="VIS_DK;0.0.0;23">
+          <nameOrCode>Företeelsetillkomst</nameOrCode>
+          <definition>En beskrivning av den process som skapat och hanterat en företeelses data.</definition>
+          <codeOrName>23</codeOrName>
+          <isAbstract>false</isAbstract>
+          <attributeTypes id="i1563" uuid="VIS_DK;0.0.0;23;53">
+            <isMandatory>true</isMandatory>
+            <name>ansvarig organisation</name>
+            <definition>Den organisation som är ansvarig för att företeelsens data skapades</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1980-01-01</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1564" />
+          </attributeTypes>
+          <attributeTypes id="i1565" uuid="VIS_DK;0.0.0;23;54">
+            <isMandatory>true</isMandatory>
+            <name>processteg attribut</name>
+            <definition>Beskrivning av ett steg i den process som skapat och hanterat företeelsens attributdata. Endast två steg är idenifierade. Skall utvecklas vidare.</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>*</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1980-01-01</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1566" />
+          </attributeTypes>
+          <attributeTypes id="i1571" uuid="VIS_DK;0.0.0;23;55">
+            <isMandatory>true</isMandatory>
+            <name>processteg utbredning</name>
+            <definition>Beskrivning av ett steg i den process som skapat och hanterat data om företeelsens utbredning (-ar). Endast två steg idenifierade. Skall utvecklas vidare.</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>*</upper>
+              </range>
+            </multiplicity>
+            <restrictedValidity>
+              <begin>
+                <position>
+                  <date8601>1980-01-01</date8601>
+                </position>
+              </begin>
+              <end>
+                <position>
+                  <date8601>9999-12-31</date8601>
+                </position>
+              </end>
+            </restrictedValidity>
+            <domain idref="i1572" />
+          </attributeTypes>
+        </FT_FeatureType>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1547" uuid="VIS_DK;0.0.0;30">
+          <nameOrCode>VVIStyp</nameOrCode>
+          <definition>Används för att ange om ordinarie VVIS-utrustning eller enbart 
+KAMERA-utrustning finns. 
+Till idenifikation av VVISstolpe används attributet nummer och för kamerastolpe
+används attributet kameranr.
+</definition>
+          <codeOrName>30</codeOrName>
+          <valueType>
+            <aName>Integer</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>VVISstolpe</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>1</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Kamerastolpe</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>2</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1568" uuid="VIS_DK;0.0.0;40">
+          <nameOrCode>metod attribut</nameOrCode>
+          <definition>Den metod med vilken data hanterats i processteget</definition>
+          <codeOrName>40</codeOrName>
+          <valueType>
+            <aName>Integer</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Konverterat VDB</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>1</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>1:a ver. leveranssätt</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>2</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Konvertering</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>3</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1574" uuid="VIS_DK;0.0.0;41">
+          <nameOrCode>metod utbredning</nameOrCode>
+          <definition>Den metod med vilken data hanterats i processteget.</definition>
+          <codeOrName>41</codeOrName>
+          <valueType>
+            <aName>Integer</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Konverterat från VDB</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>1</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>1:a ver. leveranssätt</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>2</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Konvertering</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>3</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1557" uuid="VIS_DK;0.0.0;15">
+          <nameOrCode>xkoordinat</nameOrCode>
+          <definition>X-koordinaten för punkten. </definition>
+          <codeOrName>15</codeOrName>
+          <valueType>
+            <aName>Real</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidRange>
+              <description />
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <min>
+                <numericValue>6100000</numericValue>
+              </min>
+              <max>
+                <numericValue>7700000</numericValue>
+              </max>
+            </FT_ValidRange>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1559" uuid="VIS_DK;0.0.0;16">
+          <nameOrCode>ykoordinat</nameOrCode>
+          <definition>Y-koordinaten för punkten. </definition>
+          <codeOrName>16</codeOrName>
+          <valueType>
+            <aName>Real</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidRange>
+              <description />
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <min>
+                <numericValue>235000</numericValue>
+              </min>
+              <max>
+                <numericValue>932000</numericValue>
+              </max>
+            </FT_ValidRange>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1555" uuid="VIS_DK;0.0.0;26">
+          <nameOrCode>VVISkameraantal</nameOrCode>
+          <definition>Anger hur många kameror som finns på VVIS-stolpen.  </definition>
+          <codeOrName>26</codeOrName>
+          <valueType>
+            <aName>Integer</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>1 kamera</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>1</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>2 kameror</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>2</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>3 kameror</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>3</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>4 kameror</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>4</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Ingen kamera</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>8</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1553" uuid="VIS_DK;0.0.0;27">
+          <nameOrCode>VVISkameranr</nameOrCode>
+          <definition>Används för att ange numret på stolpen där enbart 
+kamerautrustning finns. Anges med länsnr + K och en siffra 
+från 1 och uppåt. (ex. 20K1,20K2,osv.)
+</definition>
+          <codeOrName>27</codeOrName>
+          <valueType>
+            <aName>CharacterString</aName>
+          </valueType>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1549" uuid="VIS_DK;0.0.0;28">
+          <nameOrCode>VVISnamn</nameOrCode>
+          <definition>Avser namnet för VVIS- stolpen (mätstationsnamnet).</definition>
+          <codeOrName>28</codeOrName>
+          <valueType>
+            <aName>CharacterString</aName>
+          </valueType>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1551" uuid="VIS_DK;0.0.0;29">
+          <nameOrCode>VVISnr</nameOrCode>
+          <definition>Avser numret för VVIS- stolpen (mätstationsnumret). Numret 
+anges med lännr + ett löpande nummer. (ex. 2001, 2032). 
+För stolpe med ENBART kamera anges numret i attributet kameranr.
+</definition>
+          <codeOrName>29</codeOrName>
+          <valueType>
+            <aName>Integer</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidRange>
+              <description />
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <min>
+                <numericValue>1</numericValue>
+              </min>
+              <max>
+                <numericValue>99998</numericValue>
+              </max>
+            </FT_ValidRange>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1570" uuid="VIS_DK;0.0.0;39">
+          <nameOrCode>datum</nameOrCode>
+          <definition>Det datum då hanteringen av data i processteget avslutades.</definition>
+          <codeOrName>39</codeOrName>
+          <valueType>
+            <aName>Date</aName>
+          </valueType>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1561" uuid="VIS_DK;0.0.0;17">
+          <nameOrCode>zkoordinat</nameOrCode>
+          <definition>Z-koordinaten för punkten. </definition>
+          <codeOrName>17</codeOrName>
+          <valueType>
+            <aName>Real</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidRange>
+              <description />
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <min>
+                <numericValue>0.01</numericValue>
+              </min>
+              <max>
+                <numericValue>1999.98</numericValue>
+              </max>
+            </FT_ValidRange>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_ThematicValueDomain id="i1564" uuid="VIS_DK;0.0.0;42">
+          <nameOrCode>ansvarig organisation</nameOrCode>
+          <definition>Den organisation som är ansvarig för att företeelsens data skapades</definition>
+          <codeOrName>42</codeOrName>
+          <valueType>
+            <aName>Integer</aName>
+          </valueType>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Trafikverket</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>2010-04-01</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>9999-12-31</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>3</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Vägverket</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>2010-07-09</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>1</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <validValues>
+            <FT_ValidEnumeration>
+              <description>Banverket</description>
+              <restrictedValidity>
+                <begin>
+                  <position>
+                    <date8601>1899-12-30</date8601>
+                  </position>
+                </begin>
+                <end>
+                  <position>
+                    <date8601>2010-07-09</date8601>
+                  </position>
+                </end>
+              </restrictedValidity>
+              <code>2</code>
+            </FT_ValidEnumeration>
+          </validValues>
+          <valueMeasurementUnit>
+            <name>---</name>
+            <measurementType>---</measurementType>
+          </valueMeasurementUnit>
+        </FT_ThematicValueDomain>
+      </entries>
+      <entries>
+        <FT_StructuredValueDomain id="i1566" uuid="VIS_DK;0.0.0;43">
+          <nameOrCode>processteg attribut</nameOrCode>
+          <definition>Beskrivning av ett steg i den process som skapat och hanterat företeelsens attributdata. Endast två steg är idenifierade. Skall utvecklas vidare.</definition>
+          <codeOrName>43</codeOrName>
+          <union>false</union>
+          <members id="i1567" uuid="VIS_DK;0.0.0;43;1">
+            <isMandatory>true</isMandatory>
+            <name>metod attribut</name>
+            <definition>Den metod med vilken data hanterats i processteget</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <domain idref="i1568" uuidref="VIS_DK;0.0.0;40" />
+          </members>
+          <members id="i1569" uuid="VIS_DK;0.0.0;43;2">
+            <isMandatory>true</isMandatory>
+            <name>slutdatum</name>
+            <definition>Det datum då hanteringen av data i processteget avslutades.</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <domain idref="i1570" uuidref="VIS_DK;0.0.0;39" />
+          </members>
+        </FT_StructuredValueDomain>
+      </entries>
+      <entries>
+        <FT_StructuredValueDomain id="i1572" uuid="VIS_DK;0.0.0;44">
+          <nameOrCode>processteg utbredning</nameOrCode>
+          <definition>Beskrivning av ett steg i den process som skapat och hanterat data om företeelsens utbredning (-ar). Endast två steg idenifierade. Skall utvecklas vidare.</definition>
+          <codeOrName>44</codeOrName>
+          <union>false</union>
+          <members id="i1573" uuid="VIS_DK;0.0.0;44;3">
+            <isMandatory>true</isMandatory>
+            <name>metod utbredning</name>
+            <definition>Den metod med vilken data hanterats i processteget.</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <domain idref="i1574" uuidref="VIS_DK;0.0.0;41" />
+          </members>
+          <members id="i1575" uuid="VIS_DK;0.0.0;44;4">
+            <isMandatory>true</isMandatory>
+            <name>slutdatum</name>
+            <definition>Det datum då hanteringen av data i processteget avslutades.</definition>
+            <multiplicity>
+              <range>
+                <lower>0</lower>
+                <upper>1</upper>
+              </range>
+            </multiplicity>
+            <domain idref="i1570" uuidref="VIS_DK;0.0.0;39" />
+          </members>
+        </FT_StructuredValueDomain>
+      </entries>
+      <entries>
+        <NW_LinkExtentValueDomain id="i1578">
+          <nameOrCode>Punktutbredning</nameOrCode>
+          <definition>Punktutbredning</definition>
+          <codeOrName>4</codeOrName>
+          <valueType>
+            <aName>NW_PointExtent</aName>
+          </valueType>
+          <canOverlap>false</canOverlap>
+          <lateralPosition>true</lateralPosition>
+          <direction>false</direction>
+          <heightPosition>false</heightPosition>
+          <laneCode>false</laneCode>
+          <lateralDist>false</lateralDist>
+          <verticalDist>false</verticalDist>
+          <mustCover>false</mustCover>
+        </NW_LinkExtentValueDomain>
+      </entries>
+      <entries>
+        <FT_AssociationType id="i1576" uuid="VIS_DK;0.0.0;76;23">
+          <isMandatory>true</isMandatory>
+          <name>företeelsetillkomst</name>
+          <definition>företeelsetillkomst</definition>
+          <multiplicity>
+            <range>
+              <lower>0</lower>
+              <upper>1</upper>
+            </range>
+          </multiplicity>
+          <type>Association</type>
+          <associationTo idref="i1562" uuidref="VIS_DK;0.0.0;23" />
+        </FT_AssociationType>
+      </entries>
+    </FT_FeatureCatalogue>
+  </dataset>
+</GI>

@@ -1,0 +1,18 @@
+Information om beställning 
+-----------------------------------------
+Namn på beställning: vvis
+Starttid: 2018-01-16 15:24:21
+Format: TNE XML
+Koordinatsystem: SWEREF 99 TM
+Beskrivning: vägväderinformationssystem hela sverige
+Filstorlek: 113 KB
+
+Dataprodukter 
+-----------------------------------------
+VVIS
+
+Övrig information 
+-----------------------------------------
+Område: Sverige
+Sluttid: 2018-01-16 15:29:26
+Filnamn: vvis_TNE_Sverige_27322_197935
