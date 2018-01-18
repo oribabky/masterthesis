@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.15)  15 JAN 2018 14:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.15)  17 JAN 2018 16:32
 entering extended mode
 **./main.tex
 (main.tex
@@ -391,30 +391,66 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
+(E:\Skola\latex\tex\generic\babel\babel.sty
+Package: babel 2018/01/04 3.16 The Babel package
+
+(E:\Skola\latex\tex\generic\babel\switch.def
+File: switch.def 2018/01/04 3.16 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+(E:\Skola\latex\tex\latex\arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(E:\Skola\latex\tex\latex\babel-english\english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+
+(E:\Skola\latex\tex\generic\babel\babel.def
+File: babel.def 2018/01/04 3.16 Babel common definitions
+
+(E:\Skola\latex\tex\generic\babel\switch.def
+File: switch.def 2018/01/04 3.16 Babel switching mechanism
+)
+\babel@savecnt=\count91
+\U@D=\dimen113
+
+(E:\Skola\latex\tex\generic\babel\txtbabel.def)
+\bbl@dirlevel=\count92
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+)
+(E:\Skola\latex\tex\latex\babel-swedish\swedish.ldf
+Language: swedish 2005/03/31 v2.3d Swedish support from the babel system
+Package babel Info: Making " an active character on input line 90.
+))
 (E:\Skola\latex\tex\latex\booktabs\booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen113
-\lightrulewidth=\dimen114
-\cmidrulewidth=\dimen115
-\belowrulesep=\dimen116
-\belowbottomsep=\dimen117
-\aboverulesep=\dimen118
-\abovetopsep=\dimen119
-\cmidrulesep=\dimen120
-\cmidrulekern=\dimen121
-\defaultaddspace=\dimen122
-\@cmidla=\count91
-\@cmidlb=\count92
-\@aboverulesep=\dimen123
-\@belowrulesep=\dimen124
-\@thisruleclass=\count93
-\@lastruleclass=\count94
-\@thisrulewidth=\dimen125
+\heavyrulewidth=\dimen114
+\lightrulewidth=\dimen115
+\cmidrulewidth=\dimen116
+\belowrulesep=\dimen117
+\belowbottomsep=\dimen118
+\aboverulesep=\dimen119
+\abovetopsep=\dimen120
+\cmidrulesep=\dimen121
+\cmidrulekern=\dimen122
+\defaultaddspace=\dimen123
+\@cmidla=\count93
+\@cmidlb=\count94
+\@aboverulesep=\dimen124
+\@belowrulesep=\dimen125
+\@thisruleclass=\count95
+\@lastruleclass=\count96
+\@thisrulewidth=\dimen126
 )
 (E:\Skola\latex\tex\latex\tools\array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
-\col@sep=\dimen126
-\extrarowheight=\dimen127
+\col@sep=\dimen127
+\extrarowheight=\dimen128
 \NC@list=\toks18
 \extratabsurround=\skip43
 \backup@length=\skip44
@@ -442,27 +478,27 @@ Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 (E:\Skola\latex\tex\latex\caption\caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen128
-\captionmargin@=\dimen129
-\captionwidth=\dimen130
-\caption@tempdima=\dimen131
-\caption@indent=\dimen132
-\caption@parindent=\dimen133
-\caption@hangindent=\dimen134
+\captionmargin=\dimen129
+\captionmargin@=\dimen130
+\captionwidth=\dimen131
+\caption@tempdima=\dimen132
+\caption@indent=\dimen133
+\caption@parindent=\dimen134
+\caption@hangindent=\dimen135
 )
-\c@ContinuedFloat=\count95
+\c@ContinuedFloat=\count97
 )
-\c@KVtest=\count96
+\c@KVtest=\count98
 \sf@farskip=\skip49
-\sf@captopadj=\dimen135
+\sf@captopadj=\dimen136
 \sf@capskip=\skip50
 \sf@nearskip=\skip51
-\c@subfigure=\count97
-\c@subfigure@save=\count98
-\c@lofdepth=\count99
-\c@subtable=\count100
-\c@subtable@save=\count101
-\c@lotdepth=\count102
+\c@subfigure=\count99
+\c@subfigure@save=\count100
+\c@lofdepth=\count101
+\c@subtable=\count102
+\c@subtable@save=\count103
+\c@lotdepth=\count104
 \sf@top=\skip52
 \sf@bottom=\skip53
 )
@@ -585,16 +621,16 @@ LaTeX Font Info:    ... okay on input line 65.
 
 (E:\Skola\latex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count103
-\scratchdimen=\dimen136
+\scratchcounter=\count105
+\scratchdimen=\dimen137
 \scratchbox=\box26
-\nofMPsegments=\count104
-\nofMParguments=\count105
+\nofMPsegments=\count106
+\nofMParguments=\count107
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count106
-\MPscratchDim=\dimen137
-\MPnumerator=\count107
-\makeMPintoPDFobject=\count108
+\MPscratchCnt=\count108
+\MPscratchDim=\dimen138
+\MPnumerator=\count109
+\makeMPintoPDFobject=\count110
 \everyMPtoPDFconversion=\toks23
 ) (E:\Skola\latex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -655,34 +691,48 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 66.
  [1
 
-{C:/Users/Tobias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [1] (main.
-toc
+{C:/Users/Tobias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [1
+
+] [1] [1] (main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 1.
+(Font)              <10.95> on input line 5.
 )
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- (background.tex)
-[1
+
+(introduction.tex [1
+
+]) (literature.tex [2
+
+]) (methodology.tex [3
+
+]) (results.tex
+[4
+
+]) (conclusions.tex [5
+
+]
+Chapter 1.
+) [6
 
 ] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 4278 strings out of 493307
- 62111 string characters out of 3144463
- 130880 words of memory out of 3000000
- 7768 multiletter control sequences out of 15000+200000
- 11219 words of font info for 39 fonts, out of 3000000 for 9000
+ 4865 strings out of 493307
+ 70216 string characters out of 3144463
+ 147144 words of memory out of 3000000
+ 8317 multiletter control sequences out of 15000+200000
+ 11517 words of font info for 40 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,6n,43p,273b,173s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,6n,43p,273b,196s stack positions out of 5000i,500n,10000p,200000b,50000s
 <E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Sko
 la/latex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/Skola/latex/fonts/type1/p
 ublic/amsfonts/cm/cmr12.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmr1
 7.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmss12.pfb><E:/Skola/latex
 /fonts/type1/public/amsfonts/cm/cmss17.pfb>
-Output written on main.pdf (3 pages, 65739 bytes).
+Output written on main.pdf (10 pages, 83835 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
+ 59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

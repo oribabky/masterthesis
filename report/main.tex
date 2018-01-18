@@ -24,6 +24,7 @@
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 
 %%% PACKAGES
+\usepackage[english,swedish]{babel}
 \usepackage{booktabs} % for much better looking tables
 \usepackage{array} % for better arrays (eg matrices) in maths
 \usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
@@ -56,8 +57,7 @@
 
 %%% The "real" document content comes below...
 
-
-\title{Insert title}
+\title{Towards impressive titles and meta-sufficient field exploits: An interactive study in which key-concepts are defined and thoroughly investigated}
 \author{Tobias Axelsson}
 %\date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
@@ -65,13 +65,33 @@
 \begin{document}
 \maketitle
 
+\chapter*{Preface}
+	\thispagestyle{empty}
+	I am a student blalsadf
+
+\selectlanguage{english}
+\begin{abstract}
+asdasd
+\end{abstract}
+
+\selectlanguage{swedish}
 \begin{abstract}
 	asdasdasd
 \end{abstract}
-\tableofcontents{}
+\selectlanguage{english}
 
-\input{background.tex}
+\tableofcontents
+	\thispagestyle{empty}
 
+
+\input{introduction.tex}
+\input{literature.tex}
+
+\input{methodology.tex}
+
+\input{results.tex}
+
+\input{conclusions.tex}
 
 
 \end{document}

@@ -1,3 +1,10 @@
-\contentsline {section}{\numberline {0.1}Introduction}{1}
-\contentsline {subsection}{\numberline {0.1.1}Background}{1}
-\contentsline {subsection}{\numberline {0.1.2}Problem}{1}
+\babel@toc {swedish}{}
+\babel@toc {english}{}
+\babel@toc {swedish}{}
+\babel@toc {english}{}
+\contentsline {section}{\numberline {0.1}Background}{2}
+\contentsline {section}{\numberline {0.2}Objective}{2}
+\contentsline {section}{\numberline {0.3}Scope}{2}
+\contentsline {section}{\numberline {0.4}Report structure}{2}
+\contentsline {chapter}{\numberline {1}Conclusions and future work}{6}
+\contentsline {section}{\numberline {1.1}Conclusions}{6}
