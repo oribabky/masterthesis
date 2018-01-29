@@ -54,7 +54,13 @@
 \graphicspath{ {img/} }
 
 %add references
-\addbibresource{references.bib}
+%\addbibresource{references.bib}
+% setup biblatex/bibliography
+\usepackage[
+	backend=bibtex,
+	style=ieee
+	]{biblatex}
+\bibliography{references}
 
 %%% END Article customizations
 
@@ -99,5 +105,5 @@
 
 \input{discussion.tex}
 
-\printbibliography{}
+\printbibliography
 \end{document}
