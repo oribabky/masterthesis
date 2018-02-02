@@ -2,22 +2,6 @@ data
 
 *.pdf
 
-# vim stuff
-# Swap
-[._]*.s[a-v][a-z]
-[._]*.sw[a-p]
-[._]s[a-v][a-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-
-# Temporary
-.netrwhist
-*~
-# Auto-generated tag files
-tags
-
 # biblatex
 *.bcf
 *.xml
@@ -48,8 +32,3 @@ tags
 *.synctex.gz
 *.fls
 *.fdb*
-
-# OSX
-.DS_Store
-*.DS_Store
-**/.DS_Store
