@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.18)  29 JAN 2018 10:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.15)  2 FEB 2018 10:10
 entering extended mode
 **./main.tex
 (main.tex
 LaTeX2e <2017-04-15>
 Babel <3.16> and hyphenation patterns for 75 language(s) loaded.
-(D:\miktex\tex\latex\base\report.cls
+(E:\Skola\latex\tex\latex\base\report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-(D:\miktex\tex\latex\base\size11.clo
+(E:\Skola\latex\tex\latex\base\size11.clo
 File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -21,18 +21,20 @@ File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) (D:\miktex\tex\latex\base\inputenc.sty
+)
+(E:\Skola\latex\tex\latex\base\inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(D:\miktex\tex\latex\base\utf8.def
+(E:\Skola\latex\tex\latex\base\utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
- (D:\miktex\tex\latex\base\t1enc.dfu
+
+(E:\Skola\latex\tex\latex\base\t1enc.dfu
 File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -273,7 +275,7 @@ File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(D:\miktex\tex\latex\base\ot1enc.dfu
+(E:\Skola\latex\tex\latex\base\ot1enc.dfu
 File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -313,7 +315,8 @@ File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 )
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
- (D:\miktex\tex\latex\base\omsenc.dfu
+
+(E:\Skola\latex\tex\latex\base\omsenc.dfu
 File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -337,21 +340,21 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(D:\miktex\tex\latex\geometry\geometry.sty
+(E:\Skola\latex\tex\latex\geometry\geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(D:\miktex\tex\latex\graphics\keyval.sty
+(E:\Skola\latex\tex\latex\graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(D:\miktex\tex\generic\oberdiek\ifpdf.sty
+(E:\Skola\latex\tex\generic\oberdiek\ifpdf.sty
 Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
-(D:\miktex\tex\generic\oberdiek\ifvtex.sty
+(E:\Skola\latex\tex\generic\oberdiek\ifvtex.sty
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(D:\miktex\tex\generic\ifxetex\ifxetex.sty
+(E:\Skola\latex\tex\generic\ifxetex\ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count88
@@ -367,61 +370,64 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen110
 \Gm@dimlist=\toks17
 
-(D:\miktex\tex\latex\geometry\geometry.cfg))
-(D:\miktex\tex\latex\graphics\graphicx.sty
+(E:\Skola\latex\tex\latex\geometry\geometry.cfg))
+(E:\Skola\latex\tex\latex\graphics\graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(D:\miktex\tex\latex\graphics\graphics.sty
+(E:\Skola\latex\tex\latex\graphics\graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(D:\miktex\tex\latex\graphics\trig.sty
+(E:\Skola\latex\tex\latex\graphics\trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(D:\miktex\tex\latex\graphics-cfg\graphics.cfg
+(E:\Skola\latex\tex\latex\graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(D:\miktex\tex\latex\graphics-def\pdftex.def
-File: pdftex.def 2018/01/01 v1.0k Graphics/color driver for pdftex
+(E:\Skola\latex\tex\latex\graphics-def\pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-(D:\miktex\tex\generic\babel\babel.sty
+(E:\Skola\latex\tex\generic\babel\babel.sty
 Package: babel 2018/01/04 3.16 The Babel package
- (D:\miktex\tex\generic\babel\switch.def
+
+(E:\Skola\latex\tex\generic\babel\switch.def
 File: switch.def 2018/01/04 3.16 Babel switching mechanism
 )
 *************************************
 * Local config file bblopts.cfg used
 *
-(D:\miktex\tex\latex\arabi\bblopts.cfg
+(E:\Skola\latex\tex\latex\arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(D:\miktex\tex\latex\babel-english\english.ldf
+(E:\Skola\latex\tex\latex\babel-english\english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 
-(D:\miktex\tex\generic\babel\babel.def
+(E:\Skola\latex\tex\generic\babel\babel.def
 File: babel.def 2018/01/04 3.16 Babel common definitions
- (D:\miktex\tex\generic\babel\switch.def
+
+(E:\Skola\latex\tex\generic\babel\switch.def
 File: switch.def 2018/01/04 3.16 Babel switching mechanism
 )
 \babel@savecnt=\count91
 \U@D=\dimen113
-(D:\miktex\tex\generic\babel\txtbabel.def)
+
+(E:\Skola\latex\tex\generic\babel\txtbabel.def)
 \bbl@dirlevel=\count92
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 )
-(D:\miktex\tex\latex\babel-swedish\swedish.ldf
+(E:\Skola\latex\tex\latex\babel-swedish\swedish.ldf
 Language: swedish 2005/03/31 v2.3d Swedish support from the babel system
 Package babel Info: Making " an active character on input line 90.
 ))
-(D:\miktex\tex\latex\booktabs\booktabs.sty
+(E:\Skola\latex\tex\latex\booktabs\booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \heavyrulewidth=\dimen114
 \lightrulewidth=\dimen115
@@ -441,7 +447,7 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count96
 \@thisrulewidth=\dimen126
 )
-(D:\miktex\tex\latex\tools\array.sty
+(E:\Skola\latex\tex\latex\tools\array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen127
 \extrarowheight=\dimen128
@@ -449,7 +455,7 @@ Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \extratabsurround=\skip43
 \backup@length=\skip44
 )
-(D:\miktex\tex\latex\paralist\paralist.sty
+(E:\Skola\latex\tex\latex\paralist\paralist.sty
 Package: paralist 2017/01/22 v2.7 Extended list environments
 \pltopsep=\skip45
 \plpartopsep=\skip46
@@ -457,17 +463,19 @@ Package: paralist 2017/01/22 v2.7 Extended list environments
 \plparsep=\skip48
 \pl@lab=\toks19
 )
-(D:\miktex\tex\latex\tools\verbatim.sty
+(E:\Skola\latex\tex\latex\tools\verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks20
 \verbatim@line=\toks21
 \verbatim@in@stream=\read1
-) (D:\miktex\tex\latex\subfig\subfig.sty
+)
+(E:\Skola\latex\tex\latex\subfig\subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
-(D:\miktex\tex\latex\caption\caption.sty
+
+(E:\Skola\latex\tex\latex\caption\caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
-(D:\miktex\tex\latex\caption\caption3.sty
+(E:\Skola\latex\tex\latex\caption\caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
 \captionmargin=\dimen129
@@ -494,7 +502,7 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \sf@top=\skip52
 \sf@bottom=\skip53
 )
-(D:\miktex\tex\latex\fancyhdr\fancyhdr.sty
+(E:\Skola\latex\tex\latex\fancyhdr\fancyhdr.sty
 Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
 s
 \f@nch@headwidth=\skip54
@@ -507,18 +515,18 @@ s
 \f@nch@O@olf=\skip61
 \f@nch@O@orf=\skip62
 )
-(D:\miktex\tex\latex\sectsty\sectsty.sty
+(E:\Skola\latex\tex\latex\sectsty\sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
 les
 )
-(D:\miktex\tex\latex\tocbibind\tocbibind.sty
+(E:\Skola\latex\tex\latex\tocbibind\tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
 Package tocbibind Info: The document has chapter divisions on input line 50.
 
 
 Package tocbibind Note: Using chapter style headings, unless overridden.
 
-) (D:\miktex\tex\latex\tocloft\tocloft.sty
+) (E:\Skola\latex\tex\latex\tocloft\tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has chapter divisions on input line 51.
 \cftparskip=\skip63
@@ -562,21 +570,21 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cftsubtabindent=\skip101
 \cftsubtabnumwidth=\skip102
 )
-(D:\miktex\tex\latex\biblatex\biblatex.sty
+(E:\Skola\latex\tex\latex\biblatex\biblatex.sty
 Package: biblatex 2017/12/19 v3.10 programmable bibliographies (PK/JW/AB)
 
-(D:\miktex\tex\generic\oberdiek\pdftexcmds.sty
+(E:\Skola\latex\tex\generic\oberdiek\pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(D:\miktex\tex\generic\oberdiek\infwarerr.sty
+(E:\Skola\latex\tex\generic\oberdiek\infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-(D:\miktex\tex\generic\oberdiek\ifluatex.sty
+(E:\Skola\latex\tex\generic\oberdiek\ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
-(D:\miktex\tex\generic\oberdiek\ltxcmds.sty
+(E:\Skola\latex\tex\generic\oberdiek\ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 Package pdftexcmds Info: LuaTeX not detected.
@@ -584,36 +592,39 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(D:\miktex\tex\latex\etoolbox\etoolbox.sty
+(E:\Skola\latex\tex\latex\etoolbox\etoolbox.sty
 Package: etoolbox 2017/11/22 v2.5 e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count105
 )
-(D:\miktex\tex\latex\oberdiek\kvoptions.sty
+(E:\Skola\latex\tex\latex\oberdiek\kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 
-(D:\miktex\tex\generic\oberdiek\kvsetkeys.sty
+(E:\Skola\latex\tex\generic\oberdiek\kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
-(D:\miktex\tex\generic\oberdiek\etexcmds.sty
+(E:\Skola\latex\tex\generic\oberdiek\etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
-(D:\miktex\tex\latex\logreq\logreq.sty
+(E:\Skola\latex\tex\latex\logreq\logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
 \lrq@indent=\count106
- (D:\miktex\tex\latex\logreq\logreq.def
+
+(E:\Skola\latex\tex\latex\logreq\logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-)) (D:\miktex\tex\latex\base\ifthen.sty
+))
+(E:\Skola\latex\tex\latex\base\ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-) (D:\miktex\tex\latex\url\url.sty
+)
+(E:\Skola\latex\tex\latex\url\url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(D:\miktex\tex\latex\xstring\xstring.sty
-(D:\miktex\tex\generic\xstring\xstring.tex
+(E:\Skola\latex\tex\latex\xstring\xstring.sty
+(E:\Skola\latex\tex\generic\xstring\xstring.tex
 \@xs@message=\write3
 \integerpart=\count107
 \decimalpart=\count108
@@ -674,9 +685,9 @@ Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
-(D:\miktex\tex\latex\biblatex\blx-dm.def)
+(E:\Skola\latex\tex\latex\biblatex\blx-dm.def)
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'verbose-trad2.dbx' not found.
+Package biblatex Info: ... file 'ieee.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count150
@@ -756,13 +767,13 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
-(D:\miktex\tex\latex\biblatex\blx-compat.def
+(E:\Skola\latex\tex\latex\biblatex\blx-compat.def
 File: blx-compat.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
 )
 Package biblatex Info: Trying to load BibTeX backend compatibility...
 Package biblatex Info: ... file 'blx-bibtex.def' found.
 
-(D:\miktex\tex\latex\biblatex\blx-bibtex.def
+(E:\Skola\latex\tex\latex\biblatex\blx-bibtex.def
 File: blx-bibtex.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
 
 
@@ -772,7 +783,7 @@ Package biblatex Warning: Using fall-back BibTeX(8) backend:
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
- (D:\miktex\tex\latex\biblatex\biblatex.def
+ (E:\Skola\latex\tex\latex\biblatex\biblatex.def
 File: biblatex.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
 \c@textcitecount=\count284
 \c@textcitetotal=\count285
@@ -782,8 +793,271 @@ File: biblatex.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
 \c@biburllcpenalty=\count289
 \c@smartand=\count290
 )
-Package biblatex Info: Trying to load bibliography style 'verbose-trad2'...
-Package biblatex Info: ... file 'verbose-trad2.bbx' found.
+Package biblatex Info: Trying to load bibliography style 'ieee'...
+Package biblatex Info: ... file 'ieee.bbx' found.
 
-(D:\miktex\tex\latex\biblatex\bbx\verbose-trad2.bbx
-File: verbose-
+(E:\Skola\latex\tex\latex\biblatex-ieee\ieee.bbx
+File: ieee.bbx 2017/03/27 v1.2d biblatex bibliography style
+Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\bbx\numeric-comp.bbx
+File: numeric-comp.bbx 2017/12/19 v3.10 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\bbx\numeric.bbx
+File: numeric.bbx 2017/12/19 v3.10 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\bbx\standard.bbx
+File: standard.bbx 2017/12/19 v3.10 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count291
+\c@bbx:relatedtotal=\count292
+))))
+Package biblatex Info: Trying to load citation style 'ieee'...
+Package biblatex Info: ... file 'ieee.cbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex-ieee\ieee.cbx
+File: ieee.cbx 2017/03/27 v1.2d biblatex citation style
+Package biblatex Info: Trying to load citation style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.cbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\cbx\numeric-comp.cbx
+File: numeric-comp.cbx 2017/12/19 v3.10 biblatex citation style (PK/JW/AB)
+\c@cbx@tempcnta=\count293
+\c@cbx@tempcntb=\count294
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(E:\Skola\latex\tex\latex\biblatex\biblatex.cfg
+File: biblatex.cfg 
+))
+Package biblatex Info: Trying to load language 'swedish'...
+Package biblatex Info: ... file 'swedish.lbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\lbx\swedish.lbx
+File: swedish.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\lbx\english.lbx
+File: english.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
+)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count295
+\@quotereset=\count296
+(main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.3571pt
+* \topmargin=-7.86334pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=59.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(E:\Skola\latex\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count297
+\scratchdimen=\dimen137
+\scratchbox=\box26
+\nofMPsegments=\count298
+\nofMParguments=\count299
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count300
+\MPscratchDim=\dimen138
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
+\everyMPtoPDFconversion=\toks23
+) (E:\Skola\latex\tex\latex\oberdiek\epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(E:\Skola\latex\tex\latex\oberdiek\grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(E:\Skola\latex\tex\generic\oberdiek\kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Input encoding 'utf8' specified.
+Package biblatex Info: Data encoding 'utf8' specified.
+(biblatex)             No need to reencode data.
+\openout4 = `main-blx.bib'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 74.
+Package biblatex Info: Reference segment=0 on input line 74.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 75.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 75.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 75.
+[1
+
+{C:/Users/Tobias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [1
+
+]
+[1] [1] (main.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 7.
+)
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ (introduction.tex [1
+
+]
+Chapter 1.
+) (literature.tex [2
+
+]
+Chapter 2.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
+(E:\Skola\latex\tex\latex\base\omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
+
+
+LaTeX Warning: Citation 'BOOK:1' on page 3 undefined on input line 11.
+
+
+LaTeX Warning: Citation 'WEBSITE:1' on page 3 undefined on input line 14.
+
+) (method.tex [3
+
+]
+Chapter 3.
+) (results.tex [4
+
+]
+Chapter 4.
+) (analysis.tex [5
+
+]
+Chapter 5.
+) (conclusions.tex [6
+
+]
+Chapter 6.
+) (discussion.tex [7
+
+]
+Chapter 7.
+)
+
+LaTeX Warning: Empty bibliography on input line 110.
+
+[8
+
+] (main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 11566 strings out of 493307
+ 193068 string characters out of 3144463
+ 474519 words of memory out of 3000000
+ 14934 multiletter control sequences out of 15000+200000
+ 12771 words of font info for 44 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 44i,6n,43p,879b,1786s stack positions out of 5000i,500n,10000p,200000b,50000s
+<E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Skola/latex/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><E:/Skola/latex/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/Sk
+ola/latex/fonts/type1/public/amsfonts/cm/cmss12.pfb><E:/Skola/latex/fonts/type1
+/public/amsfonts/cm/cmss17.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/c
+msy10.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (12 pages, 118354 bytes).
+PDF statistics:
+ 73 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

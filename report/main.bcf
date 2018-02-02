@@ -1900,6 +1900,9 @@
     <bcf:constraints>
       <bcf:constraint type="data" datatype="isbn">
         <bcf:field>isbn</bcf:field>
+<<<<<<< HEAD
+      </bcf:constr
+=======
       </bcf:constraint>
       <bcf:constraint type="data" datatype="issn">
         <bcf:field>issn</bcf:field>
@@ -1943,3 +1946,4 @@
                 labelalphanametemplatename="global">
   </bcf:datalist>
 </bcf:controlfile>
+>>>>>>> d7996ed0a92d6172a8ed58d64fe15833cd871fe3
