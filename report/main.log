@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.15)  23 JAN 2018 15:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.15)  2 FEB 2018 10:10
 entering extended mode
 **./main.tex
 (main.tex
@@ -569,21 +569,319 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cftbeforesubtabskip=\skip100
 \cftsubtabindent=\skip101
 \cftsubtabnumwidth=\skip102
-) (main.aux)
+)
+(E:\Skola\latex\tex\latex\biblatex\biblatex.sty
+Package: biblatex 2017/12/19 v3.10 programmable bibliographies (PK/JW/AB)
+
+(E:\Skola\latex\tex\generic\oberdiek\pdftexcmds.sty
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(E:\Skola\latex\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(E:\Skola\latex\tex\generic\oberdiek\ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(E:\Skola\latex\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(E:\Skola\latex\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2017/11/22 v2.5 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count105
+)
+(E:\Skola\latex\tex\latex\oberdiek\kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(E:\Skola\latex\tex\generic\oberdiek\kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(E:\Skola\latex\tex\generic\oberdiek\etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(E:\Skola\latex\tex\latex\logreq\logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count106
+
+(E:\Skola\latex\tex\latex\logreq\logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(E:\Skola\latex\tex\latex\base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(E:\Skola\latex\tex\latex\url\url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(E:\Skola\latex\tex\latex\xstring\xstring.sty
+(E:\Skola\latex\tex\generic\xstring\xstring.tex
+\@xs@message=\write3
+\integerpart=\count107
+\decimalpart=\count108
+)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+\c@tabx@nest=\count109
+\c@listtotal=\count110
+\c@listcount=\count111
+\c@liststart=\count112
+\c@liststop=\count113
+\c@citecount=\count114
+\c@citetotal=\count115
+\c@multicitecount=\count116
+\c@multicitetotal=\count117
+\c@instcount=\count118
+\c@maxnames=\count119
+\c@minnames=\count120
+\c@maxitems=\count121
+\c@minitems=\count122
+\c@citecounter=\count123
+\c@savedcitecounter=\count124
+\c@uniquelist=\count125
+\c@uniquename=\count126
+\c@refsection=\count127
+\c@refsegment=\count128
+\c@maxextratitle=\count129
+\c@maxextratitleyear=\count130
+\c@maxextradate=\count131
+\c@maxextraalpha=\count132
+\c@abbrvpenalty=\count133
+\c@highnamepenalty=\count134
+\c@lownamepenalty=\count135
+\c@maxparens=\count136
+\c@parenlevel=\count137
+\blx@tempcnta=\count138
+\blx@tempcntb=\count139
+\blx@tempcntc=\count140
+\blx@maxsection=\count141
+\blx@maxsegment@0=\count142
+\blx@notetype=\count143
+\blx@parenlevel@text=\count144
+\blx@parenlevel@foot=\count145
+\blx@sectionciteorder@0=\count146
+\labelnumberwidth=\skip103
+\labelalphawidth=\skip104
+\biblabelsep=\skip105
+\bibitemsep=\skip106
+\bibnamesep=\skip107
+\bibinitsep=\skip108
+\bibparsep=\skip109
+\bibhang=\skip110
+\blx@bcfin=\read2
+\blx@bcfout=\write4
+\c@mincomprange=\count147
+\c@maxcomprange=\count148
+\c@mincompwidth=\count149
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(E:\Skola\latex\tex\latex\biblatex\blx-dm.def)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'ieee.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count150
+\c@savedafterword=\count151
+\c@annotator=\count152
+\c@savedannotator=\count153
+\c@author=\count154
+\c@savedauthor=\count155
+\c@bookauthor=\count156
+\c@savedbookauthor=\count157
+\c@commentator=\count158
+\c@savedcommentator=\count159
+\c@editor=\count160
+\c@savededitor=\count161
+\c@editora=\count162
+\c@savededitora=\count163
+\c@editorb=\count164
+\c@savededitorb=\count165
+\c@editorc=\count166
+\c@savededitorc=\count167
+\c@foreword=\count168
+\c@savedforeword=\count169
+\c@holder=\count170
+\c@savedholder=\count171
+\c@introduction=\count172
+\c@savedintroduction=\count173
+\c@namea=\count174
+\c@savednamea=\count175
+\c@nameb=\count176
+\c@savednameb=\count177
+\c@namec=\count178
+\c@savednamec=\count179
+\c@translator=\count180
+\c@savedtranslator=\count181
+\c@shortauthor=\count182
+\c@savedshortauthor=\count183
+\c@shorteditor=\count184
+\c@savedshorteditor=\count185
+\c@labelname=\count186
+\c@savedlabelname=\count187
+\c@institution=\count188
+\c@savedinstitution=\count189
+\c@lista=\count190
+\c@savedlista=\count191
+\c@listb=\count192
+\c@savedlistb=\count193
+\c@listc=\count194
+\c@savedlistc=\count195
+\c@listd=\count196
+\c@savedlistd=\count197
+\c@liste=\count198
+\c@savedliste=\count199
+\c@listf=\count266
+\c@savedlistf=\count267
+\c@location=\count268
+\c@savedlocation=\count269
+\c@organization=\count270
+\c@savedorganization=\count271
+\c@origlocation=\count272
+\c@savedoriglocation=\count273
+\c@origpublisher=\count274
+\c@savedorigpublisher=\count275
+\c@publisher=\count276
+\c@savedpublisher=\count277
+\c@language=\count278
+\c@savedlanguage=\count279
+\c@origlanguage=\count280
+\c@savedoriglanguage=\count281
+\c@pageref=\count282
+\c@savedpageref=\count283
+\shorthandwidth=\skip111
+\shortjournalwidth=\skip112
+\shortserieswidth=\skip113
+\shorttitlewidth=\skip114
+\shortauthorwidth=\skip115
+\shorteditorwidth=\skip116
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(E:\Skola\latex\tex\latex\biblatex\blx-compat.def
+File: blx-compat.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load BibTeX backend compatibility...
+Package biblatex Info: ... file 'blx-bibtex.def' found.
+
+(E:\Skola\latex\tex\latex\biblatex\blx-bibtex.def
+File: blx-bibtex.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
+
+
+Package biblatex Warning: Using fall-back BibTeX(8) backend:
+(biblatex)                functionality may be reduced/unavailable.
+
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (E:\Skola\latex\tex\latex\biblatex\biblatex.def
+File: biblatex.def 2017/12/19 v3.10 biblatex compatibility (PK/JW/AB)
+\c@textcitecount=\count284
+\c@textcitetotal=\count285
+\c@textcitemaxnames=\count286
+\c@biburlnumpenalty=\count287
+\c@biburlucpenalty=\count288
+\c@biburllcpenalty=\count289
+\c@smartand=\count290
+)
+Package biblatex Info: Trying to load bibliography style 'ieee'...
+Package biblatex Info: ... file 'ieee.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex-ieee\ieee.bbx
+File: ieee.bbx 2017/03/27 v1.2d biblatex bibliography style
+Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\bbx\numeric-comp.bbx
+File: numeric-comp.bbx 2017/12/19 v3.10 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\bbx\numeric.bbx
+File: numeric.bbx 2017/12/19 v3.10 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\bbx\standard.bbx
+File: standard.bbx 2017/12/19 v3.10 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count291
+\c@bbx:relatedtotal=\count292
+))))
+Package biblatex Info: Trying to load citation style 'ieee'...
+Package biblatex Info: ... file 'ieee.cbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex-ieee\ieee.cbx
+File: ieee.cbx 2017/03/27 v1.2d biblatex citation style
+Package biblatex Info: Trying to load citation style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.cbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\cbx\numeric-comp.cbx
+File: numeric-comp.cbx 2017/12/19 v3.10 biblatex citation style (PK/JW/AB)
+\c@cbx@tempcnta=\count293
+\c@cbx@tempcntb=\count294
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(E:\Skola\latex\tex\latex\biblatex\biblatex.cfg
+File: biblatex.cfg 
+))
+Package biblatex Info: Trying to load language 'swedish'...
+Package biblatex Info: ... file 'swedish.lbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\lbx\swedish.lbx
+File: swedish.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(E:\Skola\latex\tex\latex\biblatex\lbx\english.lbx
+File: english.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
+)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count295
+\@quotereset=\count296
+(main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
+LaTeX Font Info:    ... okay on input line 74.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -621,58 +919,26 @@ LaTeX Font Info:    ... okay on input line 68.
 
 (E:\Skola\latex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count105
+\scratchcounter=\count297
 \scratchdimen=\dimen137
 \scratchbox=\box26
-\nofMPsegments=\count106
-\nofMParguments=\count107
+\nofMPsegments=\count298
+\nofMParguments=\count299
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count108
+\MPscratchCnt=\count300
 \MPscratchDim=\dimen138
-\MPnumerator=\count109
-\makeMPintoPDFobject=\count110
+\MPnumerator=\count301
+\makeMPintoPDFobject=\count302
 \everyMPtoPDFconversion=\toks23
 ) (E:\Skola\latex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-(E:\Skola\latex\tex\generic\oberdiek\infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
 (E:\Skola\latex\tex\latex\oberdiek\grfext.sty
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
 (E:\Skola\latex\tex\generic\oberdiek\kvdefinekeys.sty
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-
-(E:\Skola\latex\tex\generic\oberdiek\ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)))
-(E:\Skola\latex\tex\latex\oberdiek\kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-(E:\Skola\latex\tex\generic\oberdiek\kvsetkeys.sty
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-(E:\Skola\latex\tex\generic\oberdiek\etexcmds.sty
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-(E:\Skola\latex\tex\generic\oberdiek\ifluatex.sty
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-(E:\Skola\latex\tex\generic\oberdiek\pdftexcmds.sty
-Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
+))
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 38.
 Package grfext Info: Graphics extension search list:
@@ -683,38 +949,59 @@ G,.JBIG2,.JB2,.eps]
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Input encoding 'utf8' specified.
+Package biblatex Info: Data encoding 'utf8' specified.
+(biblatex)             No need to reencode data.
+\openout4 = `main-blx.bib'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 74.
+Package biblatex Info: Reference segment=0 on input line 74.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 69.
+(Font)              <12> on input line 75.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 69.
+(Font)              <8> on input line 75.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 69.
- [1
+(Font)              <6> on input line 75.
+[1
 
 {C:/Users/Tobias/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [1
 
-] [1] [1] (main.toc
+]
+[1] [1] (main.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 5.
+(Font)              <10.95> on input line 7.
 )
-\tf@toc=\write3
-\openout3 = `main.toc'.
+\tf@toc=\write5
+\openout5 = `main.toc'.
 
-
-(introduction.tex [1
+ (introduction.tex [1
 
 ]
 Chapter 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 4.
-(E:\Skola\latex\tex\latex\base\omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 4.
 ) (literature.tex [2
 
 ]
 Chapter 2.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
+(E:\Skola\latex\tex\latex\base\omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
+
+
+LaTeX Warning: Citation 'BOOK:1' on page 3 undefined on input line 11.
+
+
+LaTeX Warning: Citation 'WEBSITE:1' on page 3 undefined on input line 14.
+
 ) (method.tex [3
 
 ]
@@ -735,26 +1022,42 @@ Chapter 6.
 
 ]
 Chapter 7.
-) [8
+)
 
-] (main.aux) ) 
+LaTeX Warning: Empty bibliography on input line 110.
+
+[8
+
+] (main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4891 strings out of 493307
- 70640 string characters out of 3144463
- 150025 words of memory out of 3000000
- 8334 multiletter control sequences out of 15000+200000
- 12425 words of font info for 43 fonts, out of 3000000 for 9000
+ 11566 strings out of 493307
+ 193068 string characters out of 3144463
+ 474519 words of memory out of 3000000
+ 14934 multiletter control sequences out of 15000+200000
+ 12771 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,6n,43p,273b,192s stack positions out of 5000i,500n,10000p,200000b,50000s
-<E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Sko
-la/latex/fonts/type1/public/amsfonts/cm/cmr10.pfb><E:/Skola/latex/fonts/type1/p
-ublic/amsfonts/cm/cmr12.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmr1
-7.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmss12.pfb><E:/Skola/latex
-/fonts/type1/public/amsfonts/cm/cmss17.pfb><E:/Skola/latex/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb>
-Output written on main.pdf (12 pages, 99002 bytes).
+ 44i,6n,43p,879b,1786s stack positions out of 5000i,500n,10000p,200000b,50000s
+<E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><E:/Skola/latex/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><E:/Skola/latex/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmr17.pfb><E:/Sk
+ola/latex/fonts/type1/public/amsfonts/cm/cmss12.pfb><E:/Skola/latex/fonts/type1
+/public/amsfonts/cm/cmss17.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/c
+msy10.pfb><E:/Skola/latex/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (12 pages, 118354 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 73 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
