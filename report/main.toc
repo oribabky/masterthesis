@@ -8,52 +8,54 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Background}{2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Objective}{2}
+\contentsline {section}{\numberline {1.2}Objective}{3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Delimitations}{2}
+\contentsline {section}{\numberline {1.3}Delimitations}{3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Thesis structure}{2}
+\contentsline {section}{\numberline {1.4}Thesis structure}{3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Literature Review}{3}
+\contentsline {chapter}{\numberline {2}Literature Review}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Machine learning}{3}
+\contentsline {section}{\numberline {2.1}Regression modeling}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}Neural networks}{3}
+\contentsline {section}{\numberline {2.2}Machine learning}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Method}{4}
+\contentsline {subsection}{\numberline {2.2.1}Neural networks}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Research purpose}{4}
+\contentsline {chapter}{\numberline {3}Method}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Research approach}{4}
+\contentsline {section}{\numberline {3.1}Research purpose}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Research strategy}{4}
+\contentsline {section}{\numberline {3.2}Research approach}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Tools}{4}
+\contentsline {section}{\numberline {3.3}Research strategy}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Implementation and results}{5}
+\contentsline {section}{\numberline {3.4}Tools}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Data collection}{5}
+\contentsline {chapter}{\numberline {4}Implementation and results}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Neural network}{5}
+\contentsline {section}{\numberline {4.1}Data collection}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}First iteration}{5}
+\contentsline {section}{\numberline {4.2}Neural network}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}Second iteration}{5}
+\contentsline {subsection}{\numberline {4.2.1}First iteration}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Analysis}{6}
+\contentsline {subsection}{\numberline {4.2.2}Second iteration}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Neural network}{6}
+\contentsline {chapter}{\numberline {5}Analysis}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusions and recommendations}{7}
+\contentsline {section}{\numberline {5.1}Neural network}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Conclusions}{7}
+\contentsline {chapter}{\numberline {6}Conclusions and recommendations}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Recommendations}{7}
+\contentsline {section}{\numberline {6.1}Conclusions}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Discussion}{8}
+\contentsline {section}{\numberline {6.2}Recommendations}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Thesis process}{8}
+\contentsline {chapter}{\numberline {7}Discussion}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Validity and reliability}{8}
+\contentsline {section}{\numberline {7.1}Thesis process}{9}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Future work}{8}
+\contentsline {section}{\numberline {7.2}Validity and reliability}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Future work}{9}
