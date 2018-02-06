@@ -32,3 +32,6 @@ data
 *.synctex.gz
 *.fls
 *.fdb*
+*.run.xml
+*.gz
+*.toc
