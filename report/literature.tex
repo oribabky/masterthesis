@@ -4,17 +4,25 @@
 
 
 \section{Machine learning}
-	Programming is typically about writing sequences of machine instructions, on a certain level of abstraction, for some software application. Once the application is used, it will determine logically what instructions to send to the machine, depending on what input is given from the user and what state the application is in etc. But as software applications grow in terms of lines of code, the amount of bugs and complexity increases, which in turn results in reduced software performance and readability \cite{IP:1}. 
+	%Programming is typically about writing sequences of machine instructions, on a certain level of abstraction, for some software application. Once the application is used, it will determine logically what instructions to send to the machine, depending on what input is given from the user and what state the application is in etc. But as software applications grow in terms of lines of code, the amount of bugs and complexity increases, which in turn results in reduced software performance and readability \cite{IP:1}. 
 
-Although today's programming languages typically offer some level of abstraction, and thus reduced complexity, it is still generally required of the programmer to account for every possible logical outcome of the software which has unwanted behavior. Today there are algorithms that improve automatically from past experiences, much like us humans do.
+%Although today's programming languages typically offer some level of abstraction, and thus reduced complexity, it is still generally required of the programmer to account for every possible logical outcome of the software which has unwanted behavior. Today there are algorithms that improve automatically by "learning from past experiences", much like us humans do.
 
 %Complexity can be mitigated by programming in programming languages. Instead of writing binary machine instructions, it's possible to write logical statements, expressions etc. in a programming language like C and compile the code back to machine instructions upon execution. 
 	
-Machine learning is formally defined by Mitchell \cite{BOOK:2}: 
-	"A computer program is said to learn from experience $E$ with respect to some class of tasks $T$ and performance measure $P$ if its performance at tasks in $T$, as measured by $P$, improves with experience $E$".
-	What this means is that machine learning algorithms is a way of 
-	
-	Two of the most common machine learning tasks: 
+	Machine learning is formally defined by Mitchell \cite{BOOK:2}: 
+"A computer program is said to learn from experience $E$ with respect to some class of tasks $T$ and performance measure $P$ if its performance at tasks in $T$, as measured by $P$, improves with experience $E$".	This means that machine learning algorithms are used to solve a set of problems, measure its performance in doing so and ultimately improve in some way from previous experiences. For example, imagine a program designed to determine if a human face is in a photo or not. Since photos are taken at different distances, angles and faces have different characteristics such as eye color, skin color, distance between eyes and nose shape, implementing this "manually" may prove cumbersome. Instead of programming an algorithm to recognize faces, it can be programmed  \emph{to learn to recognize faces}. If the algorithm is allowed to analyze a dataset with thousands of photos of human faces, it could learn to distinguish a human face by recognizing parts of the face such as eyes, nose, mouth and where those parts are most likely placed to oneanother.
+
+	%The process of learning with machine learning algorithms is typically done by using a subset of the input data as training data. The training data is used to build a mathematical model that defines a relationship between input and output. 
+
+	Machine learning algorithms can be broadly categorised as having either supervised- or unsupervised learning \cite{BOOK:1}. In supervised learning, the algorithm is fed instance(s) of desired output $y$ along with its corresponding $k$ input parameters $x = {x_1, x_2, ... x_k}$ and the goal is to build a mapping function $y = f_{map}(x)$ such that when new input data is used, $f_{map}$ is able to predict the correct output variable $y_{new}$ \cite{WEBSITE:3}. Learning this way typically involves updating a mathematical model which defines a relationship between input and output
+Examples of tasks, performance measures and experiences are found in the following sections.
+
+\subsection{Machine learning tasks}
+	It's important to distinguish the task from the process of learning. For example, programming a robot to walk means that walking is the task. This can be achieved "manually" by programming instructions on how to walk, or by programming the robot \emph{to learn to walk} \cite{BOOK:1}. Some popular machine learning tasks are presented in the following sections.
+
+\subsubsection{Classification}
+	Classification involves deciding in which of $k$ categories a certain input belongs to. This is usually done with classifi
 	\begin{itemize}
 		\item{Classification:} The computer is asked to specify which category a certain input belongs to. An example of a classification task is  
 		\item{Regression:} asdfsdf
