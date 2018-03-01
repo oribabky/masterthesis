@@ -13,22 +13,39 @@
 	Machine learning is formally defined by Mitchell \cite{BOOK:2}: 
 "A computer program is said to learn from experience $E$ with respect to some class of tasks $T$ and performance measure $P$ if its performance at tasks in $T$, as measured by $P$, improves with experience $E$".	This means that machine learning algorithms are used to solve a set of problems, measure its performance in doing so and ultimately improve in some way from previous experiences. For example, imagine a program designed to determine if a human face is in a photo or not. Since photos are taken at different distances, angles and faces have different characteristics such as eye color, skin color, distance between eyes and nose shape, implementing this "manually" may prove cumbersome. Instead of programming an algorithm to recognize faces, it can be programmed  \emph{to learn to recognize faces}. If the algorithm is allowed to analyze a dataset with thousands of photos of human faces, it could learn to distinguish a human face by recognizing parts of the face such as eyes, nose, mouth and where those parts are most likely placed to oneanother.
 
-	%The process of learning with machine learning algorithms is typically done by using a subset of the input data as training data. The training data is used to build a mathematical model that defines a relationship between input and output. 
-
-	Machine learning algorithms can be broadly categorised as having either supervised- or unsupervised learning \cite{BOOK:1}. In supervised learning, the algorithm is fed instance(s) of desired output $y$ along with its corresponding $k$ input parameters $x = {x_1, x_2, ... x_k}$ and the goal is to build a mapping function $y = f_{map}(x)$ such that when new input data is used, $f_{map}$ is able to predict the correct output variable $y_{new}$ \cite{WEBSITE:3}. Learning this way typically involves updating a mathematical model which defines a relationship between input and output
-Examples of tasks, performance measures and experiences are found in the following sections.
-
-\subsection{Machine learning tasks}
-	It's important to distinguish the task from the process of learning. For example, programming a robot to walk means that walking is the task. This can be achieved "manually" by programming instructions on how to walk, or by programming the robot \emph{to learn to walk} \cite{BOOK:1}. Some popular machine learning tasks are presented in the following sections.
-
+	In essence, machine learning algorithms improve/learn in some way from analyzing a dataset. How they learn is used to broadly categorize machine learning algorithms as either having supervised or unsupervised learning \cite{BOOK:1}.
+%\begin{itemize}
+	%\item{Supervised learning:} In supervised learning, the algorithm is fed instance(s) of desired output $y$ along with its corresponding $k$ input parameters $x = {x_1, x_2, ... x_k}$ and the goal is to build a mapping function $y = f_{map}(x)$ such that when new input data is used, $f_{map}$ is able to predict the correct output value of $y$ \cite{WEBSITE:3}. 
+	%\item{Regression:} asdfsdf
+%\end{itemize} \cite{WEBSITE:3}. 
+\subsection{Supervised learning}
+	%In supervised learning, the algorithm is fed examples of desired output $y$ along with its corresponding $k$ input parameters $x = {x_1, x_2, ... x_k}$ and the goal is to build a mapping function $y = f_{map}(x)$ such that when new input data is used, $f_{map}$ is able to predict the correct output value of $y$ \cite{WEBSITE:3}. 
+	In supervised learning, the learner (algorithm) receives a training dataset of labeled examples which are used to predict correct values for unseen data\cite{BOOK:3}.  A database table storing weather-related data could for example have thousands of records (examples) where data in each record belong to certain columns (labels) such as wind speed $w_s$, wind direction $w_d$ and time $t$. The goal of supervised learning is to build a mapping function 
+\begin{equation} \label{eq:mappingfunction}
+	y = f_{map}(x)
+\end{equation}
+such that when new input data is used, $f_{map}$ is able to predict the correct output value of $y$ \cite{WEBSITE:3}. Going back to the forementioned example of the weather station: Suppose one wishes to predict wind speed $y = w_s$ based on wind direction and time $x = [x_1, x_2] = [w_d, t]$. During the training process, the algorithm goes through the training data and builds/updates Eq. \ref{eq:mappingfunction} so that predictions for examples with previously unseen wind speeds are as accurate as possible. 
 \subsubsection{Classification}
-	Classification involves deciding in which of $k$ categories a certain input belongs to. This is usually done with classifi
-	\begin{itemize}
-		\item{Classification:} The computer is asked to specify which category a certain input belongs to. An example of a classification task is  
-		\item{Regression:} asdfsdf
-	\end{itemize} \cite{BOOK:1}
-	%why should machine learning be used for this purpose? \cite{BOOK:1}
-	%how do we apply machine learning to solve the issue?
-	Something that \cite{WEBSITE:1}
-\subsection{Neural networks}
+	\paragraph{Decision trees}
+\subsubsection{Regression}
+	%usually measured in precision
+\subsection{Unsupervised learning}
+	If unsupervised learning is used, the algorithm receives unlabeled training data from which it makes predictions for new data \cite{BOOK:3}. 
+\subsubsection{Clustering}
+\subsubsection{Association}
+
+%\subsection{Machine learning tasks}
+	%It's important to distinguish the task from the process of learning. For example, programming a robot to walk means that walking is the task. This can be achieved "manually" by programming instructions on how to walk, or by programming the robot \emph{to learn to walk} \cite{BOOK:1}. Some popular machine learning tasks are presented in the following sections.
+
+\subsection{Classification algorithms}
+\subsubsection{Decision trees}
+\subsubsection{Neural networks}
+
+\subsection{Regression algorithms}
+\subsubsection{Regression}
+
+\subsection{Overfitting}
+
+\subsection{Data pre-processing}
+
 
