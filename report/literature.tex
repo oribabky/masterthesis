@@ -1,51 +1,113 @@
-\chapter{Literature Review}
+\chapter{Literature Review} \label {ch:theory}
 %Write about the theory used in the research.
 \emph{The chapter gives both general and specific information on theory used for this project.  Mathematical statistics, regression and machine learning are covered in the first three sections, providing a general understanding of the field of study. Specific machine learning models are explained in the final three sections of the chapter. }
 
 
-\section{Machine learning}
+\section{Machine learning basics} \label{sec:mlbasics}
 	%Programming is typically about writing sequences of machine instructions, on a certain level of abstraction, for some software application. Once the application is used, it will determine logically what instructions to send to the machine, depending on what input is given from the user and what state the application is in etc. But as software applications grow in terms of lines of code, the amount of bugs and complexity increases, which in turn results in reduced software performance and readability \cite{IP:1}. 
 
 %Although today's programming languages typically offer some level of abstraction, and thus reduced complexity, it is still generally required of the programmer to account for every possible logical outcome of the software which has unwanted behavior. Today there are algorithms that improve automatically by "learning from past experiences", much like us humans do.
 
 %Complexity can be mitigated by programming in programming languages. Instead of writing binary machine instructions, it's possible to write logical statements, expressions etc. in a programming language like C and compile the code back to machine instructions upon execution. 
 	
-	Machine learning is formally defined by Mitchell \cite{BOOK:2}: 
+	Machine learning as formally defined by Mitchell \cite{BOOK:2}: 
 "A computer program is said to learn from experience $E$ with respect to some class of tasks $T$ and performance measure $P$ if its performance at tasks in $T$, as measured by $P$, improves with experience $E$".	This means that machine learning algorithms are used to solve a set of problems, measure its performance in doing so and ultimately improve in some way from previous experiences. For example, imagine a program designed to determine if a human face is in a photo or not. Since photos are taken at different distances, angles and faces have different characteristics such as eye color, skin color, distance between eyes and nose shape, implementing this "manually" may prove cumbersome. Instead of programming an algorithm to recognize faces, it can be programmed  \emph{to learn to recognize faces}. If the algorithm is allowed to analyze a dataset with thousands of photos of human faces, it could learn to distinguish a human face by recognizing parts of the face such as eyes, nose, mouth and where those parts are most likely placed to oneanother.
 
-	In essence, machine learning algorithms improve/learn in some way from analyzing a dataset. How they learn is used to broadly categorize machine learning algorithms as either having supervised or unsupervised learning \cite{BOOK:1}.
-%\begin{itemize}
-	%\item{Supervised learning:} In supervised learning, the algorithm is fed instance(s) of desired output $y$ along with its corresponding $k$ input parameters $x = {x_1, x_2, ... x_k}$ and the goal is to build a mapping function $y = f_{map}(x)$ such that when new input data is used, $f_{map}$ is able to predict the correct output value of $y$ \cite{WEBSITE:3}. 
-	%\item{Regression:} asdfsdf
-%\end{itemize} \cite{WEBSITE:3}. 
-\subsection{Supervised learning}
-	%In supervised learning, the algorithm is fed examples of desired output $y$ along with its corresponding $k$ input parameters $x = {x_1, x_2, ... x_k}$ and the goal is to build a mapping function $y = f_{map}(x)$ such that when new input data is used, $f_{map}$ is able to predict the correct output value of $y$ \cite{WEBSITE:3}. 
-	In supervised learning, the learner (algorithm) receives a training dataset of labeled examples which are used to predict correct values for unseen data\cite{BOOK:3}.  A database table storing weather-related data could for example have thousands of records (examples) where data in each record belong to certain columns (labels) such as wind speed $w_s$, wind direction $w_d$ and time $t$. The goal of supervised learning is to build a mapping function 
+	In essence, machine learning algorithms improve/learn in some way from analyzing a dataset. How they learn can be used to broadly categorize machine learning algorithms as either having supervised or unsupervised learning \cite{BOOK:1}. Supervised learning algorithms processes a labeled dataset while unsupervised learning tries to make sense of an unlabeled dataset \cite{BOOK:3}. This project does not concern algorithms related to unsupervised learning, as motivated in section \ref{sec:delimitations}.
+
+
+\subsection{Supervised learning} \label{sec:supervisedlearning}
+	In supervised learning, the learner (algorithm) receives a dataset of labeled observations which is used to predict correct values for unseen data\cite{BOOK:3}. A database table storing weather-related data could for example have thousands of records (observations) where data in each record belong to certain columns (features) such as wind speed $w_s$, wind direction $w_d$ and time $t$. The goal of supervised learning is to build a mapping function (model)
 \begin{equation} \label{eq:mappingfunction}
 	y = f_{map}(x)
 \end{equation}
-such that when new input data is used, $f_{map}$ is able to predict the correct output value of $y$ \cite{WEBSITE:3}. Going back to the forementioned example of the weather station: Suppose one wishes to predict wind speed $y = w_s$ based on wind direction and time $x = [x_1, x_2] = [w_d, t]$. During the training process, the algorithm goes through the training data and builds/updates Eq. \ref{eq:mappingfunction} so that predictions for examples with previously unseen wind speeds are as accurate as possible. 
-\subsubsection{Classification}
-	\paragraph{Decision trees}
-\subsubsection{Regression}
+such that when new input data is used, $f_{map}$ is able to predict a correct output value \cite{WEBSITE:3}. The model is built from a dataset which is typically split into three parts \cite{WEBSITE:4}:
+
+\begin{itemize}
+	\item {Training dataset:} Used to fit the model.
+	\item {Validation dataset:} Used to give an unbiased evaluation of a model built from the training dataset and potentially update its hyperparameters. Hyperparameters are model parameters that are used in some learning algorithms. They are usually fixed before the training process begins \cite{WEBSITE:7}.
+	\item {Test dataset:} Gives an unbiased evaluation of the final model.
+\end{itemize}
+	How the dataset "should" be split is brought up in section \ref{sec:datasetsplit}. 
+
+	Supervised learning can be thought of as having a teacher supervising the algorithm. The correct answers are in the training data and the algorithm learns from being corrected by the teacher \cite{WEBSITE:3}. Going back to the forementioned example of the weather station to give a brief example of how a supervised machine learning algorithm works: Suppose a training, validation and test dataset is provided and one wishes to predict wind speed $y = w_s$ based on wind direction and time $x = [x_1, x_2] = [w_d, t]$. During the training process, a supervised learning algorithm goes through the training dataset to build a model, as seen in Eq. \ref{eq:mappingfunction}, and possibly updated when validated against the validation dataset. Suppose the supervised learning algorithm used is multiple linear regression (see section \ref{sec:mul-lin-reg}) and a model is built from the training process: 
+
+\begin{equation} \label{eq:example_ws}
+	w_s = f_{map}([w_d, t]) = \beta_0 + \beta_1 w_d + \beta_2 t = 4 + 0.2w_d + 1.7t
+\end{equation}
+	The model can then be tested with the test dataset to see how it performs on unseen data.
+
+	%LINEAR?
+
+	Estimation of continous output variables, such as wind speed in the example presented above, is a regression problem. In supervised learning there are also algorithms associated with the problem of classification; how to categorize data \cite{WEBSITE:8}.
+
+
+\subsubsection{Classification predictive modeling}
+	In a classification problem, the computer is asked to place a new observation into one of $k$ categories, $k \geq 2$ \cite{BOOK:1}. The problem of categorizing new e-mail as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. 
+
+	Another example of a classification problem, one that may well be the first that machine learning novices encounter, is classification of the Iris flower dataset. The dataset consists of 50 observations with four features: length and width of the sepals and petals, in centimeters. Based on this information, the problem is to classify to which of the following categories each observation belongs to \cite{WEBSITE:5}:
+
+\begin{itemize}
+	\item Setosa
+	\item Versicolour
+	\item Virginica
+\end{itemize}
+
+	How the classification is carried out depends on the algorithm used to build the model. These kind of algorithms are commonly known as classifiers. There are several classifiers that can be used for the Iris dataset, but their performance in doing so may differ. Performance of classifiers are typically measured in accuracy, which is the amount of correct predictions divided by the number of observations in the test dataset \cite{BOOK:1}.
+
+\begin{equation}
+	\mbox{accuracy} = \frac{\mbox{\#correct predictions}}{\mbox{\#observations}}
+\end{equation}
+	
+\subsubsection{Regression predictive modeling}
+	In contrast to classification problems, such as predicting e-mail as spam or not spam, regression problems are about predicting continous quantaties. Regression models can have either real-valued or discrete input variables \cite{WEBSITE:8}. 
+
+Performance of regression models can be measured by computing the mean squared error (MSE) of the model on the test dataset. 
+
+\begin{equation}
+	MSE_{test} = \frac{1}{n} \sum_{i}^{n}(y_{test} - y'_{test})_{i}^2
+\end{equation}
+
+ \cite{BOOK:1}. 
 	%usually measured in precision
-\subsection{Unsupervised learning}
-	If unsupervised learning is used, the algorithm receives unlabeled training data from which it makes predictions for new data \cite{BOOK:3}. 
-\subsubsection{Clustering}
-\subsubsection{Association}
+
 
 %\subsection{Machine learning tasks}
 	%It's important to distinguish the task from the process of learning. For example, programming a robot to walk means that walking is the task. This can be achieved "manually" by programming instructions on how to walk, or by programming the robot \emph{to learn to walk} \cite{BOOK:1}. Some popular machine learning tasks are presented in the following sections.
 
-\subsection{Classification algorithms}
-\subsubsection{Decision trees}
-\subsubsection{Neural networks}
+\section{Linear classification algorithms}
+\subsection{Decision trees}
 
-\subsection{Regression algorithms}
-\subsubsection{Regression}
+\section{Linear Regression algorithms}
+\subsection{Multiple linear regression} \label{sec:mul-lin-reg}
 
-\subsection{Overfitting}
+\section{Non-linear regression and classification algorithms}
+\subsection{Neural network}
 
-\subsection{Data pre-processing}
+\section{Overfitting, capacity, hypothesis space}
+\section{Multicollinearity}
+% Multicollinearity
+%"When you add more input variables it creates relationships among them. So not only are the input variables potentially related to the output variable, they are also potentially related to each other, this is referred to as multicollinearity. The optimal scenario is for all of the input variables to be correlated with the output variable, but not with each other." https://medium.com/@MaximilianLloyd/multiple-linear-regression-in-machine-learning-4711209604b7 
+\section{Dataset split} \label{sec:datasetsplit}
+	%https://machinelearningmastery.com/difference-test-validation-datasets/ ( Max Kuhn and Kjell Johnson, Page 78, Applied Predictive Modeling, 2013)
+
+	% why not single testset:
+	%– A test set is a single evaluation of the model and has limited ability to characterize the uncertainty in the results.
+	%– Proportionally large test sets divide the data in a way that increases bias in the performance estimates.	
+	%– With small sample sizes:
+	%– The model may need every possible data point to adequately determine model values.
+	%– The uncertainty of the test set can be considerably large to the point where different test sets may produce very different results.
+	%– Resampling methods can produce reasonable predictions of how well the model will perform on future samples
+
+	%recommendations
+	% small dataset recommendation: 10-fold CV cause desirable low bias and variance performance estimate.
+	% comparing model performance: bootstrap cause of low variance in performance estimate
+	% larger sample sizes: 10-fold CV, general
+	
+	%another article
+	% compares bootstrap and CV 
+	% for model selection in "real-world datasets": 10-fold CV even if computation power allows using more folds
+	
+\section{Data pre-processing}
 
 
