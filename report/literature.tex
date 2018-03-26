@@ -16,7 +16,7 @@
 	In essence, machine learning algorithms improve/learn in some way from analyzing a dataset. How they learn can be used to broadly categorize machine learning algorithms as either having supervised or unsupervised learning \cite{BOOK:1}. Supervised learning algorithms processes a labeled dataset while unsupervised learning tries to make sense of an unlabeled dataset \cite{BOOK:3}. This project does not concern algorithms related to unsupervised learning, as motivated in section \ref{sec:delimitations}.
 
 
-\subsection{Supervised learning} \label{sec:supervisedlearning}
+\section{Supervised learning} \label{sec:supervisedlearning}
 	In supervised learning, the learner (algorithm) receives a dataset of labeled observations which is used to predict correct values for unseen data\cite{BOOK:3}. A database table storing weather-related data could for example have thousands of records (observations) where data in each record belong to certain columns (features) such as wind speed $w_s$, wind direction $w_d$ and time $t$. The goal of supervised learning is to build a mapping function (model)
 \begin{equation} \label{eq:mappingfunction}
 	y = f_{map}(x)
@@ -37,13 +37,11 @@ such that when new input data is used, $f_{map}$ is able to predict a correct ou
 \end{equation}
 	The model can then be tested with the test dataset to see how it performs on unseen data.
 
-	%LINEAR?
-
 	Estimation of continous output variables, such as wind speed in the example presented above, is a regression problem. In supervised learning there are also algorithms associated with the problem of classification; how to categorize data \cite{WEBSITE:8}.
 
 
-\subsubsection{Classification predictive modeling}
-	In a classification problem, the computer is asked to place a new observation into one of $k$ categories, $k \geq 2$ \cite{BOOK:1}. The problem of categorizing new e-mail as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. 
+	\subsection{Classification predictive modeling}
+	In a classification problem, the computer is asked to place a new observation into one of $k$ categories, $k \geq 2$ \cite{BOOK:1}. The problem of categorizing new email as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. 
 
 	Another example of a classification problem, one that may well be the first that machine learning novices encounter, is classification of the Iris flower dataset. The dataset consists of 50 observations with four features: length and width of the sepals and petals, in centimeters. Based on this information, the problem is to classify to which of the following categories each observation belongs to \cite{WEBSITE:5}:
 
@@ -59,29 +57,33 @@ such that when new input data is used, $f_{map}$ is able to predict a correct ou
 	\mbox{accuracy} = \frac{\mbox{\#correct predictions}}{\mbox{\#observations}}
 \end{equation}
 	
-\subsubsection{Regression predictive modeling}
-	In contrast to classification problems, such as predicting e-mail as spam or not spam, regression problems are about predicting continous quantaties. Regression models can have either real-valued or discrete input variables \cite{WEBSITE:8}. The model in eq. \ref{eq:example_ws} is an example of a regression model since the goal is to predict a numerical value for wind speed. It could also be that the problem is translated into a classification problem by, for example stating that for given numerical intervals, the wind speed is either low, medium or high.
+	\subsection{Regression predictive modeling}
+	In contrast to classification problems, such as categorizing incoming email as spam or not spam, regression problems are about predicting continous quantaties. Regression models can have either real-valued or discrete input variables \cite{WEBSITE:8}. The model in eq. \ref{eq:example_ws} is an example of a regression model since the goal is to predict a numerical value for wind speed. The problem could be translated into a classification problem by, for example stating that for given numerical intervals, the wind speed is categorized as being low, medium or high. This kind of conversion is known as discretization but even if the conversion is useful, it can result in surprising and/or poor performance \cite{WEBSITE:8}. This is why both classification and regression modeling are covered in this project because they are useful for different kind of predictions.
 
 Performance of regression models can be measured by computing the mean squared error (MSE) of the model on the test dataset. 
-
 \begin{equation}
-	MSE_{test} = \frac{1}{n} \sum_{i}^{n}(y_{test} - y'_{test})_{i}^2
+	MSE_{test} = \frac{1}{n} \sum_{i}^{n}(y'_{test} - y_{test})_{i}^2
 \end{equation}
-
- \cite{BOOK:1}. 
-	%usually measured in precision
-
-
-\section{Linear classification algorithms}
-\subsection{Decision trees}
-
-\section{Linear Regression algorithms}
-\subsection{Multiple linear regression} \label{sec:mul-lin-reg}
-
-\section{Non-linear regression and classification algorithms}
-\subsection{Neural network}
+ where $y'_{test_i}$ are predictions on the test and $y_{test_i}$ are are actual values \cite{BOOK:1}. It's a measurement of how close each prediction was to the target value on average.
 
 \section{Overfitting, capacity, hypothesis space}
+
+\section{Linear and non-linear models}
+	%explain the difference between the two.
+
+\section{Linear classification algorithms}
+	% table with each algorithm that list benefits, drawbacks etc
+	\subsection{Decision trees}
+
+\section{Linear regression algorithms}
+	% table with each algorithm that list benefits, drawbacks etc
+	\subsection{Multiple linear regression} \label{sec:mul-lin-reg}
+
+\section{Non-linear classification and regression algorithms}
+	% table with each algorithm that list benefits, drawbacks etc
+	\subsection{Neural network}
+
+
 \section{Multicollinearity}
 % Multicollinearity
 %"When you add more input variables it creates relationships among them. So not only are the input variables potentially related to the output variable, they are also potentially related to each other, this is referred to as multicollinearity. The optimal scenario is for all of the input variables to be correlated with the output variable, but not with each other." https://medium.com/@MaximilianLloyd/multiple-linear-regression-in-machine-learning-4711209604b7 
