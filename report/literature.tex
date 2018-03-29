@@ -40,10 +40,10 @@ such that when new input data is used, $f_{map}$ is able to predict a correct ou
 	Estimation of continous output variables, such as wind speed in the example presented above, is a regression problem. In supervised learning there are also algorithms associated with the problem of classification; how to categorize data \cite{WEBSITE:8}.
 
 
-	\subsection{Classification predictive modeling}
-	In a classification problem, the computer is asked to place a new observation into one of $k$ categories, $k \geq 2$ \cite{BOOK:1}. The problem of categorizing new email as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. 
+	\subsection{Classification predictive modeling} \label{sec:classification}
+	In a classification problem, the computer is asked to place a new observation into one of $k$ categories (labels), $k \geq 2$ \cite{BOOK:1}. The problem of categorizing new email as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. 
 
-	Another example of a classification problem, one that may well be the first that machine learning novices encounter, is classification of the Iris flower dataset. The dataset consists of 50 observations with four features: length and width of the sepals and petals, in centimeters. Based on this information, the problem is to classify to which of the following categories each observation belongs to \cite{WEBSITE:5}:
+	Another example of a classification problem, one that may well be the first that machine learning novices encounter, is classification of the Iris flower dataset. The dataset consists of 50 observations with four features: length and width of the sepals and petals, in centimeters. Based on this information, the problem is to classify to which of the following labels each observation belongs to \cite{WEBSITE:5}:
 
 \begin{itemize}
 	\item Setosa
@@ -57,16 +57,47 @@ such that when new input data is used, $f_{map}$ is able to predict a correct ou
 	\mbox{accuracy} = \frac{\mbox{\#correct predictions}}{\mbox{\#observations}}
 \end{equation}
 	
-	\subsection{Regression predictive modeling}
+	\subsection{Regression predictive modeling} \label{sec:regression}
 	In contrast to classification problems, such as categorizing incoming email as spam or not spam, regression problems are about predicting continous quantaties. Regression models can have either real-valued or discrete input variables \cite{WEBSITE:8}. The model in eq. \ref{eq:example_ws} is an example of a regression model since the goal is to predict a numerical value for wind speed. The problem could be translated into a classification problem by, for example stating that for given numerical intervals, the wind speed is categorized as being low, medium or high. This kind of conversion is known as discretization but even if the conversion is useful, it can result in surprising and/or poor performance \cite{WEBSITE:8}. This is why both classification and regression modeling are covered in this project because they are useful for different kind of predictions.
 
-Performance of regression models can be measured by computing the mean squared error (MSE) of the model on the test dataset. 
+	Performance of regression models can be measured by computing the mean squared error (MSE) of the model on the test dataset. 
 \begin{equation}
 	MSE_{test} = \frac{1}{n} \sum_{i}^{n}(y'_{test} - y_{test})_{i}^2
 \end{equation}
- where $y'_{test_i}$ are predictions on the test and $y_{test_i}$ are are actual values \cite{BOOK:1}. It's a measurement of how close each prediction was to the target value on average.
+where $y'_{test_i}$ are predictions on the test and $y_{test_i}$ are actual values \cite{BOOK:1}. It's a measurement of how close each prediction was to its corresponding target value on average.
 
-\section{Overfitting, capacity, hypothesis space}
+\section{Generalization}
+	During the training process in supervised learning, a model is typically built based on its training data, and updated in order to reduce its training error. But the fundamental goal of machine learning is to generalize beyond observations in the training dataset since it's unlikely that the same exact observations are found again on unseen data \cite{ARTICLE:3}. This is why test datasets are used to measure performance of regression and classification models as seen in sections \ref{sec:regression} and \ref{sec:classification}. Both training error, how well a performs on its training data, and generalization error, how well a model performs on unseen data, need to be considered in machine learning \cite{BOOK:1}.
+
+	The terminology used to explain how well machine learning models learn and generalizes to new data is overfitting and underfitting \cite{WEBSITE:8} which are two central challenges in machine learning \cite{BOOK:1}. 
+\begin{itemize}
+	\item{Overfitting:} Random fluctuations and statisticical noise is learnt to the extent that it affects the model's ability to generalize \cite{WEBSITE:8}. Instead of learning the data trend in the training data, the model "memorizes" it \cite{ARTICLE:4}. Non-linear (see section \ref{}) and non-parametric (see section \ref{}) models are prone to overfitting as they are flexible in choosing mathematical functions to fit its training data \cite{WEBSITE:8}.  
+	\item{Underfitting:} A model that performs poorly on both its training data and on generalization. If a good performance metric is used, underfitting is  easy to detect \cite{WEBSITE:8}.
+\end{itemize}
+The goal then, is to select a model that is somewhere between underfitting and overfitting. Underfitting is typically remedied by choosing alternative models, but the most common problem in applied machine learning is how to avoid overfitting \cite{WEBSITE:8}. According to Davide \cite{ARTICLE:4}  the mere awareness of the issue of overfitting along with two powerful tools: cross-validation and regularization, can be enough to overcome the problem.
+
+	\subsection{Cross-validation}
+	There are several cross-validation techniques out of which the most commonly used is k-fold cross validation: Once a randomly shuffled dataset is split into a training and test dataset, the training dataset is further split into $k$ folds. One fold is used as a validation dataset and the remainding for training. The idea is to iterate this process $k$ times so that every fold has been used once as a validation set, and ultimately average the performance over $k$ iterations . Using a value of $k = 10$ is a common choice in practice and in which case it is called 10-fold cross-validation \cite{ARTICLE:4}. Furthermore, using $k=10$ seems to be optimal when it comes to optimizing run-time for the test, limiting bias (underfitting) and variance (overfitting) \cite{BOOK:4}.   
+
+	There is a variant of this technique called stratified k-fold cross-validation which is mostly used in classification problems.  It can also be applied to regression problems \cite{WEBSITE:10} but the results from Breiman and Spector \cite{ARTICLE:5} show no improvement from using this technique for regression problems. In stratified k-fold cross-validation the folds are created in such a way that each fold contains similar proportions of predictor labels as the full dataset. For example, think of the classification problem of classifying email as spam or not spam. If the ratio of spam/not spam is 20\%/80\% in the original dataset, then the same proportion is attempted to be maintained in each of the $k$ folds. This technique tends to generate less bias and variance when compared to regular k-fold cross validation \cite{IP:2}.
+
+	\subsection{Regularization}
+	The second method of overcoming overfitting is regularization. Regularization aims to limit freedom of trained models by adding penalties to its  parameters. Regularization can be used in any parametric (see section \ref{}) machine learning algorithm \cite{WEBSITE:11}. Three different types of regularization as explained by \cite{WEBSITE:11}:
+
+\begin{itemize}
+	\item{$L_1$ regularization (Lasso):} Adds a penalty to the sum of the absolute values of the coefficients. This kind of regularization minimizes some parameters  
+	\item{$L_2$ regularization (Ridge):}
+	\item{$L_1/L_2$ regularization (Elastic net):}
+\end{itemize}
+
+		%\subsubsection{$L_1$ regularization (Lasso)}
+		%\subsubsection{$L_2$ regularization (Ridge)}
+		%\subsubsection{$L_1/L_2$ regularization (Elastic net)}
+
+	
+
+
+	
 
 \section{Linear and non-linear models}
 	%explain the difference between the two.
@@ -83,6 +114,9 @@ Performance of regression models can be measured by computing the mean squared e
 	% table with each algorithm that list benefits, drawbacks etc
 	\subsection{Neural network}
 
+\section{Imbalanced data}
+% {ARTICLE:4} https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5721660/
+% tip 5
 
 \section{Multicollinearity}
 % Multicollinearity
