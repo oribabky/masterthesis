@@ -1,77 +1,94 @@
 \chapter{Literature Review} \label {ch:theory}
 %Write about the theory used in the research.
-\emph{The chapter gives both general and specific information on theory used for this project.  Mathematical statistics, regression and machine learning are covered in the first three sections, providing a general understanding of the field of study. Specific machine learning models are explained in the final three sections of the chapter. }
+\emph{The chapter gives both general and specific information on theory used in this project. It starts of with a general description of supervised learning, followed generalization and why it is important. It follows up with some information on supervised learning algorithms, how algorithm performance can be improved and lastly how to prepare datasets for applied machine learning.}
 
 
 \section{Supervised learning} \label{sec:supervisedlearning}
-	In supervised learning, the learner (algorithm) receives a dataset of labeled observations which is used to predict correct values for unseen data\cite{BOOK:3}. A database table storing weather-related data could for example have thousands of records (observations) where data in each record belong to certain columns (features) such as wind speed $w_s$, wind direction $w_d$ and time $t$. The goal of supervised learning is to build a mathematical model
+	In supervised learning, the algorithm receives a dataset of labeled observations which are used to build a mathematical used to predict correct values for unseen data. A database table storing weather-related data could for example have thousands of database records (observations) where data in each record belong to certain database column headers (features) such as wind speed $w_s$, wind direction $w_d$ and time $t$. The goal of supervised learning is to build a model
 \begin{equation} \label{eq:mappingfunction}
 	y = f_{map}(x)
 \end{equation}
-such that when new input data is used, $f_{map}$ is able to predict a correct output value \cite{WEBSITE:3}. The model is built from a dataset which is typically split into three parts \cite{WEBSITE:4}:
+such that when new input data $x_{new}$ is used, $f_{map}$ can predict $y_{new}$. The model is built from a dataset which is typically split into three parts:
 
 \begin{itemize}
 	\item {Training dataset:} Used to fit the model.
-	\item {Validation dataset:} Used to give an unbiased evaluation of a model built from the training dataset and potentially update its hyperparameters. Hyperparameters are model parameters that are used in some learning algorithms. They are usually fixed before the training process begins \cite{WEBSITE:7}.
+	\item {Validation dataset:} Used to give an unbiased evaluation of a model built from the training dataset which can be used potentially update its parameters in order to improve performance \cite{BOOK:6}.  %säg att i sklearn så finns inga validation sets? verkar det som? varken för cross val eller holdout 
 	\item {Test dataset:} Gives an unbiased evaluation of the final model.
 \end{itemize}
-	How the dataset "should" be split is brought up in section \ref{sec:datasetsplit}. 
+	%called "holdout" not lock box?
+	Skocik et al. \cite{ARTICLE:20} call this a lock box approach. According to \cite{BOOK:6}, the proportions of the split is usually 60\% training, 30\% test and 10\% evaluation while \cite{ARTICLE:4} suggests that a common approach is 50\% training, 30\% validation and 20\% test. Success has also been shown by using 90\% of the data as training data \cite{ARTICLE:19}. It is suggested by \cite{ARTICLE:4} to employ the lock box approach in any machine learning project. 
 
-	Supervised learning can be thought of as having a teacher supervising the algorithm. The correct answers are in the training data and the algorithm learns from being corrected by the teacher \cite{WEBSITE:3}. Going back to the forementioned example of the weather station to give a brief example of how a supervised machine learning algorithm works: Suppose a training, validation and test dataset is provided and one wishes to predict wind speed $y = w_s$ based on wind direction and time $x = [x_1, x_2] = [w_d, t]$. During the training process, a supervised learning algorithm goes through the training dataset to build a model, as seen in Eq. \ref{eq:mappingfunction}, and possibly updated when validated against the validation dataset. Suppose the supervised learning algorithm used is multiple linear regression (see section \ref{sec:reg_based_learning}) and a model is built from the training process: 
+	Supervised learning can be thought of as having a teacher supervising the algorithm. The correct answers are in the training data and the algorithm learns from being corrected by the teacher. Going back to the forementioned example of the weather station to give a brief example of how a supervised machine learning algorithm works: Suppose a training, validation and test dataset is provided and one wishes to predict wind speed $y = w_s$ based on wind direction and time $x = [x_1, x_2] = [w_d, t]$. During the training process, a supervised learning algorithm goes through the training dataset to build a model, as seen in Eq. \ref{eq:mappingfunction}, and possibly updated when validated against the validation dataset. Suppose the supervised learning algorithm used is Ordinary least squares (see section \ref{sec:reg_based_learning}) and a model is built from the training process: 
 
 \begin{equation} \label{eq:example_ws}
 	w_s = f_{map}([w_d, t]) = \beta_0 + \beta_1 w_d + \beta_2 t = 4 + 0.2w_d + 1.7t
 \end{equation}
-	The model can then be tested with the test dataset to see how it performs on unseen data. 
+	The model can then be tested with the test dataset to see how it performs on unseen data.  %say that ols is interpretable and easy model, compared to say BP.
 
-	Estimation of continous output variables, such as wind speed in the example presented above, is a regression problem. In supervised learning there are also algorithms associated with the problem of classification; how to categorize data \cite{WEBSITE:8}.
+	Estimation of continous output variables, such as wind speed in the example presented above, is a regression problem. In supervised learning there are also algorithms associated with the problem of classification, which deals with categorizing data.
 
 
 	\subsection{Classification predictive modeling} \label{sec:classification}
-	In a classification problem, the computer is asked to place a new observation into one of $k$ categories (labels), $k \geq 2$ \cite{BOOK:1}. The problem of categorizing new email as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. Classification on two labels, as in the forementioned example, is known as a binary classification case and problems with three or more labels to be classified is called multiclass classification case \cite{MISC:1}. Classifying precipation type is a multiclass classification case since it has more than two labels.
+	In a classification problem, the computer is asked to place a new observation into one of $k$ categories (classes), $k \geq 2$ \cite{BOOK:1}. The problem of classifying new email as spam or not spam is an example of a classification problem. Google claims that their machine learning models can detect spam and phishing messages with 99.9\% accuracy in their widely used Gmail application \cite{WEBSITE:4}. Classification on two classes, as in the forementioned example, is known as binary classification and problems with three or more classes to be classified is called multiclass classification \cite{MISC:1}. Classifying precipation type, which is done in this project, is a multiclass classification problem since it has more than two classes.
 
-	Another example of a classification problem, one that may well be the first that machine learning novices encounter, is classification of the Iris flower dataset. The dataset consists of 50 observations with four features: length and width of the sepals and petals, in centimeters. Based on this information, the problem is to classify to which of the following labels each observation belongs to \cite{WEBSITE:5}:
-
-\begin{itemize}
-	\item Setosa
-	\item Versicolour
-	\item Virginica
-\end{itemize}
-
-	How the classification is carried out depends on the algorithm used to build the model. These kind of algorithms are commonly known as classifiers. There are several classifiers that can be used for the Iris dataset, but their performance in doing so may differ. Performance of classifiers are typically measured in accuracy, which is the amount of correct predictions divided by the number of observations in the test dataset \cite{BOOK:1}.
-%ta upp vilka performance measures är bäst
+	Another example of a classification problem, one that may well be the first that machine learning novices encounter, is classification of the Iris flower dataset. The dataset consists of 50 observations with four features: length and width of the sepals and petals, in centimeters. Based on this information, the problem is to classify an observation into one of three classes: Setosa, Versicolour, Virginica \cite{WEBSITE:5}.
+	How the classification is carried out depends on the algorithm used to build the model. These kind of algorithms are commonly known as classifiers. There are several classifiers that can be used for the Iris dataset, but their performance in doing so may differ. Performance of classifiers are typically measured in terms of accuracy, which is the amount of correct predictions divided by the number of observations in the test dataset.
+%Ta upp true positives, false positives, true negatives, false negatives? och skriv om ekvationerna!
 
 \begin{equation}
-	\mbox{accuracy} = \frac{\mbox{\#correct predictions}}{\mbox{\#observations}}
+	\mbox{accuracy} = \frac{\mbox{\#correct predictions total}}{\mbox{\#observations}}
 \end{equation}
 	
-	\subsection{Regression predictive modeling} \label{sec:regression}
-	In contrast to classification problems, such as categorizing incoming email as spam or not spam, regression problems are about predicting continous quantaties. Regression models can have either real-valued or discrete input variables. The model in eq. \ref{eq:example_ws} is an example of a regression model since the goal is to predict a numerical value for wind speed. The problem could be translated into a classification problem by, for example stating that for given numerical intervals, the wind speed is categorized as being low, medium or high. This kind of conversion is known as discretization. But even if the conversion is useful, it can result in surprising and/or poor performance \cite{WEBSITE:8}. This is why both classification and regression modeling are covered in this project because one is used to classify, the other is used to predict.
+	A high accuracy score such as 90\% may seem promising, but what if 90\% of the test data is made up of Setosa alone? That means that the model correctly classified all Setosa observations, but failed on all of the Versicolour and Virginica classifications. This is probably an indication of an imbalanced dataset, which means that the different classes in the dataset are not equally represented. In these cases, bla \ref{BOOK:11} claims that classification accuracy is not a good metric to evaluate a model, and that other metrics such as precision-recall break-even, area under the curve etc. should be used instead. None of the performance metrics mentioned by \cite{BOOK:11} is available in Sckit-learn, but there is a performance metric available there known as macro-average $F_1$ that is suitable for evaluating imbalanced multiclass classification problems \cite{WEBSITE:25}. It averages the performance of classifying each individual class, in terms of precision and recall score. Equations \ref{eq:recall}, \ref{eq:precision} and \ref{eq:f1} shows how recall, precision and $F_1$ scores are calculated for a multiclass classification problem on one if its classes $A$. 
 
-%ta upp vilka performance measures är bäst
+\begin{equation} \label{eq:recall}
+	\mbox{Recall}(A) = \frac{\mbox{\#correct predictions} A}{\mbox{\#observations} A}
+\end{equation}
+
+\begin{equation} \label{eq:precision}
+	\mbox{Precision}(A) = \frac{\mbox{\#correct predictions} A}{\mbox{\#identified occurrences} A}
+\end{equation}
+
+\begin{equation} \label{eq:f1}
+	F_1(A) = 2 \cdot \frac{\mbox{Recall}(A) \cdot \mbox{Precision}(A)}{\mbox{Recall}(A) + \mbox{Precision}(A)}
+\end{equation}
+
+Another way to see if a high accuracy score is misleading is to analyze a so-called Confusion matrix. It shows the distribution of classifying observations for each class.
+
+
+	\subsection{Regression predictive modeling} \label{sec:regression}
+	In contrast to classification problems, such as classifying incoming email as spam or not spam, regression problems are about predicting continous quantaties. Regression algorithms can have either real-valued or discrete input variables. The model in eq. \ref{eq:example_ws} is an example of a regression problem since the goal is to predict a numerical value for wind speed. The problem could be translated into a classification problem by, for example stating that for given numerical intervals, the wind speed is categorized as being low, medium or high. This kind of conversion is known as discretization. But even if the conversion proves useful, it is beyond the scope of this project. 
+
+%ta upp vilka performance measures är bäst?
 	Performance of regression models can be measured by computing the mean squared error (MSE) of the model on the test dataset. 
 \begin{equation}
 	MSE_{test} = \frac{1}{n} \sum_{i}^{n}(y'_{test} - y_{test})_{i}^2
 \end{equation}
-where $y'_{test_i}$ are predictions on the test and $y_{test_i}$ are actual values \cite{BOOK:1}. It's a measurement of how close each prediction was to its corresponding target value on average.
+where $y'_{test_i}$ are predictions on the test and $y_{test_i}$ are actual values. It's a measurement of how close each prediction was to its corresponding target value on average. Although other measurements can be used to evaluate regression models, such as R squared, \cite{BOOK:13} writes that the primary goal of any regression model evaluation should be to minimize MSE.
 
-\section{Generalization}
-	During the training process in supervised learning, a model is typically built based on its training data, and updated in order to reduce its training error. But the fundamental goal of machine learning is to generalize beyond observations in the training dataset since it's unlikely that the same exact observations are found again on unseen data \cite{ARTICLE:3}. This is why test datasets are used to measure performance of regression and classification models as seen in sections \ref{sec:regression} and \ref{sec:classification}. Both training error, how well a performs on its training data, and generalization error, how well a model performs on unseen data, need to be considered in machine learning \cite{BOOK:1}.
 
-	The terminology used to explain how well machine learning models learn and generalizes to new data is overfitting and underfitting \cite{WEBSITE:8} which are two central challenges in machine learning \cite{BOOK:1}. 
+\section{Generalization} \label{sec:generalization}
+	During the training process in supervised learning, a model is typically built based on its training data, and updated in order to reduce its training error. But the fundamental goal of machine learning is to generalize beyond observations in the training dataset since it's unlikely that the same exact observations are found again on unseen data \cite{ARTICLE:3}. Both training error, how well a performs on its training data, and generalization error, how well a model performs on unseen data, need to be considered in machine learning \cite{BOOK:1}.
+
+	The terminology used to explain how well machine learning models learn and generalizes to new data is overfitting and underfitting. These are two central challenges in machine learning \cite{BOOK:1}. 
 \begin{itemize}
-	\item{Overfitting:} Random fluctuations and statisticical noise is learnt to the extent that it affects the model's ability to generalize \cite{WEBSITE:8}. Instead of learning the data trend in the training data, the model "memorizes" it \cite{ARTICLE:4}. Non-linear (see section \ref{}) and non-parametric (see section \ref{}) models are prone to overfitting as they are flexible in choosing mathematical functions to fit its training data \cite{WEBSITE:8}.  
-	\item{Underfitting:} A model that performs poorly on both its training data and on generalization. If a good performance metric is used, underfitting is  easy to detect \cite{WEBSITE:8}.
+	\item{Overfitting:} Random fluctuations and statisticical noise is learnt to the extent that it affects the model's ability to generalize. Instead of learning the data trend in the training data, the model "memorizes" it \cite{ARTICLE:4}.  
+	\item{Underfitting:} A model that performs poorly on both its training data and on generalization. 
 \end{itemize}
-The goal then, is to select a model that is somewhere between underfitting and overfitting. Underfitting is typically remedied by choosing alternative models, but the most common problem in applied machine learning is how to avoid overfitting \cite{WEBSITE:8}. According to Davide \cite{ARTICLE:4}  the mere awareness of the issue of overfitting along with two powerful tools: cross-validation and regularization, can be enough to overcome the problem.
+The goal then, is to select a model that is somewhere between underfitting and overfitting. Underfitting is typically remedied by choosing alternative models, but the most common problem in applied machine learning is how to avoid overfitting \cite{WEBSITE:8}. As a means to check whether or not a model suffers from overfitting, \cite{IP:7} suggests that when the test error of a model exceeds its training error, the model is overfitted to its training data. %however your training error is always lower than your test error. https://nlpers.blogspot.se/2015/09/overfitting.html, lägg till mer källor
+According to Davide \cite{ARTICLE:4}  the mere awareness of the issue of overfitting along with two powerful tools: cross-validation and regularization, can be enough to overcome the problem. Feature selection is also brought up in this section as a means to overcome overfitting.
 
-	\subsection{Cross-validation}
-	There are several cross-validation techniques out of which the most commonly used is k-fold cross validation: Once a randomly shuffled dataset is split into a training and test dataset, the training dataset is further split into $k$ folds. One fold is used as a validation dataset and the remainding for training. The idea is to iterate this process $k$ times so that every fold has been used once as a validation set, and ultimately average the performance over $k$ iterations . Using a value of $k = 10$ is a common choice in practice and in which case it is called 10-fold cross-validation \cite{ARTICLE:4}. Furthermore, using $k=10$ seems to be optimal when it comes to optimizing run-time for the test, limiting bias (underfitting) and variance (overfitting) \cite{BOOK:4}.   
+	\subsection{Cross-validation} 
+	 An alternative, or perhaps complement, to the lock box approach as explained in \ref{sec:supervisedlearning} is Cross-validation. It is an approach where parts of the data are not necessarily used solely for testing, it can be used for both training and testing. Although the name might be confusing, the validation is typically done by the test data and a validation dataset is not necessarily used. One cross-validation technique is called $k$-fold cross-validation. In $k$-fold cross-validation, the data is randomly split into $k$ folds. The idea is to iterate the training and test process $k$ times so that every fold has been used once for testing, and ultimately average the performance over $k$ iterations . Using a value of $k = 10$ is a common choice in practice and in which case it is called 10-fold cross-validation \cite{ARTICLE:4}. Furthermore, using $k=10$ seems to be optimal when it comes to optimizing run-time for the test, limiting bias (underfitting) and variance (overfitting) \cite{BOOK:4}. While this technique can be used to limit overfitting, it also proves useful when dealing with small datasets since all of the data can be used for training \cite{ARTICLE:4}.  On the other hand, a different study shows that since $k$-fold uses its data both for training and evaluation, it isn't entirely unbiased and that it can create naïve models \cite{ARTICLE:25}.
 
-	There is a variant of this technique called stratified k-fold cross-validation which is mostly used in classification problems.  In stratified k-fold cross-validation the folds are created in such a way that each fold contains similar proportions of predictor labels as the full dataset. For example, think of the classification problem of classifying email as spam or not spam. If the ratio of spam/not spam is 20\%/80\% in the original dataset, then the same proportion is attempted to be maintained in each of the $k$ folds. This technique tends to generate less bias and variance when compared to regular k-fold cross validation \cite{IP:2}. It can also be applied to regression problems \cite{WEBSITE:10} but the results from Breiman and Spector \cite{ARTICLE:5} indicate that there is little improvement from using this technique for regression problems.
+
+%Cross-validation is an approach where the training data is used for both training and validation.  In cross-validation technique known as $k$-fold cross-validation, the data is randomly split into $k$ folds. The idea is to iterate the training and validation process $k$ times so that every fold has been used once for validation, and ultimately average the performance over $k$ iterations. This eliminates the need of leaving out a subset of the original dataset to be used as a validation dataset. This means that more data can be used for training instead. Using a value of $k = 10$ is a common choice in practice when using $k$-fold cross-validation, and in which case it is called 10-fold cross-validation \cite{ARTICLE:4}. Furthermore, using $k=10$ seems to be optimal when it comes to optimizing run-time for the test, limiting bias (underfitting) and variance (overfitting) \cite{BOOK:4}. By using this technique, the algorithm learns from each subset in the training set and limits the risk of overfitting to the training data \cite{ARTICLE:4}.
+
+
+	There is a variant of this technique called stratified k-fold cross-validation. In stratified k-fold cross-validation the folds are created in such a way that each fold contains similar proportions of target features as the full dataset. For example, think of the classification problem of classifying email as spam or not spam. If this technique is applied to the email filtering problem as seen in \ref{sec:classification}, and the ratio of spam/not spam is 20\%/80\% in the original dataset, then the same proportion is attempted to be maintained in each of the $k$ folds. This technique tends to generate less bias and variance when compared to regular k-fold cross validation \cite{IP:2}. It can also be applied to regression problems but the results from Breiman and Spector \cite{ARTICLE:5} indicate that there is little improvement from using this technique for regression problems.
 
 	\subsection{Regularization} \label{sec:regularization}
-	The second method of overcoming overfitting is regularization. This technique discourages complexity and flexibility of models by regularizing its coefficients toward zero \cite{WEBSITE:13}. The magnitude of the regularization can be controlled by a hyperparameter $\lambda$ \cite{WEBSITE:12}. The higher value of $\lambda$, the higher impact regularization has on the model, but high values on $\lambda$ can result in underfitting and should therefore be controlled carefully \cite{WEBSITE:13}. Three different types of regularization methods as covered by \cite{WEBSITE:12}:
+	Another method used to overcome overfitting is regularization. This technique discourages complexity and flexibility of models by regularizing its coefficients toward zero. It can be used by The magnitude of the regularization can be controlled by a hyperparameter $\lambda$. Hyperparameters are model parameters whose value are set before the training process. The higher value of $\lambda$, the higher impact regularization has on the model, but high values on $\lambda$ can result in underfitting and should therefore be controlled carefully \cite{WEBSITE:13}. Three different types of regularization methods:
 
 \begin{itemize}
 	\item{$L_1$ regularization (Lasso):} Adds a penalty equal to the sum of the absolute values of $n$ coefficients. This kind of regularization can nullify parameters and for that reason it can be seen as a way to limit the amount of features in the model (see \ref{sec:feature_selection}).
@@ -87,27 +104,19 @@ The goal then, is to select a model that is somewhere between underfitting and o
 			Error_{L_1L_2} = Error + \lambda ( (1-\alpha)\sum_{i=1}^{n}|\beta_i| + \alpha  \sum_{i=1}^{n}\beta_i^2 ) 
 		\end{equation}
 \end{itemize}
-%Regularization can be used in any parametric (see section \ref{}) machine learning algorithm \cite{WEBSITE:11}.
+
+	A comparison of these techniques was made by \cite{ARTICLE:21} in their performance of modelling insulin sensitivity. The results demonstrate a slight advantage using Lasso and Elastic-net in terms of performance. 
+%This study examines different regularization approaches to investigate the solution stability of the method of fundamental solutions (MFS). We compare three regularization methods in conjunction with two different regularization parameters to find the optimal stable MFS scheme. Meanwhile, we have investigated the relationship among the condition number, the effective condition number, and the MFS solution accuracy. Numerical results show that the damped singular value decomposition under the parameter choice of the generalized cross-validation performs the best in terms of the MFS stability analysis. We also find that the condition number is a superior criterion to the effective condition number. (C) 2010 IMACS. Published by Elsevier B.V. All rights reserved.
 
 	\subsection{Feature selection} \label{sec:feature_selection}
-		Feature selection is a process where irrelevant and redundant features are removed. The curse of dimensionality, which is brought up in \ref{sec:background}, can be avoided by reducing the amount of features. Fewer features can also make the model more interpretable and shorten the training time. Furthermore, reducing the dimensionality results in better generalization \cite{ARTICLE:10}.  
+		Feature selection is a process where irrelevant and redundant features are removed. The curse of dimensionality, which is brought up in \ref{sec:background}, can be avoided by reducing the amount of features. According to \cite{ARTICLE:10}, a reduction in dimensionality can also lead to better generalization.  
 	
-	%Reduced dimensionality gives better generalization due to fewer model parameters in the data \cite{ARTICLE:10} 
 
 %"Feature subset selection is the process of identifying and removing as many irrelevant and redundant features as possible. This reduces the dimensionality of the data and enables data mining algorithms to operate faster and more effectively. The fact that many features depend on one another often unduly influences the accurary of supervised ML classification models. this problem can be addressed by constructing new features from the basic feature set." \cite{ARTICLE:7}
 
-% Multicollinearity
-%"When you add more input variables it creates relationships among them. So not only are the input variables potentially related to the output variable, they are also potentially related to each other, this is referred to as multicollinearity. The optimal scenario is for all of the input variables to be correlated with the output variable, but not with each other." https://medium.com/@MaximilianLloyd/multiple-linear-regression-in-machine-learning-4711209604b7 
-
-%http://scikit-learn.org/stable/modules/feature_selection.html
-	\begin{itemize}
-		\item{Filter method:}
-		\item{Wrapper method:}
-		\item{Embedded method:}
-	\end{itemize}
 	
 \section{Supervised learning algorithms} \label{sec:supervised_algorithms}
-	There are many algorithms that can be used to solve regression and classification problems, some of which can solve both. There is a famous theorem called the "no free lunch" theorem which contradicts an ideal case where a single machine learning is best at solving all possible machine learning problems \cite{ARTICLE:5}.  It is therefore interesting to study the effect of different supervised learning algorithms in this project, but to explain the functionality of them in detail is out of scope. Instead, the reader is encouraged to look up details on specific algorithms elsewhere. The algorithms are grouped by similarity in this section, which is referred to as algorithm families. The algorithm families are named the same way as in \cite{BOOK:6}. Each family listed in \ref{sec:delimitations} are covered. 
+	There are many algorithms that can be used to solve regression and classification problems, some of which can solve both. There is a famous theorem called the "no free lunch" theorem which contradicts an ideal case where a single machine learning is best at solving all possible machine learning problems \cite{ARTICLE:5}.  It is therefore interesting to study the effect of different supervised learning algorithms in this project, but to explain the functionality of them in detail is out of scope. Instead, the reader is encouraged to look up details on specific algorithms when needed. The algorithms are grouped by similarity in this section, which is referred to as algorithm families. The algorithm families are named the same way as in \cite{BOOK:6}. Each family listed in \ref{sec:delimitations} are covered. 
 
 	\subsection{Decision tree based learning}
 		Decision tree algorithms uses a decision tree datastructure to solve classification and regression problems. Furthermore, Non-leaf nodes represent conditions for a specific feature and leaves are values of the target feature. One of the main advantages of decision tree algorithms is that they are easy to understand \cite{ARTICLE:7}. Figure \ref{fig:decisiontree_example} depicts an example of a decision tree used to solve a classification problem with two features: sex and age. Starting at the root node, a decision is made once a leaf-node is reached. Ideally, the feature that best divides the dataset would be represented in the root of the tree, followed by the second best in the second level etc. However, constructing such optimal decision trees has been proved to be a NP-complete problem \cite{ARTICLE:11}. 
@@ -119,7 +128,8 @@ The goal then, is to select a model that is somewhere between underfitting and o
 	\label{fig:decisiontree_example}
 \end{figure}
 
-		Decision tree algorithms are allowed to capture non-linear patterns in the training data, which makes them flexible, but also prone to overfitting \cite{BOOK:7}. Kotiantis \cite{ARTICLE:7} claims there are two common solutions to battle overfitting in decision tree induction algorithms:
+	%NÄR SKRIVA OM PARAMETRIC: But non-parametric approaches do suffer from a major disadvantage: since they do not reduce the problem of estimating f to a small number of parameters, a very large number of observations (far more than is typically needed for a parametric approach) is required in order to obtain an accurate estimate for f \cite{BOOK:14}.
+		Decision tree algorithms are allowed to capture nonlinear patterns in the training data, which makes them flexible, but also prone to overfitting \cite{BOOK:7}. Kotiantis \cite{ARTICLE:7} claims there are two common solutions to battle overfitting in decision tree induction algorithms:
 		\begin{enumerate}
 			\item Stop the training before it fits the training data perfectly
 			\item Prune the decision tree
@@ -128,7 +138,7 @@ The goal then, is to select a model that is somewhere between underfitting and o
 
 		 Among several decision tree induction algorithms, CART and C4.5 are the most commonly used \cite{BOOK:8}. CART can solve both regression and classification problems and it is available in Scikit-learn \cite{WEBSITE:16}. %CART can be used to solve multiclass classification problems \cite{ARTICLE:16}
 		
-	\subsection{Instance based learning}
+	\subsection{Instance based learning} \label{sec:knn}
 	Instance-based learning (IBL) is about storing the provided training data, and using it to predict/classify a new observation. In other words, when a new observation is received, an IBL algorithm retrieves related observations from memory and uses it to predict/classify the new observation. This behavior means that IBL algorithms process training data quickly while the classification/prediction process takes more time when compared to, for example, decision trees \cite{ARTICLE:8}. 
 
 	An example of an IBL algorithm is $k$-nearest neighbor (kNN). Generally, observations can be considered to be points in an $n$-dimensional space and kNN is based on the principle that these observations in a dataset are generally close to other observations with similar properties.  For a new observation, the algorithm finds the $k$ closest neighbors and uses the properties of the $k$ neighbors to classify the observation. kNN can be used to solve both regression and multiclass classification problems in Scikit-learn \cite{WEBSITE:17, WEBSITE:18}.
@@ -153,7 +163,7 @@ The goal then, is to select a model that is somewhere between underfitting and o
 	\subsection{Regression based learning} \label{sec:reg_based_learning}
 		As stated in \ref{sec:delimitations}, only linear algorithms of Regression based learning agorithms are covered. A linear algorithm is one where its model is specified as a linear combination of input features.  
 
-		Although the names might be confusing, regression based learning is not the same as regression predictive modelling, which are referred to as "regression problems" throughout this project. Regression based analysis refers to regression analysis: a number of statistical methods for estimating relationships among variables. This is a well-known tool in statistics and it is also used in machine learning. 
+		Although the names might be confusing, regression based learning is not the same as regression predictive modelling, whose type of problems are referred to as "regression problems" throughout this project. Regression based analysis refers to regression analysis: a number of statistical methods for estimating relationships among variables. This is a well-known tool in statistics and it is also used in machine learning. 
 
 		There are three components in a regression model: scalars $\beta_i$, independent variables $X_i$ and dependent variables $Y$. In regression based learning, $X_i$ represent input features, $Y$ is the target feature and $\beta_i$ are parameters which are tuned during the training process. The example shown in \ref{eq:example_ws} is an example of a trained regression based learning algorithm called Ordinary Least Squares (OLS). OLS is used in regression predictive modelling and a different regression based learning algorithm called Logistic regression (LR) can be used for classification problems. 
 
@@ -193,32 +203,48 @@ The goal then, is to select a model that is somewhere between underfitting and o
 		Ensemble learning is based on the principle that combining the results of several classifiers/predictors into a collective score can produce better results than individual scores. Two independent studies indicate that Random forest, an ensemble learning algorithm, show high success when compared to non-ensemble algorithms\cite{ARTICLE:16, IP:5}. %Chowdhury et. al \cite{ARTICLE:16} conducted a study to see if ensemble methods were superior to CART, kNN, support vector machine and neural network in classifying physical activities. One of the ensemble methods used in the study was Random forest, which showed a constistent high score. Random forest performed second best in an empirical comparison of ten supervised learning algorithms \cite{IP:5}.
 		Random forest averages the results from several decision tree classifiers/predictors to achieve a result. Random forest can be applied to classification and regression problems \cite{WEBSITE:17}.
 
-\section{Choosing hyperparameter values} \label{sec:hyperparameters}
+\section{Algorithm selection}
+	Selecting the optimal algorithms among all of the algorithms in \ref{sec:supervised_algorithms} may prove cumbersome. One approach could be to study the benefits and advantages of each algorithm or algorithm family in detail and decide beforehand which one to choose. Microsoft Azure and Scikit Learn provide intuitive guides of which specific algorithm to choose depending on size of dataset and which the type of problem \cite{WEBSITE:20, WEBSITE:21}. However similar algorithm-choosing guides seems to be few in academic papers, perhaps because there are many different situations, hyperparameters, data sizes etc .
+	%The experimental results shows that there's a major distinction within the accuracy of a same algorithm once applied on three completely different datasets. (3 classification problems, one 617 observations 76 attributes, 569 observations 76 attributes, ~600 observations 14 attributes) \cite{ARTICLE:22}.
+
+	Another approach to selecting an optimal algorithm is experimental.
+
+	%tip 1 \cite{ARTICLE:4}
+	%tip 4, choose simple algorithm \cite{ARTICLE:4}
+\section{Optimizing hyperparameters} \label{sec:hyperparameters}
 	Generally speaking, finding optimal hyperparameter values for various algorithms can be regarded as an experimental process. One brute-force approach, which according to \cite{BOOK:9} is the best way to verify optimality of hyperparameters, is to use a technique known as grid-search. The technique systematically tests hyperparameters incrementally in a given interval. Although the technique may prove useful, it can be computationally intense.
+
+	Another way to test parameters is to use
+
+	%"Note that if we optimized the hyperparameters based on a validation score the validation score is biased and not a good estimate of the generalization any longer."  http://scikit-learn.org/stable/modules/learning_curve.html
+
+	%tip 6 \cite{ARTICLE:4}
+
 	%The best way to verify hyperparameters for an algorithm applied to specific data is to test them all by cross-validation, and to pick the best combination. This simple approach, called grid-search, offers indisputable advantages by allowing you to sample the range of possible values to input into the algorithm systematically and to spot when the thengeral minimum happens. On the other hand, grid-search has two disadvantages:
 	%computationally intense
 	% systematic and intensive tests enhance possibility of incurring error because some good but fake validation results can be caused by noise present in the dataset. \cite{BOOK:9}
 
 
-\section{Dataset split} \label{sec:datasetsplit}
-	%https://machinelearningmastery.com/difference-test-validation-datasets/ ( Max Kuhn and Kjell Johnson, Page 78, Applied Predictive Modeling, 2013)
-
-	% why not single testset:
-	%– A test set is a single evaluation of the model and has limited ability to characterize the uncertainty in the results.
-	%– Proportionally large test sets divide the data in a way that increases bias in the performance estimates.	
-	%– With small sample sizes:
-	%– The model may need every possible data point to adequately determine model values.
-	%– The uncertainty of the test set can be considerably large to the point where different test sets may produce very different results.
-	%– Resampling methods can produce reasonable predictions of how well the model will perform on future samples
 
 
+
+%\begin{comment}
 	
 \section{Data preparation}
-	\subsection{Imbalanced data}
-% {ARTICLE:4} https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5721660/
-% tip 5
+	%tip 1 \cite{ARTICLE:4}
+	
+	%tip 5 \cite{ARTICLE:4}
+	\subsection{Imbalanced data} \label{sec:imbalancedtheory}
+	A number of oversampling techniques that can be used to solve multiclass classification problems are suggested by \ref{IP:6}. However the suggested techniques are complex and can be integrated manually to comply with Scikit-learn. Imbalanced-learn is a Scikit-learn compatible Python module that can be used to perform oversampling \cite{WEBSITE:22}. Three techniques are supported for oversampling: Smote, Adasyn and Randomoversampler. The techniques can be used to solve multiclass classification problems in Imbalanced-learn, despite not being suggested by \ref{IP:6} as proper techniques to solve such problems. 
+
+Smote and Adasyn creates new synthetic points in the dataset while Randomoversampler creates duplicates. Synthetic points are points that are created from existing points but with small random adjustments. The disadvantages of using duplicate observations instead of synthetic points is that it introduces overfitting \cite{BOOK:12}. However, both Adasyn and Smote can be configured in a number of ways on how the synthetic points are built, and are therefore not as easy to use as Randomoversampler \cite{WEBSITE:23}. 
+% tip 5 \cite{ARTICLE:4} https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5721660/
+
+
+% binarization with boosting and oversampling (BBO) oversampling technique proved useful for multiclass classification \cite{ARTICLE:23}
+
 	%https://machinelearningmastery.com/how-to-prepare-data-for-machine-learning/
 
 	%method to filter out noise, outliers http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6033571
 
-
+%\end{comment}

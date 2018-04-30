@@ -12,7 +12,10 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-
+import pandas
+import numpy
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2, f_regression
 
 # Load dataset
 url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
@@ -20,10 +23,10 @@ names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
 dataset = pandas.read_csv(url, names=names)
 
 # shape
-print(dataset.shape)
+#print(dataset.shape)
 
 # head
-print(dataset.head(20))
+#print(dataset.head(20))
 
 # descriptions
 #print(dataset.describe())
@@ -63,29 +66,36 @@ models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB()))
 models.append(('SVM', SVC()))
-# evaluate each model in turn
-results = []
-names = []
-for name, model in models:
-    kfold = model_selection.KFold(n_splits=10, random_state=seed)
-    cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
-    results.append(cv_results)
-    names.append(name)
-    msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
-    print(msg)
 
-# Compare Algorithms
-fig = plt.figure()
-fig.suptitle('Algorithm Comparison')
-ax = fig.add_subplot(111)
-plt.boxplot(results)
-ax.set_xticklabels(names)
-plt.show()
+# evaluate each model in turn
+names = []
+
+# feature extraction
+#test = SelectKBest(score_func=chi2, k=2)
+#fit = test.fit(X_train, Y_train)
+# summarize scores
+#numpy.set_printoptions(precision=3)
+#print(fit.scores_)
+#features = fit.transform(X)
+# summarize selected features
+#print(features[0:5,:])
 
 # Make predictions on validation dataset
-knn = KNeighborsClassifier()
-knn.fit(X_train, Y_train)
-predictions = knn.predict(X_validation)
-print(accuracy_score(Y_validation, predictions))
-print(confusion_matrix(Y_validation, predictions))
-print(classification_report(Y_validation, predictions))
+for name, model in models:
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+    predictions_training = model.predict(X_train)
+    # Plot outputs
+    #plt.scatter(X_validation, Y_validation,  color='black')
+    #plt.plot(X_validation, predictions, color='blue', linewidth=3)
+
+    #plt.xticks(())
+    #plt.yticks(())
+
+    #plt.show()
+    print("training performance")
+    print(accuracy_score(Y_train, predictions_training))
+    print("test performance")
+    print(accuracy_score(Y_validation, predictions))
+    #print(confusion_matrix(Y_validation, predictions))
+    #print(classification_report(Y_validation, predictions))

@@ -10,23 +10,59 @@
 
 % skriva hur skall dataset splittas? random? cross-validation?
 
-\section{Overview}
-\section{Data overview}
+\section{Data overview and test-implementation}
 	%look at the data provided
+	%behövs mer data?  	%We also demonstrate that HOG templates have a relatively small effective capacity; one can train accurate HOG templates with 100–200 positive examples (rather than thousands of examples as is typically done \cite{ARTICLE:18}
+	% Varför inte data från hela sverige: det är intressant att studera dst111 och dsc111, dessa finns endast tillsammans på denna sträcka => geografiskt avgränsad data
+
+	%obalanserad data
 \section{Literature study}
 	%describe learning process as well
-\section{Tools}
-\section{Methodology}
+
+\section{Choice of algorithms}
+	%why choose the ones we did?
+
+\section{Choice of model validation technique}
+	%why split and not kfold?
+		%overfitting is detected in this project by comparing training fit to test fit, this is done easily in holdout
+		%k-fold has longer run-time
+\section{Data preparation experiment setup} \label{sec:exp_setups}
+	
+	%standard classification experiment setup, seed = 7, strat-fold, algorithms
+	%standard regression experiment setup: seed = 7, k-fold, algorithms
+	%holdout classification experiment setup, seed = 7, holdout, 80% training, 20% test, algorithms
+
+	%algorithms
+
+	%standard features time, dst111,...
+	%feature engineered features month, hour, ...
+\section{Experimental methodology}
 	\subsection{Data preparation}
-	\subsection{Study Multicolinearity}
+	\begin{itemize}
+		\item Remove all errors
+		\item Study data and take actions (class imbalance), remove suspicious outliers 
+%Visualize the data using scatterplots, histograms and box and whisker plots and look for extreme values
+	\end{itemize}
+	\subsection{Pre-analysis}
+		%\item study relationships among features, what kind of algorithms are expected to perform well. 
+		
 	\subsection{Spot check algorithms}
-		%linear or nonlinear algorithms?
-		%choose one or more algorithm per family, similar behavior over families. determine which one(s) to dwelve deeper into
-	\subsection{Configure hyperparameters}
-		%exhaustive grid search? http://scikit-learn.org/stable/modules/grid_search.html#grid-search
+		%random feature selection?
+	%\subsection{
+		
+		%n some cases, we will need to run multiple models in parameters on the same training and test sets with the different priority of features, and compare the accuracy to choose an appropriate model for the given problem domain. These trials can run in parallel as there will not be any dependencies between these models. The complexity increases when we will have to tune the parameters of learning algorithms and evaluate across multiple executions to infer from the learning. The very fact that there is no dependency between the executions makes it highly parallelizable and requires no intercommunication. One of the examples of this use case is statistical significance testing. The usefulness of the parallel platforms is obvious for these tasks, as they can be easily performed concurrently without the need to parallelize actual learning and inference algorithms \cite{BOOK:6}
 
+	\subsection{Mid-analysis}
+	\subsection{Improve results}
+		%exhaustive grid search? http://scikit-learn.org/stable/modules/grid_search.html#grid-search
+	\subsection{Analysis}
+		
+
+
+		
 
 \section{Tools}
+
 
 
 

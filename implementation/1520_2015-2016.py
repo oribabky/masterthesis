@@ -27,7 +27,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 # Load dataset
 #xl = pd.ExcelFile("../data/stations_e6/mätvärden 1520 2015-2016.xlsx")
-dataset = pandas.read_excel(open('../data/stations_e6/mätvärden 1520 2015-2016.xlsx','rb'), sheet_name='ms4st_oversampling_test', skiprows=[0], header=1, 
+dataset = pandas.read_excel(open('../data/stations_e6/mätvärden 1520 2015-2016.xlsx','rb'), sheet_name='raw', skiprows=[0], header=1, 
     names=['År', 'Tidpunkt', 'Yttemp-MS4', 'Nedtyp-MS4', 'Ned mängd-MS4', 'Yttemp-DST111', 'Friktion-DSC111', 'Ytstatus-DSC111'],
     dtype={'a':np.int64, 'b':np.int64, 'c':np.float64, 'd':np.int64, 'e':np.float64, 'f':np.float64, 'g':np.float64, 'h':np.int64}
     #dtype=object
@@ -118,6 +118,8 @@ def modelSurfaceStatus():
         model.fit(X_train, Y_train)
         predictions = model.predict(X_validation)
         print(accuracy_score(Y_validation, predictions))
+        print(precision_score(Y_validation, predictions))
+        print(recall_score(Y_validation, predictions))
         print(confusion_matrix(Y_validation, predictions))
         print(classification_report(Y_validation, predictions))
 

@@ -1,28 +1,173 @@
 \chapter{Results and analysis}
 Describe the process of collecting data, training and implementing machine learning algorithms with different methods.
 
+
+	
+\section{Predicting road surface temperature (Track Ice road sensor)}
+	\subsection{Input features correlation rankings}
+
+
+	\begin{table}[H]
+		\centering
+		\caption{Relevancy of each possible input feature to the target feature: TIRS road surface temperature. }
+		\begin{tabular}[3]{c | l | l }
+    			Relevancy ranking & Feature & Correlation score  \\
+			 \hline
+			1 & DST111 road surface temperature & 7688772.49 \\
+			2 & road surface condition & 11048.87 \\
+			3 & road friction & 6840.20 \\
+			4 & month & 4300.00 \\
+			5 & hour & 1968.02 \\
+			6 & precipitation type & 1784.49 \\
+			7 & precipitation amount & 238.91 \\
+ 
+			\label{table:feature_comparison_tirs}
+		\end{tabular}
+	\end{table}
+
+	\subsection{Spot checking}
+
+	\begin{comment} %with kfold
+	\begin{table}[H]
+		\centering
+		\caption{Spot checking experiment to compare performance of the regression algorithms in predicting TIRS road surface temperature where the amount of input features vary. Best results are highlighted.}
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}[8]{l |c | c | c | c |c | c |c }
+    			Algorithm & MSE top 7 features & MSE top 6 features & MSE top 5 features & MSE top 4 features & MSE top 3 features & MSE top 2 features & MSE top 1 features \\
+			 \hline
+			OLS 			& \textbf{1.22} & \textbf{1.22} & \textbf{1.22} & \textbf{1.22} & 1.23 & 1.24 & 1.24 \\
+			CART 		& 1.67 & 1.66 & 1.62 & 1.25 & 1.14 & 1.08 & \textbf{1.05} \\
+			kNN 			& 1.18 & 1.18 & \textbf{1.16} & 1.24 & 1.24 & 1.24 & 1.22 \\
+			Backpropagation & \textbf{0.99} & 1.00 & 1.00 & 1.04 & 1.03 & 1.05 & 1.03 \\
+			Lasso 		& \textbf{1.25} &  \textbf{1.25} & \textbf{1.25} & \textbf{1.25} & \textbf{1.25} & \textbf{1.25} & \textbf{1.25} \\
+			Random forest 	& 1.27 & 1.27 & 1.27 & 1.18 & 1.10 & 1.07 & \textbf{1.05} 
+ 
+			\label{table:spotcheck_tirs}
+		\end{tabular}
+		}
+	\end{table}
+	\end{comment}
+
+	\begin{table}[H]
+		\centering
+		\caption{Results from spot-checking test on the top 7 features for predicting TIRS road surface temperature.}
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}[8]{l |c | c | c | c |c | c |c }
+    			Algorithm & MSE top 7 & MSE top 6 & MSE top 5 & MSE top 4 & MSE top 3 & MSE top 2 & MSE top 1 \\
+			 \hline 
+			OLS 			& \textbf{1.19} &  \textbf{1.19} & \textbf{1.19} & 1.20 & 1.22 & 1.22 & 1.22 \\ \hline
+			CART 		&  1.36 & 1.35 & 1.31 & 1.05 & 1.03 & 1.02 & \textbf{1.01} \\ \hline
+			kNN 			& 0.94 & 0.93 & \textbf{0.92} & 1.08 & 1.16 & 1.16 & 1.21 \\ \hline
+			Backpropagation &  0.90 & \textbf{0.86} & \textbf{0.86} & 0.97 & 1.00 & 1.02 & 1.01 \\ \hline
+			Lasso 		&  \textbf{1.24} & \textbf{1.24} & \textbf{1.24} & \textbf{1.24} & \textbf{1.24} & \textbf{1.24} & \textbf{1.24} \\ \hline
+			Random forest 	&  1.01 & \textbf{1.00} & 1.01 & 1.01 & 1.01 & 1.01 & 1.01
+ 
+			\label{table:spotcheck_tirs}
+		\end{tabular}
+		}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\caption{Shows the difference between test error and training error $(MSE_{test} - MSE_{train})$ over the top features. The difference is denoted as OF and top results for each algorithm are highlighted. Larger values indicate overfitting}
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}[8]{l |c | c | c | c |c | c |c }
+    			Algorithm & OF top 7 & OF top 6 & OF top 5 & OF top 4 & OF top 3 & OF top 2 & OF top 1 \\
+			\hline
+			OLS 			& \textbf{0.02} &  \textbf{0.02} & \textbf{0.02} & \textbf{0.02} & \textbf{0.02} & \textbf{0.02} & \textbf{0.02} \\ \hline
+			CART 		&  1.10 & 1.08 & 1.03 & 0.30 & 0.15 & 0.09 & \textbf{0.05} \\ \hline
+			kNN 			& 0.32 & 0.32 & 0.31 & 0.18 & 0.09 & 0.06 & \textbf{0.04} \\ \hline
+			Backpropagation &  \textbf{0.01} & 0.02 & \textbf{0.01} & 0.03 & 0.02 & 0.02 & \textbf{0.01} \\ \hline
+			Lasso 		& \textbf{0.02} &  \textbf{0.02} & \textbf{0.02} & \textbf{0.02} & \textbf{0.02} & \textbf{0.02} & \textbf{0.02} \\ \hline
+			Random forest 	&  0.65 & 0.66 & 0.64 & 0.23 & 0.12 & 0.08 & \textbf{0.05} 
+ 
+			\label{table:spotcheck_tirs}
+		\end{tabular}
+		}
+	\end{table}
+
+
+
+	\subsection{Mid-analysis}
+	\subsection{Improving results}
+	\subsection{Analysis}	
+
 \section{Classifying precipitation type (Optic Eye)}
 	\subsection{Pre-analysis}
+	%  Univariate feature Selection https://machinelearningmastery.com/feature-selection-machine-learning-python/
 	\subsection{Spot checking}
+	%feature selection on each algorithm
 	\subsection{Mid-analysis}
 	\subsection{Improving results}
-		%feature selection
+		
 		%grid-search
 	\subsection{Analysis}
+
 \section{Predicting precipitation amount (Optic Eye)}
-	\subsection{Pre-analysis}
+
+	\subsection{Input features correlation rankings}
+
+	\begin{table}[H]
+		\centering
+		\caption{Relevancy of each possible input feature to the target feature: precipitation amount. }
+		\begin{tabular}[3]{c | l | l }
+    			Relevancy ranking & Feature & Correlation score  \\
+			 \hline
+			1 & road friction & 4478.75 \\
+			2 & road surface condition & 2793.48 \\
+			3 & DST111 road surface temperature & 234.64 \\
+			4 & month & 60.36 \\
+			5 & hour & 19.93 
+			\label{table:feature_comparison_precamount}
+		\end{tabular}
+	\end{table}
+
 	\subsection{Spot checking}
+
+	\begin{table}[H]
+		\centering
+		\caption{Results from spot-checking test on the top features for predicting precipitation amount.}
+		\resizebox{\textwidth}{!}{%
+		\begin{tabular}[6]{l |c | c | c | c |c }
+    			Algorithm & MSE top 5 & MSE top 4 & MSE top 3 & MSE top 2 & MSE top 1 \\
+			 \hline 
+			OLS 			& \textbf{0.58} & \textbf{0.58} & \textbf{0.58} & \textbf{0.58} & \textbf{0.58} \\ \hline
+			CART 		& 1.01 & 0.63 & 0.98 & 0.98 & \textbf{0.62} \\ \hline
+			kNN 			& 0.60 & 0.61 & \textbf{0.58} & 0.62 & 0.63 \\ \hline
+			Backpropagation & 0.56 & 0.57 & \textbf{0.55} & 0.56 & \textbf{0.55} \\ \hline
+			Lasso 		& \textbf{0.61} & \textbf{0.61} & \textbf{0.61} & \textbf{0.61} & \textbf{0.61} \\ \hline
+			Random forest 	& 0.67 & 0.59 & 0.68 & 0.71 & \textbf{0.57}
+ 
+			\label{table:spotcheck_tirs}
+		\end{tabular}
+		}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\caption{Shows the difference between test error and training error $(MSE_{test} - MSE_{train})$ over the top features. The difference is denoted as 			OF and top results for each algorithm are highlighted. Larger values indicate overfitting}
+		\begin{tabular}[6]{l |c | c | c | c |c }
+    			Algorithm & OF top 5 & OF top 4 & OF top 3 & OF top 2 & OF top 1 \\
+			\hline
+			OLS 			& \textbf{-0.06} & \textbf{-0.06} & \textbf{-0.06} & \textbf{-0.06} & \textbf{-0.06} \\ \hline
+			CART 		& 0.94 & 0.18 & 0.91 & 0.80 & \textbf{0.17} \\ \hline
+			kNN 			& 0.15 & 0.07 & 0.15 & 0.15 & \textbf{0.05} \\ \hline
+			Backpropagation & -0.06 & \textbf{-0.05} & \textbf{-0.05} & -0.06 & -0.06 \\ \hline
+			Lasso 		& \textbf{-0.05} & \textbf{-0.05} & \textbf{-0.05} & \textbf{-0.05} & \textbf{-0.05} \\ \hline
+			Random forest 	& 0.52 & 0.13 & 0.51 & 0.46 & \textbf{0.11}
+ 
+			\label{table:spotcheck_tirs}
+		\end{tabular}
+		
+	\end{table}
+
 	\subsection{Mid-analysis}
 	\subsection{Improving results}
 	\subsection{Analysis}
-\section{Predicting road surface temperature (Track Ice road sensor)}
-	\subsection{Pre-analysis}
-	\subsection{Spot checking}
-	\subsection{Mid-analysis}
-	\subsection{Improving results}
-	\subsection{Analysis}
+
+
+
 \section{Predicting road surface temperature (DST111)}
-	\subsection{Pre-analysis}
 	\subsection{Spot checking}
 	\subsection{Mid-analysis}
 	\subsection{Improving results}
