@@ -95,12 +95,12 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
 
     # Spot Check Algorithms
     models = []
-    models.append(('OLS', LinearRegression()))
-    models.append(('CART', tree.DecisionTreeRegressor()))
-    models.append(('kNN', KNeighborsRegressor()))
-    models.append(('BP', MLPRegressor()))
-    models.append(('Lasso', Lasso()))
-    models.append(('RF', RandomForestRegressor()))
+    #models.append(('OLS', LinearRegression()))
+    #models.append(('CART', tree.DecisionTreeRegressor()))
+    #models.append(('kNN', KNeighborsRegressor(n_neighbors=64)))
+    #models.append(('BP', MLPRegressor(hidden_layer_sizes=(100, ))))
+    models.append(('Lasso', Lasso(alpha=0.001)))
+    #models.append(('RF', RandomForestRegressor()))
     
     #models.append(('NB', GaussianNB()))
     
@@ -162,12 +162,18 @@ targetIndex = 2 #tirs
 crossVal = False
 split = True
 featureComparison = False
-#names=['Month', 'Hour', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfStatus'],
+#names=['Month' (0), 'Hour'(1), 'SurfTemp(TIRS)'(2), 'PrecType'(3), 
+#'PrecAmount'(4), 'SurfTemp(DST111)'(5), 'Friction'(6), 'SurfStatus'(7)],
 skipFeatures = [2, 4, 3]#, 1]#, 0]#, 6]#, 7]
+skipFeaturesKnn = [0,1,2,3,4,6]
+skipFeaturesBP = [2,3,4]
+skipFeaturesLasso = [0,1,2,3,4,6,7]
 
 knnGridParams = {'n_neighbors':[5, 1, 2, 4, 8, 16, 32, 64]}
 bpGridParams = {'hidden_layer_sizes':[(100,), (1,), (4,), (16,), (64,), (256,)]}
 lassoGridParams = {'alpha':[0.001, 0.01, 0.1, 1, 10]}
-#modelSurfaceTemperature(skipFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
-#gridSearch(knnGridParams, KNeighborsRegressor(), trainingData, skipFeatures)
-gridSearch(bpGridParams, MLPRegressor(), trainingData, skipFeatures)
+
+modelSurfaceTemperature(skipFeaturesLasso, trainingData, targetIndex, crossVal, split, featureComparison)
+#gridSearch(knnGridParams, KNeighborsRegressor(), trainingData, skipFeaturesKnn)
+#gridSearch(bpGridParams, MLPRegressor(), trainingData, skipFeaturesBP)
+#gridSearch(lassoGridParams, Lasso(), trainingData, skipFeaturesLasso)

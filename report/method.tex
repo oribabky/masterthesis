@@ -151,9 +151,9 @@
 			After the data preparation process (see \ref{sec:method_dataprep}), the strategy used to find the best performance in predicting/classifying target feature $f_t$ in subtask $s$ in this project is as follows:
 		\begin{enumerate}
 			\item Rank the possible input features $f_i$ to $f_t$. This is done by calculating a correlation score to each input feature to $s$. F-regression is used as correlation score for regression and Chi$^2$ for classification problems.
-			\item Run $i$ spot-checking experiments on the algorithms that can classify/predict $f_t$. The idea is to find which input features give the highest performance and generalization score for each algorithm. The $i$th spot-checking run uses the top $i$ input features.
+			\item Run $i$ spot-checking experiments on the algorithms that can classify/predict $f_t$. The idea is to find which input features give the highest performance- and generalization score for each algorithm. An accumulated performance score is calculated where both performance and generalization are considered. The $i$th spot-checking run uses the top $i$ input features.
 			\item Once an optimal set of input features are established for algorithm $a_k$ to predict/classify $f_t$, specific hyperparameter settings of $a_k$ are varied to see if its performance can be improved further. As mentioned in \ref{sec:delimitations}, only $k$ in kNN, number of hidden nodes in Backpropagation and $\lambda$ in Lasso are optimized.
-			\item Lastly, the optimal scores of each algorithm are listed and the algorithm, whose performance- and generalization score is highest, is identified.
+			\item Lastly, the optimal scores of each algorithm are listed and the algorithm, whose accumulated performance score is best, is identified as the top performing algorithm.
 		\end{enumerate}
 		
 

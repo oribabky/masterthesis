@@ -76,7 +76,7 @@ dataset = pandas.read_excel(open('../data/stations_e6/' + file,'rb'), sheet_name
 
 
 
-def modelPrecipitationAmount(skipFeatures, testSize, targetIndex, crossVal, split, featureComparison):
+def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split, featureComparison):
     array = dataset.values
     x = customlib.sliceSkip2d(array, skipFeatures)
     y = array[:,targetIndex]
@@ -95,12 +95,12 @@ def modelPrecipitationAmount(skipFeatures, testSize, targetIndex, crossVal, spli
 
     # Spot Check Algorithms
     models = []
-    models.append(('OLS', LinearRegression()))
-    models.append(('CART', tree.DecisionTreeRegressor()))
-    models.append(('kNN', KNeighborsRegressor()))
-    models.append(('BP', MLPRegressor()))
-    models.append(('Lasso', Lasso()))
-    models.append(('RF', RandomForestRegressor()))
+    #models.append(('OLS', LinearRegression()))
+    #models.append(('CART', tree.DecisionTreeRegressor()))
+    models.append(('kNN', KNeighborsRegressor(n_neighbors=64)))
+    models.append(('BP', MLPRegressor(hidden_layer_sizes=(256, ))))
+    models.append(('Lasso', Lasso(alpha=0.001)))
+    #models.append(('RF', RandomForestRegressor()))
     
     #models.append(('NB', GaussianNB()))
     
@@ -139,32 +139,39 @@ def modelPrecipitationAmount(skipFeatures, testSize, targetIndex, crossVal, spli
              "mseDiff": (mean_squared_error(yTest, yPred) - mean_squared_error(yTrain, yPredTrain))})
             #print(name + ": diff MSE: %(mseDiff).2f " % \
              #{"mseDiff": (mean_squared_error(yTest, yPred) - mean_squared_error(yTrain, yPredTrain))})
-
+     
 
     
 
-    # The coefficients
-    #print('Coefficients: \n', regr.coef_)
-    # The mean squared error
+def gridSearch(params, model, testSize, skipFeatures):
+    array = dataset.values
+    x = customlib.sliceSkip2d(array, skipFeatures)
+    y = array[:,targetIndex]
 
-    # Explained variance score: 1 is perfect prediction
-    #print('Variance score: %.2f' % r2_score(yTest, yPred))
+    seed = 7
+    xTrain, xTest, yTrain, yTest = model_selection.train_test_split(x, y, test_size=testSize, random_state=seed)
 
-    # Plot outputs
-    #print(yTest[:5,1])
-    #print(xTest[:5,1])
-    #plt.scatter(array_test[:,1], yTest,  color='black')
-    #plt.plot(array_test[:,1], yPred, color='blue', linewidth=3)
+    grid = model_selection.GridSearchCV(model, params, scoring='neg_mean_squared_error')
+    grid.fit(xTrain, yTrain)
+    print(grid.best_score_)
 
-    #uncomment to hide graph value information
+    print(grid.best_estimator_)
 
 trainingData = 0.2
-targetIndex = 4
+targetIndex = 4 #precamount
 crossVal = False
 split = True
 featureComparison = False
-#names=['Month', 'Hour', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfStatus'],
-skipFeatures = [2, 3, 4]#, 7]#, 5]#, 0]#, 1]
+#names=['Month' (0), 'Hour'(1), 'SurfTemp(TIRS)'(2), 'PrecType'(3), 
+#'PrecAmount'(4), 'SurfTemp(DST111)'(5), 'Friction'(6), 'SurfStatus'(7)],
+skipFeatures = [2, 4, 3]#, 1]#, 0]#, 6]#, 7]
+skipFeaturesOpt = [0,1,2,3,4,5,7]
 
-#modelSurfaceTemperature([2,3,4,5,7,8], 0.2)
-modelPrecipitationAmount(skipFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
+knnGridParams = {'n_neighbors':[5, 1, 2, 4, 8, 16, 32, 64]}
+bpGridParams = {'hidden_layer_sizes':[(100,), (1,), (4,), (16,), (64,), (256,)]}
+lassoGridParams = {'alpha':[0.001, 0.01, 0.1, 1, 10]}
+
+modelSurfaceTemperature(skipFeaturesOpt, trainingData, targetIndex, crossVal, split, featureComparison)
+#gridSearch(knnGridParams, KNeighborsRegressor(), trainingData, skipFeaturesOpt)
+#gridSearch(bpGridParams, MLPRegressor(), trainingData, skipFeaturesOpt)
+#gridSearch(lassoGridParams, Lasso(), trainingData, skipFeaturesOpt)
