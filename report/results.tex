@@ -104,12 +104,12 @@ Describe the process of collecting data, training and implementing machine learn
 	\subsection{Analysis}
 
 \section{Predicting precipitation amount (Optic Eye)}
-
 	\subsection{Input features correlation rankings}
+		A test was carried out to determine the order of input feature relevancy to precipitation amount.
 
 	\begin{table}[H]
 		\centering
-		\caption{Relevancy of each possible input feature to the target feature: precipitation amount. }
+		\caption{Input features correlation rankings to the target feature: precipitation amount. }
 		\begin{tabular}[3]{c | l | l }
     			Relevancy ranking & Feature & Correlation score  \\
 			 \hline
@@ -122,8 +122,12 @@ Describe the process of collecting data, training and implementing machine learn
 		\end{tabular}
 	\end{table}
 
+		Table \ref{table:feature_comparison_precamount} shows that the DSC111 features have high correlation to precipitation amount while the time-related features have low scores. 
+
 	\subsection{Spot checking}
 
+		After the order of relevance among input features was established, it was time to spot-check the algorithms on exluding features from least to second most important as seen in \ref{table:feature_comparison_precamount}. The spot-checking experiment runs with default settings and it gives an idea of how each algorithm performs in terms of MSE and overfitting when the number of input features vary. The experiment starts by including the top five features and concludes using only the most relevant feature. Table \ref{table:spotcheck_tirs_mse} shows how each algorithm performs in terms of MSE and \ref{table:spotcheck_tirs_of} reveals the degree of overfitting.
+	
 	\begin{table}[H]
 		\centering
 		\caption{Results from spot-checking test on the top features for predicting precipitation amount.}
@@ -138,7 +142,7 @@ Describe the process of collecting data, training and implementing machine learn
 			Lasso 		& \textbf{0.61} & \textbf{0.61} & \textbf{0.61} & \textbf{0.61} & \textbf{0.61} \\ \hline
 			Random forest 	& 0.67 & 0.59 & 0.68 & 0.71 & \textbf{0.57}
  
-			\label{table:spotcheck_tirs}
+			\label{table:spotcheck_tirs_mse}
 		\end{tabular}
 		}
 	\end{table}
@@ -156,7 +160,7 @@ Describe the process of collecting data, training and implementing machine learn
 			Lasso 		& \textbf{-0.05} & \textbf{-0.05} & \textbf{-0.05} & \textbf{-0.05} & \textbf{-0.05} \\ \hline
 			Random forest 	& 0.52 & 0.13 & 0.51 & 0.46 & \textbf{0.11}
  
-			\label{table:spotcheck_tirs}
+			\label{table:spotcheck_tirs_of}
 		\end{tabular}
 		
 	\end{table}

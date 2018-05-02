@@ -143,28 +143,31 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
 
     
 
-    # The coefficients
-    #print('Coefficients: \n', regr.coef_)
-    # The mean squared error
+def gridSearch(params, model, testSize, skipFeatures):
+    array = dataset.values
+    x = customlib.sliceSkip2d(array, skipFeatures)
+    y = array[:,targetIndex]
 
-    # Explained variance score: 1 is perfect prediction
-    #print('Variance score: %.2f' % r2_score(yTest, yPred))
+    seed = 7
+    xTrain, xTest, yTrain, yTest = model_selection.train_test_split(x, y, test_size=testSize, random_state=seed)
 
-    # Plot outputs
-    #print(yTest[:5,1])
-    #print(xTest[:5,1])
-    #plt.scatter(array_test[:,1], yTest,  color='black')
-    #plt.plot(array_test[:,1], yPred, color='blue', linewidth=3)
+    grid = model_selection.GridSearchCV(model, params, scoring='neg_mean_squared_error')
+    grid.fit(xTrain, yTrain)
+    print(grid.best_score_)
 
-    #uncomment to hide graph value information
+    print(grid.best_estimator_)
 
 trainingData = 0.2
-targetIndex = 2
+targetIndex = 2 #tirs
 crossVal = False
 split = True
 featureComparison = False
 #names=['Month', 'Hour', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfStatus'],
-skipFeatures = [2]#, 4]#, 3]#, 1]#, 0]#, 6]#, 7]
+skipFeatures = [2, 4, 3]#, 1]#, 0]#, 6]#, 7]
 
-#modelSurfaceTemperature([2,3,4,5,7,8], 0.2)
-modelSurfaceTemperature(skipFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
+knnGridParams = {'n_neighbors':[5, 1, 2, 4, 8, 16, 32, 64]}
+bpGridParams = {'hidden_layer_sizes':[(100,), (1,), (4,), (16,), (64,), (256,)]}
+lassoGridParams = {'alpha':[0.001, 0.01, 0.1, 1, 10]}
+#modelSurfaceTemperature(skipFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
+#gridSearch(knnGridParams, KNeighborsRegressor(), trainingData, skipFeatures)
+gridSearch(bpGridParams, MLPRegressor(), trainingData, skipFeatures)

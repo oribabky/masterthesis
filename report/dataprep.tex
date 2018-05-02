@@ -1,10 +1,10 @@
-\chapter{Data preparation}
+\chapter{Data preparation process}
 This chapter describes the process of preparing the data.
 
-\section{Data analysis}
+%\section{Data analysis} kanske ha denna sen
 	%explain the process of analyzing the data
 
-\section{Data cleaning}
+\section{Data cleaning} \label{sec:datacleaning}
 	 In the provided guidelines (see \ref{sec:provided_data}), there is a note on the measurements from station 1429 saying: "Unreasonable DST111 measurements from about 2016-11-15 to 2016-12-31". It was found in the measurements from the 1429 that the average difference between the DST111 and Track Ice Road Surface road surface temperature measurements were $~1.71 \celsius$ whereas in stations 1402 and 1431, which are the two geographically closest stations to 1429, the average differences were $0.614 \celsius$ and  $~0.54 \celsius$. In some cases, the difference between the measurements from the two temperature sensors in station 1429 were above $40 \celsius$. This indicates that something may have been wrong with DST111, or some other instrument at the time and thus, the observations from 2016-11-15 to 2016-12-31 were removed from the workbook containing data from station 1429. This resulted in an average road surface temperature difference of $~0.92 \celsius$, which is higher still than the two nearby stations, but whether this was unreasonable or not could not be determined by the author. 
 
 	In addition to removing suspicious outliers in the dataset, there are also cases where errors are explicitly reported by the sensors. As mentioned in \ref{sec:delimitations}, only non-error features are used in this project. As of such, every observation where at least one error is reported by any sensor, are removed. Figure \ref{img:histogram_surfstatus} shows that the DSC111 alone was malfunctioning for unknown reasons in more than $50 000$ observations. 
@@ -16,7 +16,7 @@ This chapter describes the process of preparing the data.
 	\label{img:histogram_surfstatus}
 \end{figure}
 
-	More suspicious outliers may be present in the dataset that could potentially be identified by applying, for example, a confidence interval. But it was decided to not investigate this matter further since it was assumed that analytical knowledge in road condition data is needed to decide if an outlier represents an error or a correct abnormal value. After the data cleaning process, a total of 115180 observations remained, which means 56245 observations were removed. The observations were removed programmatically by implementation of specific measures in Visual Basic.
+	More suspicious outliers may be present in the dataset that could potentially be identified by applying, for example, a confidence interval. But it was decided to not investigate this matter further since it was assumed that analytical knowledge in road condition data is needed to decide if an outlier represents an error or a correct abnormal value. After the data cleaning process, a total of 115180 observations remained, which means 56245 observations were removed.
 
 
 \section{Feature selection}
@@ -31,9 +31,9 @@ This chapter describes the process of preparing the data.
 	\label{img:correlations_noerr}
 \end{figure}
 
-	To test the relevance of using time as input feature, an experiment was carried out to predict Track Ice Road Sensor road surface temperature once with time as input feature, and once without. All supervised algorithms run on default configurations, a training/test split of 80\%/20\% was used and the dataset is shuffled randomly, but same in both runs by using a fixed seed value. Table \ref{table:timeinput} shows the result from the experiment.
+	To test the relevance of using time as input feature, an experiment was carried out to predict Track Ice Road Sensor road surface temperature once with time as input feature, and once without. The experiment runs the Cross-validation regression spot-checking setup (see \ref{sec:exp_setups}). Table \ref{table:timeinput} shows the result from the experiment.
 
-	\begin{table}[H]
+	\begin{table}[H] %gör om med holdout
 	\centering
 	\caption{Experiment to see if time is relevant to use as input feature. }
 		\begin{tabular}[3]{l | c | c}
@@ -57,7 +57,7 @@ This chapter describes the process of preparing the data.
 
 	\subsection{Rescaling time}
 
-	Table \ref{table:timeinput} shows significant improvement in overall performance in not using time as input feature. However, figure \ref{img:correlations_noerr} shows that time may be a relevant feature to include in that it shows correlation with other features. It was decided to test if a transformation of the time feature would yield better performance than using it in its original form. The transformation involves using only month, and time of day from the time feature but to separate it into two columns so that they operate on lower numeric intervals than combining them. Figure \ref{img:transformation} shows the transformation. 
+	Table \ref{table:timeinput} shows significant improvement in overall performance in not using time as input feature. However,  \ref{img:correlations_noerr} shows that time may be a relevant feature to include in that it shows correlation with other features. It was decided to test if a transformation of the time feature could yield better performance than using it in its original form. The transformation involves using only month, and time of day from the time feature but to separate it into two columns so that they operate on lower numeric intervals than combining them. Figure \ref{img:transformation} shows the transformation. 
 
 \begin{figure}[H] 
 	\centering
@@ -75,9 +75,9 @@ This chapter describes the process of preparing the data.
 	\label{img:correlations_featureengi}
 \end{figure}
 
-	All that's left is to see the effects of the transformation. An experiment with default setting was set up to study the effects of this new transformation. Table \ref{table:transformation_effect} shows the result.
+	All that's left is to see the effects of the transformation. An experiment with Cross-validation regression spot-checking setup was used to study the effects of this new transformation. Table \ref{table:transformation_effect} shows the result.
 
-	\begin{table}[H]
+	\begin{table}[H] %gör om med holdout
 	\centering
 	\caption{Experiment to see the effects of transforming the time feature is relevant to use as input feature. }
 		\resizebox{\textwidth}{!}{%
@@ -97,7 +97,7 @@ This chapter describes the process of preparing the data.
 		}
 	\end{table}
 
-	Performance is improved for all algorithms when the new features are used as a way to represent time rather than using the old feature. However, not using time, hour or month, seem to have slightly higher performance than using both hour and month, but similar to using either of them. Although little to no overall performance improvement was made, it was decided to use the transformed input features in the default features for spot checking. The reason is that this experiment is set up to test Track Ice Road Surface road temperature alone. The new features may prove more relevant with the other target features and different hyperparameter settings etc. The data transformation was done by implementation of specific measures in Visual Basic.
+	Performance is improved for all algorithms when the new features are used as a way to represent time rather than using the old feature. However, not using time, hour or month, seem to have slightly higher performance than using both hour and month, but similar to using either of them. Although little to no overall performance improvement was made, it was decided to use the transformed input features in the default features for spot checking. The reason is that this experiment is set up to test Track Ice Road Surface road temperature alone. The new features may prove more relevant with the other target features and different hyperparameter settings etc.
 
 
 \subsection{Handling class imbalance} \label{sec:class_imbalance}
@@ -129,7 +129,7 @@ This chapter describes the process of preparing the data.
 
 	From what can be seen in \ref{table:occurences_prectype}, precipitation also suffers a significant class imbalance. The biggest difference is between no precipitation and rain and snow mixed, the former appear $~300$ times more than that the latter.
 
-	An experiment was carried out to see if the class imbalance problem can be mitigated by using random oversampling as oversampling technique (see \ref{sec:imbalanced_data_theory}. Random oversampling and Smote was tested in this experiment. Smote runs on the default settings as seen in \ref{WEBSITE:23}. Both random oversampling and Smote are compared to a scenario where oversampling is not used. All three scenarios run the holdout classification experiment setup with feature engineered features and all algorithms on default settings \ref{sec:exp_setups}. Holdout was used instead of $k$-fold in both scenarios since it proved cumbersome to integrate oversampling with $k$-fold, plus a confusion matrix can be obtained when the holdout method is used in Scikit-learn, which can make the results easier to interpret. 
+	An experiment was carried out to see if the class imbalance problem can be mitigated by using random oversampling as oversampling technique (see \ref{sec:imbalanced_data_theory}. Random oversampling and Smote was tested in this experiment. Smote runs on the default settings as seen in \ref{WEBSITE:23}. Both random oversampling and Smote are compared to a scenario where oversampling is not used. All three scenarios run the holdout classification spot-checking setup with feature engineered features \ref{sec:exp_setups}. Holdout was used instead of $k$-fold in both scenarios since it proved cumbersome to integrate oversampling with $k$-fold, plus a confusion matrix can be obtained when the holdout method is used in Scikit-learn, which can make the results easier to interpret. 
 
 	\begin{table}[H]
 	\centering
@@ -185,6 +185,6 @@ This chapter describes the process of preparing the data.
 		\end{tabular}
 	\end{table}
 	
-	Table \ref{table:no_oversampling} and \ref{table:random_oversampling} shows the effects of using random oversampling versus no oversampling: total average accuracy and precision is reduced, total average recall is higher, and total average $F_1$ score is similar to the case when oversampling is not used. In the case of using Smote as oversampling technique as shown in \ref{table:smote_oversampling}, it proved to have similar effects of using random oversampling. Both precision and recall are important in this project when it comes to evaulating algorithm performance, and since no improvement was made on the collective score of precision and recall: $F_1$, and overall accuracy was reduced when either oversampling techniques were tested, oversampling was ruled out as a possible solution to handle imbalanced classes. 
+	Table \ref{table:no_oversampling} and \ref{table:random_oversampling} shows the effects of using random oversampling versus no oversampling: total average accuracy and precision is reduced, total average recall is higher, and total average $F_1$ score is similar to the case when oversampling is not used. In the case of using Smote as oversampling technique as shown in \ref{table:smote_oversampling}, it proved to have similar effects of using random oversampling. Both precision and recall are important in this project when it comes to evaulating classification algorithm performance. Since no improvement was made on the collective score of precision and recall: $F_1$, and overall accuracy was reduced when either of the oversampling techniques were tested, oversampling was ruled out as a possible solution to handle imbalanced classes. 
 
-	Since the multiclass classification problem is but one of four tasks in this project, additional effort was not put in to investigate if the imbalanced dataset problem can be solved in other ways.
+	Since the multiclass classification problem is but one of four subtasks in this project, additional effort was not put in to investigate if the imbalanced dataset problem can be solved in other ways.

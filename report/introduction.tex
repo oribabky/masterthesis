@@ -54,24 +54,24 @@ The author, Johan Casselgren and Niklas Karvonen, who is also from Luleå Univer
 	The forementioned definition of machine learning by \cite{BOOK:2} mentions a performance measure $P$. This measure can be used to evaluate supervised learning algorithm's abilities to model a feature in \ref{table:rwis}, see \ref{sec:supervisedlearning} for more information on performance measures. A specific feature that is to be modelled is referred to as target feature, and the features a supervised learning algorithm uses to do so is referred to as input features. In a basic sense, a supervised learning algorithm studies the observations of the target feature as a mathematical graph and attempts to build a model that best fits the observations in the graph. But the algorithm is not necessarily perfect by having a high performance score. If the model is built in such a way that it fits the provided data perfectly, which may have outliers etc, it may have difficulties in predicting new data. This condition is known as overfitting, the opposite is called underfitting, both of which are covered in detail in \ref{sec:generalization}. So not only is an algorithm with high performance desirable, also one whose model generalizes well so that both underfitting and overfitting is avoided.
 
 \section{Objective}
-	The objective is to find supervised learning algorithms that best models the observations made by the following sensors: Optic Eye, Track Ice Road Sensor, DST111 and DSC111 in terms of performance with respect to generalization. The objective can be broken down into four tasks:
+	The objective is to find supervised learning algorithms that best models the observations made by the following sensors: Optic Eye, Track Ice Road Sensor, DST111 and DSC111 in terms of performance and generalization. The objective is broken down into four tasks:
 	
 	\begin{enumerate}
-		\item Find the highest possible accuracy score among supervised learning algorithms that can be used to model \textbf{precipitation type} with respect to generalization. The data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to classify \textbf{precipitation type}, whose performance and generalization score is highest. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item DST111 road surface temperature
 				\item road friction
 				\item road surface condition
 			\end{itemize}
-		\item Find the lowest possible mean squared error score among supervised learning algorithms that can be used to model \textbf{precipitation amount} with respect to generalization. The training data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{precipitation amount}, whose performance and generalization score is highest. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item DST111 road surface temperature
 				\item road friction
 				\item road surface condition
 			\end{itemize}
-		\item Find the lowest possible mean squared error score among supervised learning algorithms that can be used to model \textbf{Track Ice Road Sensor road surface temperature} with respect to generalization. The training data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{Track Ice Road Sensor road surface temperature}, whose performance and generalization score is highest. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item precipitation type
@@ -80,7 +80,7 @@ The author, Johan Casselgren and Niklas Karvonen, who is also from Luleå Univer
 				\item road friction
 				\item road surface condition
 			\end{itemize}
-		\item Find the lowest possible mean squared error score among supervised learning algorithms that can be used to model \textbf{DST111 road surface temperature} with respect to generalization. The training data may contain the following input features:
+		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{DST111 road surface temperature}, whose performance and generalization score is highest. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item precipitation type
@@ -89,7 +89,6 @@ The author, Johan Casselgren and Niklas Karvonen, who is also from Luleå Univer
 				\item road surface condition
 			\end{itemize}
 	\end{enumerate}
-The algorithm models are built from 171425 observations provided by six weather stations along state road e6 in Sweden, measuring every 30 minutes over two years.
 
 \section{Delimitations} \label{sec:delimitations}
 	There are many supervised learning algorithms, all of which are not evaluated in detail in this project. An algorithm is qualified for evaluation in this project if the following is true:
@@ -107,14 +106,15 @@ The algorithm models are built from 171425 observations provided by six weather 
 				\item Ensemble learning %random forest
 			\end{itemize}
 	\end{enumerate}
-	At least one algorithm per algorithm family, are considered in this project. %The reason for this is that algorithms from same families generally perform well on similar situations. %need cite
 
+	The performance of supervised algorithms can generally be improved by optimizing its hyperparameters (see \ref{sec:hyperparameters}). However, there can be many ways that a single algorithm can be configured. Since this project deals with comparing performances of several algorithms, exploring all combination of hyperparameters would take a significant amount of time both in setting up experiments, and in actual running-time. When it comes to optimizing hyperparameters, it was decided to focus on the choice of $k$ in kNN, the number of hidden nodes in Backpropagation, and magnitude of regularization $\lambda$ in Lasso (see \ref{sec:supervised_algorithms} and \ref{sec:regularization}).
+ 
 	Some of the sensors, such as the DSC111 (see \ref{img:histogram_surfstatus}), are malfunctioning frequently. To avoid any complex relationships between functioning and malfunctioning sensors, it is decided to model non-error behavior by using non-error input features only. 
 
 	In addition to the time feature, an extra feature was present in the provided dataset which displayed what year each observation was taken. The author assumes that global warming does not present a significant change in weather conditions, road surface temperature etc. such that 2015 and 2016 are relatively similar in that sense. Also since the measurements are from 2015-2016, it is assumed that any model built using year as input feature could potentially do well when dealing with new observations whose year is 2015 or 2016 but that it generalizes poorly when dealing with observations from 2018 etc. By these assumptions, it was decided to not consider year as an input feature. 
 
-%feature engineering in data preparation is not considered since the input data received is not expected to be transformed in any way in reality?
-%Only linear algorithms are considered from Regression based learning algorithms. The reason for limiting this family to linear algorithms is because every other algorithm in the other families, except for Naïve bayes, are considered nonlinear, and are thus overrepresented in the project. 
+	Support vector machine (SVM) algorithms could have been evaluated in this project, but was ruled out since they appear to have high computational running-time. It was revealed by the author, through a cross-validation classification spot-checking test (see \ref{sec:exp_setups}) on the iris dataset in Scikit-learn, that SVM have significantly longer running-time than the other algorithms in \ref{table:evaluated_algorithms}.
+
 
 \section{Provided data} \label{sec:provided_data}
 	A dataset containing 171425 measurements (observations) was provided by Trafikverket to carry out this project. The observations are from 2015-2016 from six RWIS along state road E6 in Sweden, where every station measures the features seen in \ref{table:rwis} roughly every 30 minutes. Six Microsoft Excel workbooks represent data from each of the six stations, in which the column headers are the features seen in \ref{table:rwis}. The year each observation was taken is also represented in a column in the workbooks.
@@ -141,5 +141,6 @@ The algorithm models are built from 171425 observations provided by six weather 
 		\end{tabular}
 		}
 \end{table}
+
 \section{Thesis structure}
 % explain what the thesis looks like

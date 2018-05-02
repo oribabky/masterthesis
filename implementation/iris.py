@@ -1,5 +1,6 @@
 # Load libraries
 import pandas
+import numpy as np
 from pandas.plotting import scatter_matrix
 import matplotlib.pyplot as plt
 from sklearn import model_selection
@@ -65,7 +66,7 @@ models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB()))
-models.append(('SVM', SVC()))
+#models.append(('SVM', SVC()))
 
 # evaluate each model in turn
 names = []
@@ -99,3 +100,12 @@ for name, model in models:
     print(accuracy_score(Y_validation, predictions))
     #print(confusion_matrix(Y_validation, predictions))
     #print(classification_report(Y_validation, predictions))
+
+print("TIME TO GRID")
+knn = KNeighborsClassifier()
+print(accuracy_score(Y_validation, predictions))
+ks = np.array([2,4,8,10])
+grid = model_selection.GridSearchCV(estimator=knn, param_grid=dict(n_neighbors=ks))
+grid.fit(X_train, Y_train)
+print(grid.best_score_)
+print(grid.best_estimator_.n_neighbors)
