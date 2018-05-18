@@ -20,7 +20,7 @@ This chapter describes the process of preparing the data.
 
 
 \section{Feature selection}
-	It was decided to investigate if time should be excluded as a possible input feature, primarily because the values it presents are higher than the rest of the features. Some supervised learning algorithms, such as kNN, are sensitive to scaling (see \ref{sec:knn}). Time is interpreted as integers by any model that use it as an input feature. For example, an observation from station 1520 from 12/31/2016 23:30 have the following values: $\text{time} = 12312330, \text{SurfTemp }= 7.1, ... \text{Friction} = 0.74$. 
+	It was decided to investigate if time should be excluded as a possible input feature, primarily because the values are higher than the rest of the features. Some supervised learning algorithms, such as kNN, are sensitive to scaling (see \ref{sec:knn}). Time is interpreted as integers by any model that use it as an input feature. For example, an observation from station 1520 from 12/31/2016 23:30 have the following values: $\text{time} = 12312330, \text{SurfTemp }= 7.1, ... \text{Friction} = 0.74$. 
 
 	Although the scaling of the time feature is significantly different from the other input features, it seems to be correlated with other features. Figure \ref{img:correlations_noerr} shows how every feature is related to one another, it indicates that features such as time and friction are correlated with time. The correlation may come as no surprise since the northern hemisphere is colder during winter-time, which means cold temperatures and low friction, and the other way around during warmer periods. 
 
@@ -51,13 +51,13 @@ This chapter describes the process of preparing the data.
 		\end{tabular}
 	\end{table}
 
-	The results indicate that OLS, Lasso and Random forest achieve slightly better performance by using time as input feature, whereas CART, kNN, Random forest and especially Backpropagation, suffer in terms of performance when doing so. This is an indication that overall performance is improved by not using time as input feature, but the possibility of using this data is not ruled out yet. Section \ref{sec:transformation} deals with testing if time can be scaled down to similar levels of other features to see if it improves overall performance or not.
+	The results indicate that OLS, Lasso and Random forest achieve slightly better performance by using time as input feature, whereas CART, kNN, Random forest and especially Backpropagation, suffer in terms of performance when doing so. This is an indication that overall performance is improved by not using time as input feature, but the possibility of using this data was not ruled out yet. Section \ref{sec:transformation} deals with testing if time can be scaled down to similar levels of other features to see if it improves overall performance or not.
 
 \section{Data transformation} \label{sec:transformation}
 
 	\subsection{Rescaling time}
 
-	Table \ref{table:timeinput} shows significant improvement in overall performance in not using time as input feature. However,  \ref{img:correlations_noerr} shows that time may be a relevant feature to include in that it shows correlation with other features. It was decided to test if a transformation of the time feature could yield better performance than using it in its original form. The transformation involves using only month, and time of day from the time feature but to separate it into two columns so that they operate on lower numeric intervals than combining them. Figure \ref{img:transformation} shows the transformation. 
+	Table \ref{table:timeinput} shows significant improvement in overall performance in not using time as input feature. However,  \ref{img:correlations_noerr} shows that time may be a relevant feature to include in that it shows correlation with other features. It was decided to test if a transformation of the time feature could yield better performance than using it in its original form. The transformation involves using only month, and time of day from the time feature, but to separate it into two columns so that they operate on lower numeric intervals than combining them. Figure \ref{img:transformation} shows the transformation. 
 
 \begin{figure}[H] 
 	\centering
@@ -75,7 +75,7 @@ This chapter describes the process of preparing the data.
 	\label{img:correlations_featureengi}
 \end{figure}
 
-	All that's left is to see the effects of the transformation. An experiment with Cross-validation regression spot-checking setup was used to study the effects of this new transformation. Table \ref{table:transformation_effect} shows the result.
+	An experiment with Cross-validation regression spot-checking setup was used to study the effects of this new transformation. Table \ref{table:transformation_effect} shows the result.
 
 	\begin{table}[H] %gör om med holdout
 	\centering
@@ -127,9 +127,9 @@ This chapter describes the process of preparing the data.
 		\end{tabular}
 	\end{table}
 
-	From what can be seen in \ref{table:occurences_prectype}, precipitation also suffers a significant class imbalance. The biggest difference is between no precipitation and rain and snow mixed, the former appear $~300$ times more than that the latter.
+	From what can be seen in \ref{table:occurences_prectype}, precipitation also suffers a significant class imbalance. The biggest difference is between no precipitation and rain and snow mixed, the former appear roughly 300 times more than that the latter.
 
-	An experiment was carried out to see if the class imbalance problem can be mitigated by using random oversampling as oversampling technique (see \ref{sec:imbalanced_data_theory}. Random oversampling and Smote was tested in this experiment. Smote runs on the default settings as seen in \ref{WEBSITE:23}. Both random oversampling and Smote are compared to a scenario where oversampling is not used. All three scenarios run the holdout classification spot-checking setup with feature engineered features \ref{sec:exp_setups}. Holdout was used instead of $k$-fold in both scenarios since it proved cumbersome to integrate oversampling with $k$-fold, plus a confusion matrix can be obtained when the holdout method is used in Scikit-learn, which can make the results easier to interpret. 
+	An experiment was carried out to see if the class imbalance problem can be mitigated by using random oversampling as oversampling technique (see \ref{sec:imbalancedtheory}. Random oversampling and Smote was tested in this experiment. Smote runs on the default settings as seen in \ref{WEBSITE:23}. Both random oversampling and Smote are compared to a scenario where oversampling is not used. All three scenarios run the holdout classification spot-checking setup with feature engineered features. Holdout was used instead of $k$-fold in both scenarios since it proved cumbersome to integrate oversampling with $k$-fold, plus a confusion matrix can be obtained when the holdout method is used in Scikit-learn, which can make the results easier to interpret. 
 
 	\begin{table}[H]
 	\centering
@@ -185,6 +185,8 @@ This chapter describes the process of preparing the data.
 		\end{tabular}
 	\end{table}
 	
-	Table \ref{table:no_oversampling} and \ref{table:random_oversampling} shows the effects of using random oversampling versus no oversampling: total average accuracy and precision is reduced, total average recall is higher, and total average $F_1$ score is similar to the case when oversampling is not used. In the case of using Smote as oversampling technique as shown in \ref{table:smote_oversampling}, it proved to have similar effects of using random oversampling. Both precision and recall are important in this project when it comes to evaulating classification algorithm performance. Since no improvement was made on the collective score of precision and recall: $F_1$, and overall accuracy was reduced when either of the oversampling techniques were tested, oversampling was ruled out as a possible solution to handle imbalanced classes. 
+	Table \ref{table:no_oversampling} and \ref{table:random_oversampling} shows the effects of using random oversampling versus no oversampling: total average accuracy and precision is reduced, total average recall is higher, and total average $F_1$ score is similar to the case when oversampling is not used. In the case of using Smote as oversampling technique as shown in \ref{table:smote_oversampling}, it proved to have similar effects of using random oversampling. 
+
+	Both precision and recall are important in this project when it comes to evaulating classification algorithm performance. Since no improvement was made on the collective score of precision and recall: $F_1$, and overall accuracy was reduced when either of the oversampling techniques were tested, oversampling was ruled out as a possible solution to handle imbalanced classes. 
 
 	Since the multiclass classification problem is but one of four subtasks in this project, additional effort was not put in to investigate if the imbalanced dataset problem can be solved in other ways.

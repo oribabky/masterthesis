@@ -7,6 +7,7 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression, Lasso
+
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -34,12 +35,14 @@ from sklearn.metrics import mean_squared_error, r2_score
 #file = 'mätvärden 1520 2015-2016.xlsx'
 file = 'mätvärden total.xlsm'
 sheet = 'raw_noerr_featureengi'
+#sheet = 'raw_noerr'
+#sheet = 'raw'
 dataset = pandas.read_excel(open('../data/stations_e6/' + file,'rb'), sheet_name=sheet, skiprows=[0], header=1, 
-    #names=['Time', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfStatus'],
+    #names=['Time', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfCondition'],
     #dtype={'a':np.int64, 'b':np.float64, 'c':np.int64, 'd':np.float64, 'e':np.float64, 'f':np.float64, 'g':np.int64}
     
     #when using feature engineered names
-    names=['Month', 'Hour', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfStatus'],
+    names=['Month', 'Hour', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmnt', 'SurfTemp(DST111)', 'Friction', 'SurfCondition'],
     dtype={'a':np.int64, 'b':np.int64, 'c':np.float64, 'd':np.int64, 'e':np.float64, 'f':np.float64, 'g':np.float64, 'h':np.int64}
     
     )
@@ -55,7 +58,8 @@ dataset = pandas.read_excel(open('../data/stations_e6/' + file,'rb'), sheet_name
 
 # class distribution
 #print(dataset.groupby('PrecType').size())
-#dataset.hist(column = 'PrecType')
+#hist = dataset.hist(column = 'SurfCondition', bins= [-9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+#hist.xaxis.set_ticks()
 #plt.show()
 
 
@@ -71,8 +75,18 @@ dataset = pandas.read_excel(open('../data/stations_e6/' + file,'rb'), sheet_name
 #plt.show()
 
 # scatter plot matrix
-#scatter_matrix(dataset)
+#scatterMatrix = scatter_matrix(dataset)
+
+#for ax in scatterMatrix.ravel():
+#    ax.xaxis.set_ticks([])
+#    ax.yaxis.set_ticks([])
+#    ax.set_xlabel(ax.get_xlabel(),fontsize = 6)
+#    ax.set_ylabel(ax.get_ylabel(),fontsize = 6)
+
 #plt.show()
+
+
+
 
 
 
@@ -95,19 +109,19 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
 
     # Spot Check Algorithms
     models = []
-    #models.append(('OLS', LinearRegression()))
-    #models.append(('CART', tree.DecisionTreeRegressor()))
-    #models.append(('kNN', KNeighborsRegressor(n_neighbors=64)))
-    #models.append(('BP', MLPRegressor(hidden_layer_sizes=(100, ))))
-    models.append(('Lasso', Lasso(alpha=0.001)))
-    #models.append(('RF', RandomForestRegressor()))
+    models.append(('OLS', LinearRegression()))
+    models.append(('CART', tree.DecisionTreeRegressor()))
+    models.append(('kNN', KNeighborsRegressor()))
+    models.append(('MLP', MLPRegressor()))
+    models.append(('Lasso', Lasso()))
+    models.append(('RF', RandomForestRegressor()))
     
     #models.append(('NB', GaussianNB()))
     
         # evaluate each model in turn
     results = []
     names = []
-    crossPlot = False
+    performancePlot = True
     if crossVal:
         for name, model in models:
             kfold = model_selection.KFold(n_splits=10, random_state=seed)
@@ -117,7 +131,7 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
             msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
             print(msg)
 
-            if crossPlot:
+            if performancePlot:
                 #plot
                 predicted = model_selection.cross_val_predict(model, x, y, cv=kfold)
 
@@ -140,7 +154,16 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
             #print(name + ": diff MSE: %(mseDiff).2f " % \
              #{"mseDiff": (mean_squared_error(yTest, yPred) - mean_squared_error(yTrain, yPredTrain))})
      
+            if performancePlot:
+                #plot
+                #predicted = model_selection.cross_val_predict(model, x, y, cv=kfold)
 
+                fig, ax = plt.subplots()
+                ax.scatter(yTest, yPred, edgecolors=(0, 0, 0))
+                ax.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', lw=2)
+                ax.set_xlabel('Measured')
+                ax.set_ylabel('Predicted')
+                plt.show()
     
 
 def gridSearch(params, model, testSize, skipFeatures):
@@ -159,12 +182,18 @@ def gridSearch(params, model, testSize, skipFeatures):
 
 trainingData = 0.2
 targetIndex = 2 #tirs
+timeIndex = 0
+
 crossVal = False
 split = True
 featureComparison = False
+
 #names=['Month' (0), 'Hour'(1), 'SurfTemp(TIRS)'(2), 'PrecType'(3), 
 #'PrecAmount'(4), 'SurfTemp(DST111)'(5), 'Friction'(6), 'SurfStatus'(7)],
-skipFeatures = [2, 4, 3]#, 1]#, 0]#, 6]#, 7]
+skipFeaturesNonEngi = [targetIndex]
+skipFeatures = [targetIndex]#, 1]#, 0]#, 6]#, 7]
+
+topSixFeatures = [targetIndex, 4]
 skipFeaturesKnn = [0,1,2,3,4,6]
 skipFeaturesBP = [2,3,4]
 skipFeaturesLasso = [0,1,2,3,4,6,7]
@@ -173,7 +202,7 @@ knnGridParams = {'n_neighbors':[5, 1, 2, 4, 8, 16, 32, 64]}
 bpGridParams = {'hidden_layer_sizes':[(100,), (1,), (4,), (16,), (64,), (256,)]}
 lassoGridParams = {'alpha':[0.001, 0.01, 0.1, 1, 10]}
 
-modelSurfaceTemperature(skipFeaturesLasso, trainingData, targetIndex, crossVal, split, featureComparison)
+modelSurfaceTemperature(topSixFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
 #gridSearch(knnGridParams, KNeighborsRegressor(), trainingData, skipFeaturesKnn)
 #gridSearch(bpGridParams, MLPRegressor(), trainingData, skipFeaturesBP)
 #gridSearch(lassoGridParams, Lasso(), trainingData, skipFeaturesLasso)

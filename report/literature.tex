@@ -39,7 +39,7 @@ such that when new input data $x_{new}$ is used, $f_{map}$ can predict $y_{new}$
 	\mbox{accuracy} = \frac{\mbox{\#correct predictions total}}{\mbox{\#observations}}
 \end{equation}
 	
-	A high accuracy score such as 90\% may seem promising, but what if 90\% of the test data is made up of Setosa alone? That means that the model correctly classified all Setosa observations, but failed on all of the Versicolour and Virginica classifications. This is probably an indication of an imbalanced dataset, which means that the different classes in the dataset are not equally represented. In these cases, bla \ref{BOOK:11} claims that classification accuracy is not a good metric to evaluate a model, and that other metrics such as precision-recall break-even, area under the curve etc. should be used instead. None of the performance metrics mentioned by \cite{BOOK:11} is available in Sckit-learn, but there is a performance metric available there known as macro-average $F_1$ that is suitable for evaluating imbalanced multiclass classification problems \cite{WEBSITE:25}. It averages the performance of classifying each individual class, in terms of precision and recall score. Equations \ref{eq:recall}, \ref{eq:precision} and \ref{eq:f1} shows how recall, precision and $F_1$ scores are calculated for a multiclass classification problem on one if its classes $A$. 
+	A high accuracy score such as 90\% may seem promising, but what if 90\% of the test data is made up of Setosa alone? That means that the model correctly classified all Setosa observations, but failed on all of the Versicolour and Virginica classifications. This is probably an indication of an imbalanced dataset, which means that the different classes in the dataset are not equally represented. In these cases, bla \ref{BOOK:11} claims that classification accuracy is not a good metric to evaluate a model, and that other metrics such as precision-recall break-even, area under the curve etc. should be used instead. None of the performance metrics mentioned by \cite{BOOK:11} is available in Sckit-learn, but there is a performance metric available there known as macro-average $F1$ that is suitable for evaluating imbalanced multiclass classification problems \cite{WEBSITE:25}. It averages the performance of classifying each individual class, in terms of precision and recall score. Equations \ref{eq:recall}, \ref{eq:precision} and \ref{eq:f1} shows how recall, precision and $F1$ scores are calculated for a multiclass classification problem on one if its classes $A$. 
 
 \begin{equation} \label{eq:recall}
 	\mbox{Recall}(A) = \frac{\mbox{\#correct predictions} A}{\mbox{\#observations} A}
@@ -50,7 +50,7 @@ such that when new input data $x_{new}$ is used, $f_{map}$ can predict $y_{new}$
 \end{equation}
 
 \begin{equation} \label{eq:f1}
-	F_1(A) = 2 \cdot \frac{\mbox{Recall}(A) \cdot \mbox{Precision}(A)}{\mbox{Recall}(A) + \mbox{Precision}(A)}
+	F1(A) = 2 \cdot \frac{\mbox{Recall}(A) \cdot \mbox{Precision}(A)}{\mbox{Recall}(A) + \mbox{Precision}(A)}
 \end{equation}
 
 Another way to see if a high accuracy score is misleading is to analyze a so-called Confusion matrix. It shows the distribution of classifying observations for each class.

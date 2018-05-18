@@ -1,0 +1,76 @@
+\chapter{Summary}
+\emph{This chapter aims at summarizing the objective of this project as well as the results obtained for the given objective.}
+
+\section{Recap and solutions to project subtasks}
+	This project has dealt with investigating whether or not road weather station sensors can be modelled using supervised machine learning algorithms. The sensors that are of interest to model are as follows:
+	\begin{itemize}
+		\item{Optic Eye:} Measures precipitation type and precipitation amount.
+		\item{Track Ice Road Sensor:} Dug into the road. Measures road surface temperature.
+		\item{DST111:} Measures road surface temperature via infrared.
+	\end{itemize}
+	
+	The idea was to try to model each sensor from data provided by the others, except for Track Ice Road Sensor since this may be removed in the future. In addition to the sensor above, any model may be trained using data from the following sensors as well:
+	\begin{itemize}
+		\item{DSC111:} Measures road surface condition and road friction.
+		\item{MS4:} Timestamp (this was made into two input features: hour and month in \ref{sec:transformation}).
+	\end{itemize}
+
+	The objective of the project as seen in \ref{sec:objective} is as follows:
+
+	"The objective is to find optimal supervised learning models, in terms of performance and generalization, which models the behavior of the following sensors: Optic Eye, Track Ice Road Sensor and DST111 where each sensor is trained from observations made from other the other sensors but its own. In addition to the forementioned sensors, except for Track Ice Road Sensor, any model may train on the following input features as well: measurement timestamp, road friction and road surface condition."
+
+	The objective was broken down into four subtasks. Each subtask and their solutions are covered in the following subsections.
+
+	\subsection{Classifying precipitation type}
+		The first subtask mentioned in \ref{sec:objective} is:
+	
+	Find the algorithm among supervised learning algorithms, that can be used to classify \textbf{precipitation type}, whose performance and generalization score is best. The data may contain the following input features: 
+			\begin{itemize}
+				\item measurement timestamp
+				\item DST111 road surface temperature
+				\item road friction
+				\item road surface condition
+			\end{itemize}
+
+	\subsection{Predicting precipitation amount}
+		The second subtask mentioned in \ref{sec:objective} is:
+	
+	Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{precipitation amount}, whose performance and generalization score is best. The data may contain the following input features: 
+			\begin{itemize}
+				\item measurement timestamp
+				\item DST111 road surface temperature
+				\item road friction
+				\item road surface condition
+			\end{itemize}
+
+	The results from \ref{sec:results_precamount} shows that the best algorithm in terms of performance and generalization in predicting precipitation amount is kNN which obtained a performance score of $MSE_{test} = 0.54$.
+
+	\subsection{Predicting Track Ice Road Sensor road surface temperature}
+		The third subtask mentioned in \ref{sec:objective} is:
+	
+	Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{Track Ice Road Sensor road surface temperature}, whose performance and generalization score is best. The data may contain the following input features: 
+			\begin{itemize}
+				\item measurement timestamp
+				\item precipitation type
+				\item precipitation amount
+				\item DST111 road surface temperature
+				\item road friction
+				\item road surface condition
+			\end{itemize}
+
+	It was found in \ref{sec:results_tirs} that the best algorithm in terms of performance and generalization for predicting TIRS road surface temperature is Backpropagation which obtained a performance score of $MSE_{test} = 0.88$.
+
+	\subsection{Predicting DST111 road surface temperature}
+		The fourth subtask mentioned in \ref{sec:objective} is:
+	
+	Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{DST111 road surface temperature}, whose performance and generalization score is best. The data may contain the following input features: 
+			\begin{itemize}
+				\item measurement timestamp
+				\item precipitation type
+				\item precipitation amount
+				\item road friction
+				\item road surface condition
+			\end{itemize}
+
+	From the results in \ref{sec:results_dst111} it was found that Random forest was the top performing algorithm in terms of performance and generalization. It obtained a performance score of $MSE_{test} = 10.16$.
+	

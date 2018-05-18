@@ -1,19 +1,20 @@
-\chapter{Conclusions and recommendations}
+\chapter{Conclusions and discussion}
+\emph{This chapter presents conclusions connected to the aim of this project, as well as an informal discussion on the results obtained.}
 
 \section{Conclusions}
-	\subsection{Classifying precipitation type}
-		The first subtask mentioned in \ref{sec:objective} is:
-	"Find the algorithm among supervised learning algorithms, that can be used to classify \textbf{precipitation type}, whose performance and generalization score is highest".
+	This aim of this project was to find optimal supervised learning models to model the behavior of three sensors: Optic Eye, Track Ice Road Sensor and DST111. This was desired so that Trafikverket can potentially replace existing sensors to reduce costs, or use as backup in case of failing sensors. The sensors make four different types of measurements in total: precipitation type, precipitation amount, TIRS road surface temperature and DST111 temperature. The objective was broken down into four subtasks which aimed at finding optimal algorithms to model each of the measurements of the sensors.
 
-	\subsection{Predicting precipitation amount}
-		The second subtask mentioned in \ref{sec:objective} is:
-	"Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{precipitation amount}, whose performance and generalization score is highest "
+	The results obtained in this project indicate that the measurements made by Optic Eye: precipitation type and precipitation amount, are best modelled using CART for precipitation type and kNN for precipitation amount. An accuracy score of 0.84 and macro $F1$ score of 0.46 were obtained in modelling precipitation type using Scikit-learn default settings. Precipitation amount was best modelled using kNN, obtaining a performance score $MSE=0.54$ with $k=64$ in Scikit-learn. 
 
-	\subsection{Predicting Track Ice Road Sensor road surface temperature}
-		The third subtask mentioned in \ref{sec:objective} is:
-	"Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{Track Ice Road Sensor road surface temperature}, whose performance and generalization score is highest."
+	The two remaining sensors measuring road surface temperature: Track Ice Road Sensor and DST111, were best modelled using Backpropagation and Random forest respectively. Backpropagation was set to use 64 hidden nodes, with which a performance score $MSE=0.88$ was obtained in modelling TIRS road surface temperature. As for modelling DST111 road surface temperature, the best model was obtained by using Random forest on Scikit-learn default settings with a performance score $MSE=10.16$.
 
-	\subsection{Predicting DST111 road surface temperature}
-		The fourth subtask mentioned in \ref{sec:objective} is:
-	"Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{DST111 road surface temperature}, whose performance and generalization score is highest."
+\section{Discussion}
+
+	It is up to Trafikverket to decide what a reasonable margin for error is in stating that a model can or cannot model the behavior of a sensor. But when comparing the results from the regression subtasks in this project, DST111 road surface temperature shows a higher error rate than precipitation amount and Track Ice Road Sensor road surface temperature. Since DST111 and TIRS both measure road surface temperature, it is assumed that the model for DST111 generally performs poorly and as of such, the behavior of DST111 is hard to model with the given input features. Since any algorithm which models TIRS in this project can use DST111 road surface temperature as input feature, which proves to have strong linear correlation to TIRS, the author assumes that if TIRS road surface temperature could be used as input feature to model DST111, a better performance could be obtained.
+
+	As for the classification task of classifying precipitation type, the author deems that its performance should be evaluated on its $F1$ score rather than on its accuracy score in this project. The results from \ref{table:classreport_prectype} show that the best model for modelling precipitation type performed well in predicting no precipitation: 90\% while the other precipitation types had significantly lower recall scores, the lowest being rain and snow mixed which was correctly classified in 3\% of its occurrences. The relatively low $F1$ score may be due to the fact that the dataset is imbalanced in terms of precipitation type, and that the imbalanced data problem was not successfully solved in this project. 
+
+	In hindsight, the author thinks that the accumulated performance score presented in \ref{sec:method_results} can be improved by not allowing negative values in the overfitting score. An overfitting score of 0 means that the model performs equally well on both the training and test dataset. A negative overfitting score means a model performed better on the test dataset than on its training dataset. The author suspects that a negative overfitting score is not necessarily better than one around zero, but a negative overfitting score have a positive impact on the accumulated performance score. This may result in non-optimal algorithms having higher accumulated performance scores than optimal ones, and thus being identified as top performers.
+
 \section{Recommendations}
+		The author recommends Trafikverket to refrain from modelling DST111 road surface temperature using the given algorithm and algorithm settings, but to investigate the possibility of modelling Track Ice Road Sensor road surface temperature and precipitation amount using the algorithms and algorithm settings seen in \ref{table:results_summary}. Given that all precipitation types are equally important to classify, the author recommends Trafikverket to investigate if the imbalanced data problem of precipitation type can be solved, either by collecting more data from the less represented classes, or to see if the problem can be solved using similar techniques as the ones used in this project (see attempts in handling class imbalance in \ref{sec:class_imbalance}). 

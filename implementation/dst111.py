@@ -95,19 +95,19 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
 
     # Spot Check Algorithms
     models = []
-    #models.append(('OLS', LinearRegression()))
-    #models.append(('CART', tree.DecisionTreeRegressor()))
-    models.append(('kNN', KNeighborsRegressor(n_neighbors=32)))
-    models.append(('BP', MLPRegressor(hidden_layer_sizes=(256, ))))
-    models.append(('Lasso', Lasso(alpha=0.001)))
-    #models.append(('RF', RandomForestRegressor()))
+    models.append(('OLS', LinearRegression()))
+    models.append(('CART', tree.DecisionTreeRegressor()))
+    models.append(('kNN', KNeighborsRegressor()))
+    models.append(('BP', MLPRegressor()))
+    models.append(('Lasso', Lasso()))
+    models.append(('RF', RandomForestRegressor()))
     
     #models.append(('NB', GaussianNB()))
     
         # evaluate each model in turn
     results = []
     names = []
-    crossPlot = False
+    performancePlot = True
     if crossVal:
         for name, model in models:
             kfold = model_selection.KFold(n_splits=10, random_state=seed)
@@ -117,7 +117,7 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
             msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
             print(msg)
 
-            if crossPlot:
+            if performancePlot:
                 #plot
                 predicted = model_selection.cross_val_predict(model, x, y, cv=kfold)
 
@@ -140,6 +140,16 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
             #print(name + ": diff MSE: %(mseDiff).2f " % \
              #{"mseDiff": (mean_squared_error(yTest, yPred) - mean_squared_error(yTrain, yPredTrain))})
      
+            if performancePlot:
+                    #plot
+                    #predicted = model_selection.cross_val_predict(model, x, y, cv=kfold)
+
+                fig, ax = plt.subplots()
+                ax.scatter(yTest, yPred, edgecolors=(0, 0, 0))
+                ax.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', lw=2)
+                ax.set_xlabel('Measured')
+                ax.set_ylabel('Predicted')
+                plt.show()
 
     
 
@@ -176,7 +186,7 @@ knnGridParams = {'n_neighbors':[5, 1, 2, 4, 8, 16, 32, 64]}
 bpGridParams = {'hidden_layer_sizes':[(100,), (1,), (4,), (16,), (64,), (256,)]}
 lassoGridParams = {'alpha':[0.001, 0.01, 0.1, 1, 10]}
 
-modelSurfaceTemperature(topSixFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
+modelSurfaceTemperature(topFiveFeatures, trainingData, targetIndex, crossVal, split, featureComparison)
 #gridSearch(knnGridParams, KNeighborsRegressor(), trainingData, topSixFeatures)
 #gridSearch(bpGridParams, MLPRegressor(), trainingData, topSixFeatures)
 #gridSearch(lassoGridParams, Lasso(), trainingData, topSixFeatures)

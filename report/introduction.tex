@@ -54,24 +54,25 @@ The author, Johan Casselgren and Niklas Karvonen, who is also from Luleå Univer
 	The forementioned definition of machine learning by \cite{BOOK:2} mentions a performance measure $P$. This measure can be used to evaluate supervised learning algorithm's abilities to model a feature in \ref{table:rwis}, see \ref{sec:supervisedlearning} for more information on performance measures. A specific feature that is to be modelled is referred to as target feature, and the features a supervised learning algorithm uses to do so is referred to as input features. In a basic sense, a supervised learning algorithm studies the observations of the target feature as a mathematical graph and attempts to build a model that best fits the observations in the graph. But the algorithm is not necessarily perfect by having a high performance score. If the model is built in such a way that it fits the provided data perfectly, which may have outliers etc, it may have difficulties in predicting new data. This condition is known as overfitting, the opposite is called underfitting, both of which are covered in detail in \ref{sec:generalization}. So not only is an algorithm with high performance desirable, also one whose model generalizes well so that both underfitting and overfitting is avoided.
 
 \section{Objective} \label{sec:objective}
-	The objective is to find supervised learning algorithms that best models the observations made by the following sensors: Optic Eye, Track Ice Road Sensor, DST111 and DSC111 in terms of performance and generalization. The objective is broken down into four tasks:
+	The objective is to find optimal supervised learning models, in terms of performance and generalization, which models the behavior of the following sensors: Optic Eye, Track Ice Road Sensor and DST111 where each sensor is trained from observations made from other the other sensors but its own. In addition to the forementioned sensors, except for Track Ice Road Sensor, any model may train on the following input features as well: measurement timestamp, road friction and road surface condition.
+	%The objective is to find supervised learning algorithms that best models the observations made by the following sensors: Optic Eye, Track Ice Road Sensor, DST111 and DSC111 in terms of performance and generalization. The objective is broken down into four tasks:
 	
 	\begin{enumerate}
-		\item Find the algorithm among supervised learning algorithms, that can be used to classify \textbf{precipitation type}, whose performance and generalization score is highest. The data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to classify \textbf{precipitation type}, whose performance and generalization score is best. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item DST111 road surface temperature
 				\item road friction
 				\item road surface condition
 			\end{itemize}
-		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{precipitation amount}, whose performance and generalization score is highest. The data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{precipitation amount}, whose performance and generalization score is best. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item DST111 road surface temperature
 				\item road friction
 				\item road surface condition
 			\end{itemize}
-		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{Track Ice Road Sensor road surface temperature}, whose performance and generalization score is highest. The data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{Track Ice Road Sensor road surface temperature}, whose performance and generalization score is best. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item precipitation type
@@ -80,7 +81,7 @@ The author, Johan Casselgren and Niklas Karvonen, who is also from Luleå Univer
 				\item road friction
 				\item road surface condition
 			\end{itemize}
-		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{DST111 road surface temperature}, whose performance and generalization score is highest. The data may contain the following input features: 
+		\item Find the algorithm among supervised learning algorithms, that can be used to predict \textbf{DST111 road surface temperature}, whose performance and generalization score is best. The data may contain the following input features: 
 			\begin{itemize}
 				\item measurement timestamp
 				\item precipitation type
