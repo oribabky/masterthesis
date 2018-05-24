@@ -34,7 +34,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 #xl = pd.ExcelFile("../data/stations_e6/mätvärden 1520 2015-2016.xlsx")
 #file = 'mätvärden 1520 2015-2016.xlsx'
 file = 'mätvärden total.xlsm'
-sheet = 'raw_noerr_featureengi'
+#sheet = 'raw_noerr_featureengi'
+sheet = 'raw_noerr_featureengi_ver2'
 #sheet = 'raw_noerr'
 #sheet = 'raw'
 dataset = pandas.read_excel(open('../data/stations_e6/' + file,'rb'), sheet_name=sheet, skiprows=[0], header=1, 
@@ -109,12 +110,12 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
 
     # Spot Check Algorithms
     models = []
-    models.append(('OLS', LinearRegression()))
-    models.append(('CART', tree.DecisionTreeRegressor()))
-    models.append(('kNN', KNeighborsRegressor()))
-    models.append(('MLP', MLPRegressor()))
-    models.append(('Lasso', Lasso()))
-    models.append(('RF', RandomForestRegressor()))
+    #models.append(('OLS', LinearRegression()))
+    #models.append(('CART', tree.DecisionTreeRegressor()))
+    #models.append(('kNN', KNeighborsRegressor()))
+    models.append(('BP', MLPRegressor(hidden_layer_sizes=(64, ))))
+    #models.append(('Lasso', Lasso()))
+    #models.append(('RF', RandomForestRegressor()))
     
     #models.append(('NB', GaussianNB()))
     

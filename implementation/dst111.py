@@ -33,7 +33,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 #xl = pd.ExcelFile("../data/stations_e6/mätvärden 1520 2015-2016.xlsx")
 #file = 'mätvärden 1520 2015-2016.xlsx'
 file = 'mätvärden total.xlsm'
-sheet = 'raw_noerr_featureengi'
+#sheet = 'raw_noerr_featureengi'
+sheet = 'raw_noerr_featureengi_ver2'
 dataset = pandas.read_excel(open('../data/stations_e6/' + file,'rb'), sheet_name=sheet, skiprows=[0], header=1, 
     #names=['Time', 'SurfTemp(TIRS)', 'PrecType', 'PrecAmount', 'SurfTemp(DST111)', 'Friction', 'SurfStatus'],
     #dtype={'a':np.int64, 'b':np.float64, 'c':np.int64, 'd':np.float64, 'e':np.float64, 'f':np.float64, 'g':np.int64}
@@ -95,11 +96,11 @@ def modelSurfaceTemperature(skipFeatures, testSize, targetIndex, crossVal, split
 
     # Spot Check Algorithms
     models = []
-    models.append(('OLS', LinearRegression()))
-    models.append(('CART', tree.DecisionTreeRegressor()))
-    models.append(('kNN', KNeighborsRegressor()))
-    models.append(('BP', MLPRegressor()))
-    models.append(('Lasso', Lasso()))
+    #models.append(('OLS', LinearRegression()))
+    #models.append(('CART', tree.DecisionTreeRegressor()))
+    #models.append(('kNN', KNeighborsRegressor(n_neighbors=32)))
+    #models.append(('BP', MLPRegressor(hidden_layer_sizes=(256, ))))
+    #models.append(('Lasso', Lasso(alpha=0.001)))
     models.append(('RF', RandomForestRegressor()))
     
     #models.append(('NB', GaussianNB()))
@@ -175,7 +176,7 @@ featureComparison = False
 #names=['Month' (0), 'Hour'(1), 'SurfTemp(TIRS)'(2), 'PrecType'(3), 
 #'PrecAmount'(4), 'SurfTemp(DST111)'(5), 'Friction'(6), 'SurfStatus'(7)],
 topSixFeatures = [2, 5]#, 1]#, 0]#, 6]#, 7]
-topFiveFeatures = [2, 5, 4]
+topFiveFeatures = [5, 4]
 topFourFeatures = [2, 5, 4, 1]
 topThreeFeatures = [2, 5, 4, 1, 3]
 topTwoFeatures = [2, 5, 4, 1, 3, 0]

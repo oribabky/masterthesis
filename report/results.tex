@@ -1,35 +1,35 @@
 \chapter{Results and analysis}
 \emph{The goal of this chapter is to find answers to the project subtasks. Top performing algorithms for predicting TIRS road surface temperature, precipitation amount and DST111 road surface temperature are identified, as well as the top performing algorithm for classifying precipitation type.}
 
-\section{Summary}
-	A solution to each of the project subtasks are covered in the following sections. The results are achieved methodigally for each subtask (see experimental methodology \ref{sec:method_results}). A summary of the methodology of finding an optimal algorithm for predicting/classifying target feature $f_t$:
+\section{Experimental setup}
+	A solution to each of the project subtasks are covered in the following sections. The results are achieved methodically for each subtask (see experimental methodology \ref{sec:method_results}). A summary of the methodology of finding an optimized algorithm for predicting/classifying target feature $f_t$:
 	\begin{enumerate}
-		\item Rank the possible input features $f_i$ in terms of linear correlation to $f_t$ to attain a ranking of the input features.
-		\item Run $i$ spot-checking experiments to find optimal performances when the amount of top input features used vary. An accumulated score $P_{acc}$ is calculated which takes both performance and overfitting into account.
-		\item Optimize Lasso, Backpropagation and kNN using their optimal choice of top input features.
-		\item Analyze the best scores for each algorithm using their optimal input features and settings. The algorithm whose accumulated performance score is highest is identified as the top performing algorithm.
+		\item Rank the possible input features $f_i$ in terms of linear correlation to $f_t$ to get a ranking of the input features. The ranking is referred to as top input features.
+		\item Run $n$ spot-checking experiments on the algorithms that can classify/predict $f_t$, where $n$ is the amount of input features available in total. The idea is to find which input features give the best performance- and generalization score for each algorithm. The $i$th spot-checking run uses the top $i$ input features, where $1 \leq i \leq n$. An accumulated score $P_{acc}$ is calculated which takes both performance and overfitting into account.
+		\item Optimize Lasso, MLP and kNN using their optimized choice of top input features.
+		\item Analyze the best scores for each algorithm using their optimized choice of top input features and settings. The algorithm whose accumulated performance score is highest is identified as the top performing algorithm.
 	\end{enumerate}
 
-	Table \ref{table:results_summary} shows a summary of the top performing algorithms that were found for predicting/classifying each target feature related to the project subtasks.
+	Table \ref{table:results_summary} shows a summary of the top performing algorithms that were found for modelling each target feature related to the project subtasks.
 	
 	\begin{table}[H]
 		\centering
 		\caption{Shows the top performing algorithms for each of the project subtasks. }
 		\resizebox{\textwidth}{!}{%
-		\begin{tabular}[6]{l | l | l | l | c | c  }
-    			Sensor & Subtask & Problem type & Best algorithm & Optimal settings & Best performance \\ \hline %(0.84, 0.46, -0.41)
-			Optic eye & model precipitation type & classification problem & CART & Scikit default & $(Accuracy, F1_{test}) = (0.84, 0.46)$ \\ \hline
-			Optic eye & model precipitation amount & regression problem & kNN & $K=64$ &  $MSE_{test}=0.54$ \\ \hline
-			Track Ice Road Sensor & model TIRS road surface temperature & regression problem & Backpropagation & n.o. hidden nodes: 64 &  $MSE_{test}=0.88$ \\ \hline
- 			DST111 & model DST111 road surface temperature & regression problem & Random forest & Scikit default &  $MSE_{test} = 10.16$ 
+		\begin{tabular}[7]{l | l | l | l | l | c | c  }
+    			Sensor & Subtask & Problem type & Best algorithm & Choice of top performing input features & optimized settings & Best performance \\ \hline %(0.84, 0.46, -0.41)
+			Optic eye & model precipitation type & classification problem & CART & \makecell{road surface condition \\ road friction \\ DST111 road surface temperature \\ hour \\ month } & Scikit default & $(Accuracy, \overline{F1}_{test}) = (0.84, 0.46)$ \\ \hline
+			Optic eye & model precipitation amount & regression problem & kNN & \makecell{road friction} &  $K=64$ &  $MSE_{test}=0.54$ \\ \hline
+			TIRS & model TIRS road surface temperature & regression problem & MLP & \makecell{DST111 road surface temperature \\ road surface condition \\ road friction \\ month \\ hour \\ precipitation type} &  n.o. hidden nodes: 64 &  $MSE_{test}=0.88$ \\ \hline
+ 			DST111 & model DST111 road surface temperature & regression problem & Random forest &  \makecell{road surface condition \\ road friction \\ month \\ precipitation type \\ hour} &  Scikit default &  $MSE_{test} = 10.16$ 
 			\label{table:results_summary}
 		\end{tabular}
 		}
 	\end{table}
 
-	The sections that follow describe how the results in \ref{table:results_summary} were obtained.
+	The sections that follow describe how the results in table \ref{table:results_summary} were obtained.
 
-\section{Predicting road surface temperature (Track Ice road sensor)} 
+\section{Predicting road surface temperature (TIRS)} 
 	\subsection{Input features correlation ranking}
 	\begin{table}[H]
 		\centering
@@ -49,7 +49,7 @@
 		\end{tabular}
 	\end{table}
 
-	The correlation ranking in \ref{table:feature_comparison_tirs} shows that DST111 most relevant while Optic Eye features are less relevant in predicting TIRS road surface temperature.
+	The correlation ranking in table \ref{table:feature_comparison_tirs} shows that DST111 is the most relevant feature while Optic Eye features are less relevant in predicting TIRS road surface temperature.
 
 	\subsection{Spot-checking}
 	\begin{table}[H]
@@ -62,7 +62,7 @@
 			OLS 			& (1.19, 0.02) & (1.19, 0.02) & (1.19, 0.02)  & (1.20, 0.02)  & (1.22, 0.02) & (1.22, 0.02) & (1.22, 0.02) \\ \hline
 			CART 		&  (1.36, 1.10) & (1.35, 1.08) & (1.31, 1.03) & (1.05, 0.30) & (1.03, 0.15) & (1.02, 0.09) & (1.01, 0.05) \\ \hline
 			kNN 			& (0.94, 0.32) & (0.93, 0.32) & (0.92, 0.31) & (1.08, 0.18) & (1.16, 0.09) & (1.16, 0.06) & (1.21, 0.04) \\ \hline
-			Backpropagation & (0.90, 0.01) & (0.86, 0.02) & (0.86, 0.01) & (0.97, 0.03) & (1.00, 0.02) & (1.02, 0.02) & (1.01, 0.01)\\ \hline
+			MLP & (0.90, 0.01) & (0.86, 0.02) & (0.86, 0.01) & (0.97, 0.03) & (1.00, 0.02) & (1.02, 0.02) & (1.01, 0.01)\\ \hline
 			Lasso 		& (1.24, 0.02) & (1.24, 0.02) & (1.24, 0.02) & (1.24, 0.02) & (1.24, 0.02) & (1.24, 0.02) & (1.24, 0.02) \\ \hline
 			Random forest 	&  (1.01, 0.65) & (1.00, 0.66) & (1.01, 0.64) & (1.01, 0.23) & (1.01, 0.12) & (1.01, 0.08) & (1.01, 0.05)
  
@@ -73,7 +73,7 @@
 	
 	\begin{table}[H]
 		\centering
-		\caption{Shows an accumalated performance score $P_{acc} = MSE_{test} + MSE_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one using the fewest number of input features is considered optimal.}
+		\caption{Shows an accumalated performance score $P_{acc} = MSE_{test} + MSE_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one using the fewest number of input features is considered optimized.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[8]{l |c | c | c | c |c | c |c }
     			Algorithm & $P_{acc}$ top 7 features & $P_{acc}$ top 6 features & $P_{acc}$ top 5 features & $P_{acc}$ top 4 features & $P_{acc}$ top 3 features & $P_{acc}$ top 2 features & $P_{acc}$ top 1 features\\
@@ -81,7 +81,7 @@
 			OLS 			& 1.21 &  1.21 & \textbf{1.21} & 1.22 & 1.24 & 1.24 & 1,24 \\ \hline
 			CART 		&  2.46 & 2.43 & 2.34 & 1.35 & 1.18 & 1.11 & \textbf{1.06} \\ \hline
 			kNN 			& 1.26 & 1.25 & 1.25 & 1.26 & 1.25 & \textbf{1.22} & 1.25 \\ \hline
-			Backpropagation &  0.91 & 0.88 & \textbf{0.87} & 1.00 & 1.02 & 1.04 & 1.02 \\ \hline
+			MLP &  0.91 & 0.88 & \textbf{0.87} & 1.00 & 1.02 & 1.04 & 1.02 \\ \hline
 			Lasso 		& 1.26 & 1.26 & 1.26 & 1.26 & 1.26 & 1.26 & \textbf{1.26} \\ \hline
 			Random forest 	&  1.66 & 1.66 & 1.65 & 1.24 & 1.13 & 1.09 & \textbf{1.06}
  
@@ -90,39 +90,39 @@
 		}
 	\end{table}
 
-	The results from \ref{table:spotcheck_tirs_acc} show that OLS and Backpropagation has best accumulated scores when using the top five features, whereas kNN is optimal when the top two features are used. CART, Lasso and Random forest have optimal scores in using the top one feature.
+	The results from table \ref{table:spotcheck_tirs_acc} show that OLS and MLP has best accumulated scores when using the top five features, whereas kNN is optimized when the top two features are used. CART, Lasso and Random forest have optimized scores in using the top one feature.
 
 	\subsection{Optimizing hyperparameters}
 	\begin{table}[H]
 		\centering
-		\caption{Shows the effect of optimizing the hyperparameters of kNN, Backpropagation and Lasso using their top input features}
+		\caption{Shows the effect of optimizing the hyperparameters of kNN, MLP and Lasso using their top input features}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c | c }
-    			Algorithm & Default hyperparameter setting & Optimal setting & Default performance $P_{acc}$ & Optimal performance ($MSE_{test}$, $MSE_{diff}$) & Optimal performance $P_{acc}$ \\
+    			Algorithm & Default hyperparameter setting & optimized setting & Default performance $P_{acc}$ & optimized performance ($MSE_{test}$, $MSE_{diff}$) & optimized performance $P_{acc}$ \\
 			\hline
 			kNN 			& $k = 5$ & $k = 64$ & 1.22 & (1.00, 0.04) & 1.04 \\ \hline
- 			Backpropagation & n.o. hidden nodes: 100 & n.o. hidden nodes: 64 & 0.87 & (0.88, 0.01) & 0.89\\ \hline
+ 			MLP & n.o. hidden nodes: 100 & n.o. hidden nodes: 64 & 0.87 & (0.88, 0.01) & 0.89\\ \hline
 			Lasso		& $\lambda = 1$ & $\lambda = 0.001$ & 1.26 & (1.22, 0.02) & 1.24
 			\label{table:optimization_tirs}
 		\end{tabular}
 		}
 	\end{table}
 
-	As shown in \ref{table:optimization_tirs}, accumulated scores were improved for kNN and Lasso when optimal hyperparameter settings were used. Backpropagation showed a slightly reduced accumulated score using optimized hyperparameters. However, since the default settings were used as well in the optimization process, it is believed that setting number of hidden nodes to 64 is indeed an optimal choice and thus an optimal overall performance was obtained.
+	As shown in table \ref{table:optimization_tirs}, accumulated scores were improved for kNN and Lasso when optimized hyperparameter settings were used. MLP showed a slightly reduced accumulated score using optimized hyperparameters. However, since the default settings were used as well in the optimization process, it is believed that setting number of hidden nodes to 64 is indeed an optimized choice and thus an optimized overall performance was obtained.
 
 	\subsection{Results and analysis} \label{sec:results_tirs}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the overall optimal settings and performances for each of the algorithms in predicting TIRS road surface temperature.}
+		\caption{Shows the overall optimized settings and performances for each of the algorithms in predicting TIRS road surface temperature. The top performing algorithm is highlighted.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[5]{l |c | c | c | c }
-    			Algorithm & Optimal settings & Input features used & Best performance ($MSE_{test}$, $MSE_{diff}$) & Best performance $P_{acc}$ \\
+    			Algorithm & optimized settings & Best choice of input features & Best performance ($MSE_{test}$, $MSE_{diff}$) & Best performance $P_{acc}$ \\
 			\hline
 			OLS 				& Scikit default & top 5 & (1.19, 0.02) & 1.21 \\ \hline
 			CART 			& Scikit default & top 1 & (1.01, 0.05) & 1.06\\ \hline
  			kNN 				& $k= 64$ & top 2 & (1.00, 0.04) & 1.04 \\ \hline
-			Backpropagation		& n.o. hidden nodes: 64 & top 5 & (0.88, 0.01) & 0.89 \\ \hline
+			\textbf{MLP}		& \textbf{n.o. hidden nodes: 64} & \textbf{top 5} & \textbf{(0.88, 0.01)} & \textbf{0.89} \\ \hline
 			Lasso			& $\lambda = 0.001$ & top 1 & (1.22, 0.02) & 1.24\\ \hline
 			Random forest		& Scikit default & top 1 & (1.01, 0.05) & 1.06
 			\label{table:best_performances_tirs}
@@ -130,7 +130,7 @@
 		}
 	\end{table}
 
-	Table \ref{table:best_performances_tirs} shows that Backpropagation has the lowest $P_{acc}$ score among all algorithms and is thus the algorithm that performs best in terms of performance- and generalization when it comes to predicting TIRS road surface temperature. Backpropagation have a performance score of $MSE_{test} = 0.88$ which means that in predicting TIRS road surface temperature, Backpropagation was on average off by 0.88 from the actual values. %lägg in plot som visar predictions
+	Table \ref{table:best_performances_tirs} shows that MLP has the lowest $P_{acc}$ score among all algorithms and is thus the algorithm that performs best in terms of performance- and generalization when it comes to predicting TIRS road surface temperature. MLP have a performance score of $MSE_{test} = 0.88$ which means that in predicting TIRS road surface temperature, MLP was on average off by $0.88 \celsius$ from the actual temperature measurements. %lägg in plot som visar predictions
 
 \section{Classifying precipitation type (Optic Eye)}
 
@@ -150,12 +150,12 @@
 		\end{tabular}
 	\end{table}
 
-	The correlation ranking in \ref{table:feature_comparison_prectype} shows that the road surface condition and road friction are most relevant when it comes to classifying precipitation type whereas the time-related input features are less relevant.
+	The correlation ranking in table \ref{table:feature_comparison_prectype} shows that the road surface condition and road friction are most relevant when it comes to classifying precipitation type whereas the time-related input features are less relevant.
 
 	\subsection{Spot-checking}
 	\begin{table}[H]
 		\centering
-		\caption{Results from spot-checking experiment on the top features for classifying precipitation type. The results are shown as a triple: (Accuracy, $F1_{test}$, $F1_{diff}$) where $F1_{test}$ represents performance and $F1_{diff} = F1_{test} - F1_{train}$ shows the degree of overfitting, larger values of $F1_{diff}$ indicate overfitting.}
+		\caption{Results from spot-checking experiment on the top features in classifying precipitation type. The results are shown as a triple: (accuracy, $\overline{F1}_{test}$, $\overline{F1}_{diff}$) where $\overline{F1}_{test}$ represents performance and $\overline{F1}_{diff} = \overline{F1}_{test} - \overline{F1}_{train}$ shows the degree of overfitting, larger values of $\overline{F1}_{diff}$ indicate overfitting.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c |c }
     			Algorithm & Performance top 5 & Performance top 4 & Performance top 3 & Performance top 2 & Performance top 1 \\
@@ -164,7 +164,7 @@
 			kNN 				& (0.85, 0.40, -0.05) & (0.85, 0.37, -0.05) & (0.86, 0.39, -0.03) & (0.86, 0.34, 0.00) & (0.83, 0.34, 0.00)  \\ \hline
 			CART 			& (0.84, 0.46, -0.41) & (0.85, 0.44, -0.28) & (0.86, 0.41, -0.06) & (0.86, 0.34, 0.00) & (0.83, 0.34, 0.00) \\ \hline
 			Naïve bayes		& (0.82, 0.27, 0.00) & (0.82, 0.26, 0.00) & (0.82, 0.26, 0.00) & (0.82, 0.25, 0.00) & (0.82, 0.25, 0.00)  \\ \hline
-			Backpropagation 	& (0.85, 0.35, 0.00) & (0.85, 0.38, 0.00) & (0.86, 0.37, 0.00) & (0.86, 0.34, 0.00) & (0.82, 0.21, 0.00) \\ \hline
+			MLP 	& (0.85, 0.35, 0.00) & (0.85, 0.38, 0.00) & (0.86, 0.37, 0.00) & (0.86, 0.34, 0.00) & (0.82, 0.21, 0.00) \\ \hline
 			Random forest 		& (0.85, 0.45, -0.40) & (0.85, 0.42, -0.29) & (0.86, 0.42, -0.05) & (0.86, 0.34, 0.00) & (0.83, 0.34, 0.00) 
  
 			\label{table:spotcheck_prectype}
@@ -174,7 +174,7 @@
 	
 	\begin{table}[H]
 		\centering
-		\caption{Shows an accumalated performance score $P_{acc} = F1_{test} - F1_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one using the fewest number of input features is considered optimal.}
+		\caption{Shows an accumalated performance score $P_{acc} = \overline{F1}_{test} - \overline{F1}_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one using the fewest number of input features is considered optimized.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c |c  }
     			Algorithm & $P_{acc}$ top 5 features& $P_{acc}$ top 4 features & $P_{acc}$ top 3 features & $P_{acc}$ top 2 features & $P_{acc}$ top 1 features \\
@@ -183,7 +183,7 @@
 			kNN 				& \textbf{0.45} & 0.42 & 0.42 & 0.34 & 0.34 \\ \hline
 			CART 			& \textbf{0.87} & 0.72 & 0.47 & 0.34 & 0.34\\ \hline
 			Naïve bayes		& \textbf{0.27} & 0.26 & 0.26 & 0.25 & 0.25  \\ \hline
-			Backpropagation 	& 0.35 & \textbf{0.38} & 0.37 & 0.34 & 0.21 \\ \hline
+			MLP 	& 0.35 & \textbf{0.38} & 0.37 & 0.34 & 0.21 \\ \hline
 			Random forest 		& \textbf{0.85} & 0.71 & 0.47 & 0.34 & 0.34 
 
 			\label{table:spotcheck_prectype_acc}
@@ -191,51 +191,53 @@
 		}
 	\end{table}
 
-	The results from \ref{table:spotcheck_prectype_acc} show that kNN, CART, Naïve bayes and Random forest perform best when using the top five features, whereas Backpropagation and Logistic regression have optimal performances when using the top four and top one features respectively.
+	The results from table \ref{table:spotcheck_prectype_acc} show that kNN, CART, Naïve bayes and Random forest perform best when using the top five features, whereas MLP and Logistic regression have optimized performances when using the top four and top one features respectively.
 
 	\subsection{Optimizing hyperparameters}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the effect of optimizing the hyperparameters of kNN, Backpropagation and Lasso using their top input features}
+		\caption{Shows the effect of optimizing the hyperparameters of kNN and MLP using their top input features}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c | c }
-    			Algorithm & Default hyperparameter setting & Optimal setting & Default performance $P_{acc}$ & Optimal performance (accuracy, $F1_{test}$, $F1_{diff}$) & Optimal performance $P_{acc}$ \\ \hline
+    			Algorithm & Default hyperparameter setting & optimized setting & Default performance $P_{acc}$ & optimized performance (accuracy, $\overline{F1}_{test}$, $\overline{F1}_{diff}$) & optimized performance $P_{acc}$ \\ \hline
 			kNN 			& $k = 5$ & $k = 1$ & 0.45 & (0.81, 0.40, -0.47) & 0.87 \\ \hline
- 			Backpropagation & n.o. hidden nodes: 100 & n.o. hidden nodes: 100 & 0.35 & (0.85, 0.33, -0.01) & 0.34
+ 			MLP & n.o. hidden nodes: 100 & n.o. hidden nodes: 100 & 0.35 & (0.85, 0.33, -0.01) & 0.34
 			\label{table:optimization_prectype}
 		\end{tabular}
 		}
 	\end{table}
 
-	As shown in \ref{table:optimization_prectype}, the optimal settings for Backpropagation is the same as its default settings. Its overall performance was slightly reduced in comparison to the results in \ref{table:spotcheck_prectype} and \ref{table:spotcheck_prectype_acc}. This is believed to be due to non-deterministic behavior of Backpropagation. Table \ref{table:optimization_prectype} shows that kNN was significantly improved using $k=1$: based on its new accumulated performance score $P_{acc} = 0.87$, it tied with CART as the top performing algorithm as seen in \ref{table:spotcheck_prectype_acc}.
+	As shown in table \ref{table:optimization_prectype}, the optimized settings for MLP is the same as its default settings. Its overall performance was slightly reduced in comparison to the results in table \ref{table:spotcheck_prectype} and \ref{table:spotcheck_prectype_acc}. This is believed to be due to non-deterministic behavior of MLP. Table \ref{table:optimization_prectype} shows that kNN was significantly improved using $k=1$: based on its new accumulated performance score: $P_{acc} = 0.87$, it tied with CART as the top performing algorithm as seen in table \ref{table:spotcheck_prectype_acc}.
 
 	\subsection{Results and analysis} \label{sec:results_prectype}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the overall optimal settings and performances for each of the algorithms in classifiying precipitation type.}
+		\caption{Shows the overall optimized settings and performances for each of the algorithms in classifiying precipitation type. The best performing algorithms are highlighted.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[5]{l |c | c | c | c }
-    			Algorithm & Optimal settings & Input features used & Best performance (Accuracy, $F1_{test}$, $F1_{diff}$) & Best performance $P_{acc}$ \\
+    			Algorithm & optimized settings & Best choice of input features & Best performance (Accuracy, $\overline{F1}_{test}$, $\overline{F1}_{diff}$) & Best performance $P_{acc}$ \\
 			\hline
 			Logistic regression 	& Scikit default & top 1 & (0.81, 0.21, 0.00) & 0.21 \\ \hline
-			kNN 				& $k= 1$ & top 5 & (0.81, 0.40, -0.47) & 0.87 \\ \hline
- 			CART 			& Scikit default & top 5 & (0.84, 0.46, -0.41) & 0.87 \\ \hline
+			\textbf{kNN} 				& \textbf{$k= 1$} & \textbf{top 5} & \textbf{(0.81, 0.40, -0.47)} & \textbf{0.87} \\ \hline
+ 			\textbf{CART} 			& \textbf{Scikit default} & \textbf{top 5} & \textbf{(0.84, 0.46, -0.41)} & \textbf{0.87} \\ \hline
 			Naïve bayes		& Scikit default & top 5 & (0.82, 0.27, 0.00) & 0.27 \\ \hline
-			Backpropagation		& Scikit default & top 4 & (0.85, 0.38, 0.00) & 0.38 \\ \hline
+			MLP		& Scikit default & top 4 & (0.85, 0.38, 0.00) & 0.38 \\ \hline
 			Random forest		& Scikit default & top 5 & (0.85, 0.45, -0.40) & 0.85
 			\label{table:best_performances_prectype}
 		\end{tabular}
 		}
 	\end{table}
 
-	Table \ref{table:best_performances_tirs} shows that kNN and CART are tied for highest $P_{acc}$ score among all algorithms. To break the tie, CART is chosen over kNN since CART has a higher accuracy score. CART is thus the algorithm that performs best in terms of performance- and generalization when it comes to classifying precipitation type. CART has a performance score of $F1_{test} = 0.46$ and $accuracy = 0.82$. This means that out of all observations in the test dataset, CART correctly classified 82\% of the observations correctly. However, $F1 = 0.46$ indicates that the accuracy score is misleading. The recall scores in \ref{table:classreport_prectype} reveal that CART performed well in predicting no precipitation: 90\%, and that lower scores were obtained with classifying the other precipitation types. The lowest recall score is predicting rain and snow mixed which were correctly identified in 3\% of the cases when rain and snow mixed appeared in the test dataset. 
+	Table \ref{table:best_performances_prectype} shows that kNN and CART are tied for highest $P_{acc}$ score among all algorithms. To break the tie, CART is chosen over kNN since CART has a higher accuracy score. CART is thus the algorithm that performs best in terms of performance and generalization when it comes to classifying precipitation type. CART has a performance score of $\overline{F1}_{test} = 0.46$ and accuracy $= 0.82$. This means that out of all observations in the test dataset, CART correctly classified 82\% of the precipitation types correctly. 
+
+	However, $F1 = 0.46$ indicates that the accuracy score is misleading. The recall scores in table \ref{table:classreport_prectype} reveal that CART performed well in classifying no precipitation: 90\%, and that lower scores were obtained with classifying the other precipitation types. The lowest recall score is classifying rain and snow mixed which were correctly done in 3\% of the cases when rain and snow mixed appeared in the test dataset. 
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows how CART performs in classifying each of the different precipitation types using the optimal setup as shown in \ref{table:best_performances_prectype}}
-		\begin{tabular}[6]{l |l | c | c | c | l }
+		\caption{Shows how CART performs in classifying each of the different precipitation types using the optimized setup as shown in table \ref{table:best_performances_prectype}}
+		\begin{tabular}[6]{c |l | c | c | c | l }
     			Value & Precipitation type & Precision & Recall & F1 & N.o. occurrences \\
 			\hline
 			1 & no precipitation & 0.90 & 0.92 & 0.91 & 18912 \\ \hline
@@ -282,7 +284,7 @@
 			OLS 			& (0.58, -0.06) & (0.58, -0.06) & (0.58, -0.06)& (0.58, -0.06) & (0.58, -0.06)\\ \hline
 			CART 		& (1.01, 0.94) & (0.63, 0.18) & (0.98, 0.91) & (0.98, 0.80) & (0.62, 0.17)\\ \hline
 			kNN 			& (0.60, 0.15) & (0.61, 0.07) & (0.58, 0.15) & (0.62, 0.15) & (0.63, 0.05)\\ \hline
-			Backpropagation & (0.56, -0.06) & (0.57, -0.05) & (0.55, -0.05) & (0.56, -0.06) & (0.55, -0.06)\\ \hline
+			MLP & (0.56, -0.06) & (0.57, -0.05) & (0.55, -0.05) & (0.56, -0.06) & (0.55, -0.06)\\ \hline
 			Lasso 		& (0.61, -0.05) & (0.61, -0.05) & (0.61, -0.05) & (0.61, -0.05) & (0.61, -0.05) \\ \hline
 			Random forest 	& (0.67, 0.52) & (0.59, 0.13) & (0.68, 0.51) & (0.71, 0.46) & (0.57, 0.11)
  
@@ -293,15 +295,15 @@
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows an accumalated performance score $P_{acc} = MSE_{test} + MSE_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one with fewest input features is considered optimal.}
+		\caption{Shows an accumalated performance score $P_{acc} = MSE_{test} + MSE_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one with fewest input features is considered optimized.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c |c }
     			Algorithm & $P_{acc}$ top 5 features & $P_{acc}$ top 4 features & $P_{acc}$ top 3 features & $P_{acc}$ top 2 features & $P_{acc}$ top 1 features \\
 			\hline
 			OLS 			& 0.52 & 0.52 & 0.52 & 0.52 & \textbf{0.52} \\ \hline
-			CART 		& 1.95 & 0.81 & 1.89 & 1.78 & \textbf{0.89} \\ \hline
+			CART 		& 1.95 & 0.81 & 1.89 & 1.78 & \textbf{0.79} \\ \hline
 			kNN 			& 0.75 & 0.68 & 0.73 & 0.77 & \textbf{0.68} \\ \hline
-			Backpropagation & 0.50 & 0.52 & 0.50 & 0.50 & \textbf{0.49} \\ \hline
+			MLP & 0.50 & 0.52 & 0.50 & 0.50 & \textbf{0.49} \\ \hline
 			Lasso 		& 0.56 & 0.56 & 0.56 & 0.56 & \textbf{0.56} \\ \hline
 			Random forest 	& 1.19 & 0.72 & 1.19 & 1.17 & \textbf{0.68} 
  
@@ -310,40 +312,40 @@
 		}
 	\end{table}
 
-		The results from \ref{table:spotcheck_precamount_acc} indicate that all algorithms performs at best when the top one feature is used.
+		The results from table \ref{table:spotcheck_precamount_acc} indicate that all algorithms performs at best when the top one feature is used.
 
 	\subsection{Optimizing hyperparameters}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the effect of optimizing the hyperparameters of kNN, Backpropagation and Lasso using their top input features}
+		\caption{Shows the effect of optimizing the hyperparameters of kNN, MLP and Lasso using their top input features}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c  | c}
-    			Algorithm & Default hyperparameter setting & Optimal setting & Default performance $P_{acc}$ & Optimal performance ($MSE_{test}$,$MSE_{diff}$) & Optimal performance $P_{acc}$ \\
+    			Algorithm & Default hyperparameter setting & optimized setting & Default performance $P_{acc}$ & optimized performance ($MSE_{test}$,$MSE_{diff}$) & optimized performance $P_{acc}$ \\
 			\hline
 			kNN 			& $k = 5$ & $k = 64$ & 0.68 & (0.54, -0.05) & 0.49\\ \hline
- 			Backpropagation & n.o. hidden nodes: 100 & n.o. hidden nodes: 64 & 0.49 & (0.55, -0.06) & 0.49 \\ \hline
+ 			MLP & n.o. hidden nodes: 100 & n.o. hidden nodes: 64 & 0.49 & (0.55, -0.06) & 0.49 \\ \hline
 			Lasso		& $\lambda = 1$ & $\lambda = 0.001$ & 0.56 & (0.58, -0.06) & 0.52
 			\label{table:optimization_precamount}
 		\end{tabular}
 		}
 	\end{table}
 
-	Table \ref{table:optimization_precamount} shows that the results of kNN and Lasso were improved using the optimal hyperparameter settings while Backpropagation produced the same result.
+	Table \ref{table:optimization_precamount} shows that the results of kNN and Lasso were improved using the optimized hyperparameter settings while MLP produced the same result.
 
 	\subsection{Results and analysis} \label{sec:results_precamount}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the overall optimal settings and performances for each of the algorithms in predicting precipitation amount.}
+		\caption{Shows the overall optimized settings and performances for each of the algorithms in predicting precipitation amount. The best performing algorithms are highlighted. }
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[5]{l |c | c | c | c }
-    			Algorithm & Optimal settings & Input features used & Best performance ($MSE_{test}$, $MSE_{diff}$) & Best performance $P_{acc}$ \\
+    			Algorithm & optimized settings & Best choice of input features & Best performance ($MSE_{test}$, $MSE_{diff}$) & Best performance $P_{acc}$ \\
 			\hline
 			OLS 				& Scikit default & top 1 & (0.58, -0.06) & 0.52 \\ \hline
 			CART 			& Scikit default & top 1 & (0.62, 0.17) & 0.79 \\ \hline
- 			kNN 				& $k= 64$ & top 1 & (0.54, -0.05) & 0.49 \\ \hline
-			Backpropagation		& n.o. hidden nodes: 256 & top 1 & (0.55, -0.06) & 0.49 \\ \hline
+ 			\textbf{kNN} 				& $\mathbf{k= 64}$ & \textbf{top 1} & \textbf{(0.54, -0.05)} & \textbf{0.49} \\ \hline
+			\textbf{MLP}		& \textbf{n.o. hidden nodes: 256} & \textbf{top 1} & \textbf{(0.55, -0.06)} & \textbf{0.49} \\ \hline
 			Lasso			& $\lambda = 0.001$ & top 1 & (0.58, -0.06) & 0.52 \\ \hline
 			Random forest		& Scikit default & top 1 & (0.57, 0.11) & 0,68
 			\label{table:best_performances_precamount}
@@ -351,7 +353,7 @@
 		}
 	\end{table}
 
-	As is shown in \ref{table:best_performances_precamount}, Backpropagation and kNN are tied for the lowest $P_{acc}$ score among all algorithms. To break the tie, kNN is considered a better choice by the author since kNN with $k=64$ is believed to be less complex than backpropagation with 256 hidden nodes. This means that kNN is the algorithm that performs best in terms of performance- and generalization in predicting precipitation amount. Its top performance:  $MSE_{test} = 0.54$ means that in predicting precipitation amount, kNN was on average 0.54 off from the actual values. %lägg in plot som visar predictions
+	As is shown in table \ref{table:best_performances_precamount}, MLP and kNN are tied for the lowest $P_{acc}$ score among all algorithms. To break the tie, kNN is considered a better choice by the author since kNN with $k=64$ is believed to be less complex than MLP with 256 hidden nodes. This means that kNN is the algorithm that performs best in terms of performance and generalization in predicting precipitation amount. Its top performance:  $MSE_{test} = 0.54$ means that in predicting precipitation amount, kNN was on average off by $0.54$ mm/h from the actual precipitation amount measurements. %lägg in plot som visar predictions
 
 
 \section{Predicting road surface temperature (DST111)}
@@ -374,12 +376,12 @@
 		\end{tabular}
 	\end{table}
 
-	The correlation ranking from \ref{table:feature_comparison_dst111} shows that road surface condition and road friction are the most relevant input features.
+	The correlation ranking from table \ref{table:feature_comparison_dst111} shows that road surface condition and road friction are the most relevant input features.
 
 	\subsection{Spot-checking}
 	\begin{table}[H]
 		\centering
-		\caption{Results from spot-checking experiment on the top features for predicting DST111 road surface temperature. The results are shown as a tuple: ($MSE_{test}$, $MSE_{diff}$) where $MSE_{test}$ represents performance $MSE_{diff} = MSE_{test} - MSE_{train}$ shows the degree of overfitting, larger values of $MSE_{diff}$ indicate overfitting.}
+		\caption{Results from spot-checking experiment on the top features for predicting DST111 road surface temperature. The results are shown as a tuple: ($MSE_{test}$, $MSE_{diff}$) where $MSE_{test}$ represents performance and $MSE_{diff} = MSE_{test} - MSE_{train}$ shows the degree of overfitting, larger values of $MSE_{diff}$ indicate overfitting.}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[7]{l |c | c | c | c |c | c  }
     			Algorithm & top 6 features & top 5 features & top 4 features & top 3 features & top 2 features & top 1 features \\
@@ -387,7 +389,7 @@
 			OLS 			& (70.45, 0.20) & (70.50, 0.22) & (71.69, 0.21) & (71.70, 0.21) & (75.25, 0.06) & (75.64, 0.12) \\ \hline
 			CART 		& (10.47, 1.54) & (10.27, 1.03) & (20.06, 0.50) & (20.56, 0.48) & (60.20, 0.01) & (60.93, -0.12) \\ \hline
 			kNN 			& (11.83, 0.65) & (11.90, 0.82) & (22.60, 0.44) & (23.36, 0.34) & (62.68, -0.22) & (61.66, -0.13) \\ \hline
-			Backpropagation & (11.46, 0.27) & (13.14, 0.13) & (22.33, 0.34) & (22.44, 0.30) & (61.00, -0.15) & (62.49, -0.20) \\ \hline
+			MLP & (11.46, 0.27) & (13.14, 0.13) & (22.33, 0.34) & (22.44, 0.30) & (61.00, -0.15) & (62.49, -0.20) \\ \hline
 			Lasso 		& (71.43, 0.19) & (71.43, 0.19) & (72.65, 0.20) & (72.65, 0.20) & (76.38, 0.04) & (76.38, 0.04) \\ \hline
 			Random forest 	& (10.16, 1.11) & (10.16, 0.86) & (20.04, 0.46) & (20.56, 0.46) & (60.20, 0.00) & (60.93, -0.12) 
  
@@ -398,7 +400,7 @@
 	
 	\begin{table}[H]
 		\centering
-		\caption{Shows an accumalated performance score $P_{acc} = MSE_{test} + MSE_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one using the fewest amount of features is considered optimal. }
+		\caption{Shows an accumalated performance score $P_{acc} = MSE_{test} + MSE_{diff}$. Top results for each algorithm are highlighted. In case of ties, the one using the fewest amount of input features is considered optimized. }
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[7]{l |c | c | c | c |c | c  }
     			Algorithm &  $P_{acc}$ top 6 features& $P_{acc}$ top 5 features & $P_{acc}$ top 4 features & $P_{acc}$ top 3 features & $P_{acc}$ top 2 features & $P_{acc}$ top 1 features \\
@@ -406,7 +408,7 @@
 			OLS 			& \textbf{70.65} & 70.72 & 71.90 & 71.91 & 75.31 & 75.52 \\ \hline
 			CART 		& 12.01 & \textbf{11.30} & 20.56 & 21.04 & 60.21 & 60.81 \\ \hline
 			kNN 			& \textbf{12.48} & 12.72 & 23.04 & 23.70 & 62.46 & 61.53 \\ \hline
-			Backpropagation & \textbf{11.73} & 13.27 & 22.67 & 22.74 & 60.85 & 62.29 \\ \hline
+			MLP & \textbf{11.73} & 13.27 & 22.67 & 22.74 & 60.85 & 62.29 \\ \hline
 			Lasso 		& \textbf{71.62} & 71.63 & 72.85 & 72.85 & 76.42 & 76.42 \\ \hline
 			Random forest 	& 11.27 & \textbf{11.02} & 20.50 & 21.02 & 60.20 & 60.81 
  
@@ -415,47 +417,47 @@
 		}
 	\end{table}
 
-	The results from \ref{table:spotcheck_dst111_acc} show that OLS, kNN, Backpropagation and Lasso performs at best when all top six features are used, while CART and Random forest benefits most from using the top five features.
+	The results from table \ref{table:spotcheck_dst111_acc} show that OLS, kNN, MLP and Lasso performs at best when all top six features are used, while CART and Random forest benefit most from using the top five features.
 
 	\subsection{Optimizing hyperparameters}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the effect of optimizing the hyperparameters of kNN, Backpropagation and Lasso using their top input features}
+		\caption{Shows the effect of optimizing the hyperparameters of kNN, MLP and Lasso using their top input features}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l |c | c | c | c | c }
-    			Algorithm & Default hyperparameter setting & Optimal setting & Default performance $P_{acc}$ & Optimal performance ($MSE_{test}$,$MSE_{diff}$) & Optimal performance $P_{acc}$ \\
+    			Algorithm & Default hyperparameter setting & optimized setting & Default performance $P_{acc}$ & optimized performance ($MSE_{test}$,$MSE_{diff}$) & optimized performance $P_{acc}$ \\
 			\hline
 			kNN 			& $k = 5$ & $k = 32$ & 12.48 & (10.69, 0.43) & 11.12 \\ \hline
- 			Backpropagation & n.o. hidden nodes: 100 & n.o. hidden nodes: 64 & 11.73 & (11.19, 0.29) & 11.48 \\ \hline
+ 			MLP & n.o. hidden nodes: 100 & n.o. hidden nodes: 64 & 11.73 & (11.19, 0.29) & 11.48 \\ \hline
 			Lasso		& $\lambda = 1$ & $\lambda = 0.001$ & 71.62 & (70.46, 0.21) & 70.67
 			\label{table:optimization_dst111}
 		\end{tabular}
 		}
 	\end{table}
 
-	All three algorithms attain a slightly better $P_{acc}$ score in using their optimal hyperparameter settings. 
+	All three algorithms attain a slightly better $P_{acc}$ score in using their optimized hyperparameter settings. 
 
 	\subsection{Results and analysis} \label{sec:results_dst111}
 
 	\begin{table}[H]
 		\centering
-		\caption{Shows the overall optimal settings and performances for each of the algorithms in predicting DST111 road surface temperature.}
+		\caption{Shows the overall optimized settings and performances for each of the algorithms in predicting DST111 road surface temperature. The best performing algorithm is highlighted. }
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[5]{l |c | c | c  | c}
-    			Algorithm & Optimal settings & Input features used & Best performance ($MSE_{test}$, $MSE_{diff}$) & Best performance $P_{acc}$ \\
+    			Algorithm & optimized settings & Best choice of input features & Best performance ($MSE_{test}$, $MSE_{diff}$) & Best performance $P_{acc}$ \\
 			\hline
 			OLS 				& Scikit default & top 6 & (70.45, 0.20) & 70.65 \\ \hline
 			CART 			& Scikit default & top 5 & (10.27, 1.03) & 11.30 \\ \hline
  			kNN 				& $k= 32$ & top 6 & (11.83, 0.65) & 12.48 \\ \hline
-			Backpropagation		& n.o. hidden nodes: 256 & top 6 & (11.46, 0.27) & 11.73 \\ \hline
+			MLP		& n.o. hidden nodes: 256 & top 6 & (11.46, 0.27) & 11.73 \\ \hline
 			Lasso			& $\lambda = 0.001$ & top 6 & (71.43, 0.19) & 71.62 \\ \hline
-			Random forest		& Scikit default & top 5 & (10.16, 0.86) & 11.02
+			\textbf{Random forest}		& \textbf{Scikit default} & \textbf{top 5} & \textbf{(10.16, 0.86)} & \textbf{11.02}
 			\label{table:best_performances_dst111}
 		\end{tabular}
 		}
 	\end{table}
 
-		From \ref{table:best_performances_dst111} it is revealed that Random forest has the lowest $P_{acc}$ score and is thus the best algorithm in predicting DST111 road surface temperature. The top performance score for random forest is $MSE_{test} =10.16$. This means that in predicting DST111 road surface temperature, the predictions made by Random forest was on average off by 10.16 from the actual values. %lägg in plot som visar predictions
+		From table \ref{table:best_performances_dst111} it is revealed that Random forest has the lowest $P_{acc}$ score and is thus the best algorithm in predicting DST111 road surface temperature. The top performance score for random forest is $MSE_{test} =10.16$. This means that in predicting DST111 road surface temperature, the predictions made by Random forest was on average off by $10.16 \celsius$ from the actual temperature measurements. %lägg in plot som visar predictions
 
 
