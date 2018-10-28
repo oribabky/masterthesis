@@ -64,11 +64,15 @@
 \usepackage[
 	backend=bibtex,
 	style=ieee,
-	sorting=none
+	sorting=none,
+	dashed=false
 	]{biblatex}
 \bibliography{references}
 
+%packages for tables and figures
 \usepackage{makecell}
+\usepackage[margin=10pt,font=small,labelfont=bf,
+labelsep=endash]{caption}
 
 %%% subsubsubsection settings
 \usepackage{titlesec}
@@ -99,43 +103,47 @@
          % otherwise the current date is printed 
 
 \begin{document}
-\maketitle
+%\begin{titlepage}
+\pagenumbering{gobble}
+%\maketitle
 
 \chapter*{Acknowledgements}
 	%\thispagestyle{empty}
 	This thesis marks the final step for me to achieve a master's degree in computer science. Six years have soon passed since I started studying at Luleå university of Technology, a time in my life where I have learned a lot and met wonderful people. I would like to thank classmates, friends and teachers which I have got to know during my years in Luleå for making this a memorable and educative journey. 
 
-	This thesis would not be possible without guidance from my supervisors. Firstly I would like to thank Niklas Karvonen at LTU for the work of reviewing my thesis, providing advice on how to write academically, and for all the machine learning teachings which proved valuable for a machine learning newcomer like myself. Secondly I would like to thank Johan Casselgren at LTU for giving me the opportunity of carrying out this thesis with Trafikverket, and for all the help I have received throughout the process. I would also like to thank Jonas Hallenberg at Trafikverket for providing a dataset which I could work with, and for answering any questions I had regarding the Road Weather Information Systems throughout the project.\\\\
-	Luleå, May 2018\\\\
+	This thesis would not be possible without guidance from my supervisors. Firstly I would like to thank Niklas Karvonen at LTU for the work of reviewing my thesis, providing advice on how to write academically, and for all the machine learning teachings which proved valuable for a machine learning newcomer like myself. Secondly I would like to thank Johan Casselgren at LTU for giving me the opportunity of carrying out this thesis with Trafikverket, and for all the help I have received throughout the process. I would also like to thank Jonas Hallenberg at Trafikverket for providing a dataset which I could work with, and for answering any questions I had regarding Road Weather Information Systems throughout this project.\\\\
+	Luleå, June 2018\\\\
 	Tobias Axelsson
 
-\selectlanguage{english}
+\selectlanguage{english}	
 \begin{poliabstract}{Abstract} 
 	Trafikverket, the agency in charge of state road maintenance in Sweden, have a number of so-called Road Weather Information Systems (RWIS). The main purpose of the stations is to provide winter road maintenance workers with information to decide when roads need to be plowed and/or salted. Each RWIS have a number of sensors which make road weather-related measurements every 30 minutes. One of the sensors is dug into the road which can cause traffic disturbances and be costly for Trafikverket. Other RWIS sensors fail occasionally.
 
-	This project aims at modelling a set of RWIS sensors using supervised machine learning algorithms. The sensors that are of interest to model are: Optic Eye, Track Ice Road Sensor (TIRS) and DST111. Optic Eye measure precipitation type and precipitation amount. Both TIRS and DST111 measure road surface temperature. The difference between TIRS and DST111 is that the former is dug into the road, and DST111 measures road surface temperature from a distance via infrared laser. Any supervised learning algorithm trained to model a given measurement made by a sensor, may only train on measurements made by the other sensors as input features. TIRS may not be used in training since it is desired to see if it can be removed. Supervised learning algorithms may also train using the following input features: road friction, road surface condition and timestamp.
+	This project aims at modelling a set of RWIS sensors using supervised machine learning algorithms. The sensors that are of interest to model are: Optic Eye, Track Ice Road Sensor (TIRS) and DST111. Optic Eye measures precipitation type and precipitation amount. Both TIRS and DST111 measure road surface temperature. The difference between TIRS and DST111 is that the former is dug into the road, and DST111 measures road surface temperature from a distance via infrared laser. Any supervised learning algorithm trained to model a given measurement made by a sensor, may only train on measurements made by the other sensors as input features. Measurements made by TIRS may not be used as input in modelling other sensors, since it is desired to see if TIRS can be removed. The following input features may also be used for training: road friction, road surface condition and timestamp.
 
 	Scikit-learn was used as machine learning software in this project. An experimental approach was chosen to achieve the project results: A pre-determined set of supervised algorithms were compared using different amount of top relevant input features and different hyperparameter settings. Prior to achieving the results, a data preparation process was conducted. Observations with suspected or definitive errors were removed in this process. During the data preparation process, the timestamp feature was transformed into two new features: month and hour.
 
-	The results in this project show that precipitation type was best modelled using Classification And Regression Tree (CART) on Scikit-learn default settings achieving a performance score of $F1_{test} = 0.46$ and accuracy $=0.84$ using road surface condition, road friction, DST111 road surface temperature, hour and month as input features. Precipitation amount was best modelled using $k$-Nearest Neighbor (kNN); with $k=64$ and road friction used as the only input feature, a performance score of $MSE_{test}=0.54$ was attained. TIRS road surface temperature was best modelled with Multi-Layer Perceptron (MLP) using 64 hidden nodes and DST111 road surface temperature, road surface condition, road friction, month, hour and precipitation type as input features, with which a performance score of $MSE_{test}=0.88$ was achieved. DST111 road surface temperature was best modelled using Random forest on Scikit-learn default settings with road surface condition, road friction, month, precipitation type and hour as input features, achieving a performance score of $MSE_{test}=10.16$.
+	The results in this project show that precipitation type was best modelled using Classification And Regression Tree (CART) on Scikit-learn default settings, achieving a performance score of $\overline{F1}_{test} = 0.46$ and accuracy $=0.84$ using road surface condition, road friction, DST111 road surface temperature, hour and month as input features. Precipitation amount was best modelled using $k$-Nearest Neighbor (kNN); with $k=64$ and road friction used as the only input feature, a performance score of $MSE_{test}=0.31$ was attained. TIRS road surface temperature was best modelled with Multi-Layer Perceptron (MLP) using 64 hidden nodes and DST111 road surface temperature, road surface condition, road friction, month, hour and precipitation type as input features, with which a performance score of $MSE_{test}=0.88$ was achieved. DST111 road surface temperature was best modelled using Random forest on Scikit-learn default settings with road surface condition, road friction, month, precipitation type and hour as input features, achieving a performance score of $MSE_{test}=10.16$.
 \end{poliabstract}
 
 \selectlanguage{swedish}
 \begin{poliabstract}{Sammanfattning}
-		Trafikverket är den organisation som har ansvar för underhåll av statliga vägar i Sverige. Till hjälp för att utföra detta har de ett antal så kallade Vägväderinformationssystem (VVIS) som framförallt syftar till att underlätta arbetet för de som arbetar med vintervägunderhåll. Informationen används för att bestämma om vägar behöver skottas och/eller saltas. Varje VVIS har ett antal sensorer som mäter väder-relaterade parametrar var trettionde minut. En av dessa sensorer grävs ned i marken, vilket kan störa trafikflöden och införa kostnader för Trafikverket. Övriga sensorer fallerar relativt ofta, vilket kan ställa till problem för vintervägunderhållsarbetarna om de behöver information just då.
+		Trafikverket är den organisation som ansvarar för underhåll av statliga vägar i Sverige. Till hjälp för att utföra detta har de ett antal så kallade Vägväderinformationssystem (VVIS) som framförallt syftar till att underlätta arbetet för de som arbetar med vintervägunderhåll. Informationen används för att bestämma om vägar behöver skottas och/eller saltas. Varje VVIS har ett antal sensorer som gör väder-relaterade mätningar var trettionde minut. En av dessa sensorer grävs ned i marken, vilket kan störa trafikflöden och införa kostnader för Trafikverket. Övriga sensorer fallerar relativt ofta, vilket kan ställa till problem för vintervägunderhållsarbetarna om de behöver information just då.
 
 	Det här projektet syftar till att modellera ett antal VVIS sensorer med hjälp av övervakade maskininlärningsalgoritmer. Följande sensorer är intressanta att modellera: Optic Eye, Track Ice Road Sensor (TIRS) och DST111. Optic Eye mäter nederbördstyp och nederbördsmängd. Både TIRS och DST111 mäter väglagstemperatur, skillnaden är att TIRS är nedgrävd i vägbanan, medan DST111 mäter på avstånd via infraröd laser. En sensor som modelleras av en övervakad maskininlärningsalgoritm, får träna på data från övriga sensorer, förutom från TIRS då det är intressant att se om denna kan tas bort. Dessutom får följande input features användas för träning: vägfriktion, väglagstyp och tidsstämpel.
 
 	Scikit-learn användes som maskininlärningsprogram i det här projektet. En experimentell strategi användes för att uppnå projektets resultat: Ett förbestämt antal algoritmer jämfördes där antalet mest relevanta input features och hyperparametrar varierades. En dataförberedelseprocess genomfördes innan resultaten nåddes. Observationer med antingen misstänkta eller definitiva fel togs bort från datasetet i detta steg. Under dataförberedelseprocessen transformerades även tidsstämpel som feature till två nya features: månad och timma.
 
-	Resultaten i detta projektet visar att nederbördstyp modellerades bäst genom att använda Classification And Regression Tree (CART) på standardinställningar i Scikit-learn. En prestanda på $F1_{test} = 0.46$ och noggrannhet $=0.84$ uppnåddes när väglagstyp, vägfriktion, DST111 väglagstemperatur, timma och månad användes som input features. Nederbördsmängd modellerades bäst genom att använda $k$-Nearest Neighbor (kNN) med $k=64$ och vägfriktion som input feature. Med detta uppnåddes en prestanda på $MSE_{test} = 0.54$. TIRS väglagstemperatur modellerades bäst genom att använda Multi-Layer Perceptron (MLP) med 64 gömda noder och DST111 väglagstemperatur, väglagstyp, vägfriktion, månad, timma och nederbördstyp som input features då en prestanda på $MSE_{test}=0.88$ åstadkoms. DST111 modellerades bäst genom att använda Random forest på standardinställningar i Scikit-learn och med väglagstyp, vägfriktion, månad, nederbördstyp och timma som input features. Med detta nåddes en prestanda på $MSE_{test}=10.16$.
+	Resultaten i detta projektet visar att nederbördstyp modellerades bäst genom att använda Classification And Regression Tree (CART) på standardinställningar i Scikit-learn. En prestanda på $\overline{F1}_{test} = 0.46$ och noggrannhet $=0.84$ uppnåddes när väglagstyp, vägfriktion, DST111 väglagstemperatur, timma och månad användes som input features. Nederbördsmängd modellerades bäst genom att använda $k$-Nearest Neighbor (kNN) med $k=64$ och vägfriktion som input feature. Med detta uppnåddes en prestanda på $MSE_{test} = 0.31$. TIRS väglagstemperatur modellerades bäst genom att använda Multi-Layer Perceptron (MLP) med 64 gömda noder och DST111 väglagstemperatur, väglagstyp, vägfriktion, månad, timma och nederbördstyp som input features då en prestanda på $MSE_{test}=0.88$ åstadkoms. DST111 modellerades bäst genom att använda Random forest på standardinställningar i Scikit-learn och med väglagstyp, vägfriktion, månad, nederbördstyp och timma som input features. Med detta nåddes en prestanda på $MSE_{test}=10.16$.
 \end{poliabstract}
 
 \selectlanguage{english}
 
-\tableofcontents
-	\thispagestyle{empty}
 
+\tableofcontents
+\newpage
+%\end{titlepage}
+\pagenumbering{arabic}
 
 \input{introduction.tex}
 

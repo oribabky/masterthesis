@@ -8,28 +8,28 @@
 		\item{DST111:} Measures road surface temperature via infrared laser.
 	\end{itemize}
 	
-	The idea was to model the behavior of the sensors above from data provided by the other sensors, except for the TIRS since it may be removed in the future. In addition to the sensors listed above, any algorithm model may use data provided by the following sensors/instruments as well:
+	The idea was to model the behavior of the sensors listed above from data provided by the other sensors, except for the TIRS since it may be removed in the future. In addition to the sensors listed above, any algorithm model may train on data provided by the following sensors/instruments as well:
 	\begin{itemize}
 		\item{DSC111:} Measures road surface condition and road friction.
 		\item{MS4:} Timestamp (this was made into two input features: hour and month in \ref{sec:transformation}).
 	\end{itemize}
 
-	The objective of the project as seen in \ref{sec:objective} is as follows:
+	The objective of the project as seen in section \ref{sec:objective} is as follows:
 
 	"The objective of this thesis is to find optimized supervised learning algorithms, in terms of performance and generalization, which model the behavior of the following sensors: Optic Eye, TIRS and DST111. Each sensor is modelled using measurements made by the other sensors, except for TIRS. Any algorithm may train on the following input features as well: timestamp, road friction and road surface condition. Timestamp is provided by the RWIS computer MS4. Road friction and road surface condition are measured by a sensor called DSC111."
 
 	The objective was broken down into four subtasks. Solutions to each subtask are covered in the sections that follow.
 
 	\section{Classifying precipitation type}
-	It was found in the results presented in \ref{sec:results_prectype} that the best performing algorithm in terms of both performance and generalization in classifying precipitation type was CART which attained a performance score of $F1_{test}=0.46$ and accuracy $=0.84$. The following input features were used to obtain the optimized performance:  road surface condition, road friction, DST111 road surface temperature, hour and month.
+	It was found in the results presented in section \ref{sec:results_prectype} that the best performing algorithm in terms of both performance and generalization in classifying precipitation type was CART on Scikit-learn default settings, which attained a performance score of $\overline{F1}_{test}=0.46$ and accuracy $=0.84$. The following input features were used to obtain the optimized performance:  road surface condition, road friction, DST111 road surface temperature, hour and month. Both kNN and CART tied for best accumulated performance scores $P_{acc} = 0.87$, but CART was chosen over kNN due to it having a higher accuracy- and $\overline{F1}$ score. 
 
 	\section{Predicting precipitation amount}
-	The results from \ref{sec:results_precamount} show that the best algorithm in terms of performance and generalization in predicting precipitation amount is kNN which obtained a performance score of $MSE_{test} = 0.54$. Road friction was the only input feature used to obtain the optimized performance.
+	The results from section \ref{sec:results_precamount} show that the best algorithm in terms of performance and generalization in predicting precipitation amount is kNN with $k=64$. This resulted in a performance score of $MSE_{test} = 0.31$. Road friction was the only input feature used to obtain the optimized performance score. MLP and kNN tied for best accumulated performance scores $P_{acc} = 0.49$, but kNN was chosen over MLP based on a hypothesis that kNN is less complex. 
 
 	\section{Predicting TIRS road surface temperature}
-	It was found in \ref{sec:results_tirs} that the best algorithm in terms of performance and generalization for predicting TIRS road surface temperature is MLP which obtained a performance score of $MSE_{test} = 0.88$. The following input features were used to find the optimized performance: DST111 road surface temperature, road surface condition, road friction, month, hour and precipitation type.
+	It was found in section \ref{sec:results_tirs} that the best algorithm in terms of performance and generalization for predicting TIRS road surface temperature is MLP with 64 hidden nodes. This gave a performance score of $MSE_{test} = 0.88$. The following input features were used to find the optimized performance: DST111 road surface temperature, road surface condition, road friction, month, hour and precipitation type. MLP was identified as the top performing algorithm based on it having the best accumulated performance score $P_{acc} = 0.89$. 
 
 	\section{Predicting DST111 road surface temperature}
 
-	From the results in \ref{sec:results_dst111}, it was found that Random forest was the top performing algorithm in terms of performance and generalization. It obtained a performance score of $MSE_{test} = 10.16$. The following input features were used to obtain the optimized performance: road surface condition, road friction, month, precipitation type and hour. 
+	From the results in section \ref{sec:results_dst111}, it was found that Random forest on Scikit-learn default settings was the top performing algorithm in terms of performance and generalization. It obtained a performance score of $MSE_{test} = 10.16$. The following input features were used to obtain the optimized performance: road surface condition, road friction, month, precipitation type and hour. Random forest was identified as the top performing algorithm based on it having the best accumulated performance score $P_{acc} = 11.02$. 
 	

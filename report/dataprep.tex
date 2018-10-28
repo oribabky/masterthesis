@@ -1,13 +1,13 @@
 \chapter{Data preparation process}
-This chapter describes the process of preparing the dataset.
+\emph{This chapter describes the process of preparing the dataset with data cleaning, feature selection and ultimately data transformation.}
 
 %\section{Data analysis} kanske ha denna sen
 	%explain the process of analyzing the data
 
 \section{Data cleaning} \label{sec:datacleaning}
-	 In the dataset documentation provided by Trafikverket (see \ref{sec:provided_data}), there is a note on the measurements from station 1429 saying: "Unreasonable DST111 measurements from about 2016-11-15 to 2016-12-31". It was found in the measurements from station 1429 that the average difference between the DST111 and TIRS road surface temperature measurements were $~1.71 \celsius$ whereas in stations 1402 and 1431, which are the two geographically closest stations to 1429, the average differences were $0.614 \celsius$ and  $~0.54 \celsius$. In some cases, the difference between the measurements from the two temperature sensors in station 1429 were more than $40 \celsius$. This indicated that something may have been wrong with DST111, or some other instrument, at the time. The observations from 2016-11-15 to 2016-12-31 were removed from the workbook containing data from station 1429. This resulted in an average road surface temperature difference of $~0.92 \celsius$, which is still higher than the two nearby stations, but whether this was unreasonable or not could not be determined by the author. 
+	 In the dataset documentation provided by Trafikverket (see provided data in \ref{sec:provided_data}), there is a note on the measurements from station 1429 saying: "Unreasonable DST111 measurements from about 2016-11-15 to 2016-12-31". It was found in the measurements from station 1429 that the average difference between the DST111 and TIRS road surface temperature measurements were $~1.71 \celsius$ whereas in stations 1402 and 1431, which are the two geographically closest stations to 1429, the average differences were $0.614 \celsius$ and  $~0.54 \celsius$. In some cases, the difference between the measurements from the two temperature sensors in station 1429 were more than $40 \celsius$. This indicates that something may have been wrong with DST111, or some other instrument, at the time. Therefore, observations from 2016-11-15 to 2016-12-31 were removed from the workbook containing data from station 1429. This resulted in an average road surface temperature difference of $~0.92 \celsius$, which is still higher than the two nearby stations, but whether this was unreasonable or not could not be determined by the author. 
 
-	In addition to removing suspicious outliers in the dataset, there are also cases where errors are explicitly reported by the sensors. As mentioned in the project delimitations (see \ref{sec:delimitations}), only non-error behavior is modelled in this project. As of such, every observation where at least one error is reported by any sensor, were removed. Figure \ref{img:histogram_surfstatus} shows that the DSC111 alone was malfunctioning for unknown reasons in more than $50 000$ observations. 
+	In addition to removing suspicious outliers in the dataset, there are also cases where errors are explicitly reported by the sensors. As mentioned in the project delimitations (see delimitations in \ref{sec:delimitations}), only non-error behavior is modelled in this project. As of such, every observation where at least one error is reported by any sensor, were removed. Figure \ref{img:histogram_surfstatus} shows that the DSC111 alone was malfunctioning for unknown reasons in more than $50 000$ observations. 
 
 \begin{figure}[H] 
 	\centering
@@ -20,18 +20,18 @@ This chapter describes the process of preparing the dataset.
 
 
 \section{Feature selection}
-	It was decided to investigate if timestamp should be excluded as a possible input feature, primarily because its values are higher than the rest of the features. Theory from \ref{sec:supervised_algorithms} suggests that some supervised learning algorithms, such as kNN, are sensitive to scaling. Timestamp is represented in the following format: mmddhhmm, which is interpreted as integers by any model that use it as an input feature. For example, an observation from station 1520 from 12/31/2016 23:30 have the following values: $\text{timestamp} = 12312330, \text{TIRS surface temperature}= 7.1, \dots \text{friction} = 0.74$. 
+	It was decided to investigate if timestamp should be excluded as a possible input feature, primarily because its values are higher than the rest of the features. Theory from section \ref{sec:supervised_algorithms} suggests that some supervised learning algorithms, such as kNN, are sensitive to scaling. Timestamp is represented in the following format: mmddhhmm, which is interpreted as integers by any model that use it as an input feature. For example, an observation from station 1520 from 12/31/2016 23:30 have the following values: $\text{timestamp} = 12312330, \text{TIRS surface temperature}= 7.1, \dots \text{friction} = 0.74$. 
 
-	Although the scaling of the timestamp feature is significantly different from the other input features, it seems to be correlated with other features. Figure \ref{img:correlations_noerr} shows how every feature is related to one another, it indicates that features such as road surface temperature and friction are linearly correlated with timestamp. The correlation may come as no surprise since the northern hemisphere is colder during winter-time, which means colder road surface temperatures and lower friction, and the other way around during warmer periods. 
+	Although the scaling of the timestamp feature is significantly different from the other input features, it seems to be linearly correlated with other features. Figure \ref{img:correlations_noerr} shows how every feature is related to one another, it indicates that features such as road surface temperature and friction are linearly correlated with timestamp. The correlation may come as no surprise since the northern hemisphere is colder during winter-time, which means colder road surface temperatures and lower friction, and the other way around during warmer periods. 
 
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\textwidth]{media/correlations_ver2.png}
-	\caption{Depicts how the features are correlated to oneanother.}
+	\caption{Depicts how the different features used in this project are correlated to oneanother.}
 	\label{img:correlations_noerr}
 \end{figure}
 
-	To test the relevance of using timestamp as input feature, an experiment was carried out to predict TIRS road surface temperature once using timestamp as input feature, and once without. The experiment runs the Cross-validation regression spot-checking setup (see \ref{sec:exp_setups}). Table \ref{table:timeinput} shows the result from the experiment.
+	To test the relevance of using timestamp as input feature, an experiment was carried out to predict TIRS road surface temperature. Once using timestamp as input feature, and once without. The experiment runs the Cross-validation regression spot-checking setup (see experimental setups in \ref{sec:exp_setups}). Table \ref{table:timeinput} shows the result from the experiment.
 
 	\begin{table}[H] %gör om med holdout
 	\centering
@@ -57,7 +57,7 @@ This chapter describes the process of preparing the dataset.
 
 	\subsection{Transforming timestamp}
 
-	Table \ref{table:timeinput} shows significant improvement in overall performance in not using timestamp as input feature. However, figure \ref{img:correlations_noerr} shows that timestamp may be a relevant feature to include in that it shows correlation with other features. It was decided to test if a transformation of the timestamp feature could yield better performance than using it in its original form. The transformation involves using only month, and time of day from the timestamp feature, but to separate it into two columns so that they operate on lower numeric intervals. Figure \ref{img:transformation} shows the transformation. 
+	Table \ref{table:timeinput} shows significant improvement in overall performance in not using timestamp as an input feature. However, figure \ref{img:correlations_noerr} shows that timestamp may be a relevant feature to include in that it shows linear correlation with other features. It was decided to test if a transformation of the timestamp feature could yield better performance than using it in its original form. The transformation involves using only month, and time of day from the timestamp feature, but to separate it into two columns so that they operate on lower numeric intervals. Figure \ref{img:transformation} shows the transformation. 
 
 \begin{figure}[H] 
 	\centering
@@ -66,12 +66,12 @@ This chapter describes the process of preparing the dataset.
 	\label{img:transformation}
 \end{figure}
 
-	The author assumes that month and time of day affect changes in weather conditions more than separate days within a month. Figure \ref{img:correlations_featureengi} shows the correlations among the features with month and hour used instead of timestamp. 
+	The author assumes that month and time of day affect changes in weather conditions more than separate days within a month. Figure \ref{img:correlations_featureengi} show the correlations among the features with month and hour used instead of timestamp. 
 
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\textwidth]{media/correlations_featureengi_ver5.png}
-	\caption{Correlations among the different features where month and hour are two new features that have replaced time. }
+	\caption{Correlations among the different features where month and hour are two new features that have replaced timestamp. }
 	\label{img:correlations_featureengi}
 \end{figure}
 
@@ -79,10 +79,10 @@ This chapter describes the process of preparing the dataset.
 
 	\begin{table}[H] %gör om med holdout
 	\centering
-	\caption{Experiment to see the effects of transforming the time feature is relevant to use as input feature. }
+	\caption{Experiment to see the effects of transforming the timestamp feature to two new features: month and hour. }
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}[6]{l | c | c | c |c | c}
-    			Algorithm & MSE using neither time nor new features & MSE using time & MSE using hour and month & MSE using month & MSE using hour \\
+    			Algorithm & MSE using neither timestamp nor new features & MSE using timestamp & MSE using hour and month & MSE using month & MSE using hour \\
     			\hline
 			OLS & 1.23 & 1.22 & 1.22 & 1.22 & 1.21 \\
 			CART & 1.21 & 1.84 & 1.77 & 1.34 & 1.39 \\
@@ -103,13 +103,13 @@ Although little to no overall performance improvement was made using the transfo
 
 
 \subsection{Handling class imbalance} \label{sec:class_imbalance}
-	From what was found in figure \ref{img:histogram_surfstatus}, road surface status suffers from class imbalance. But classifying road surface status is not a goal in this project. It is interesting to see if precipitation type have class imbalance as well, since classifying precipitation type is a goal in this project. Figure \ref{img:correlations_featureengi} shows the distribution of precipitation type in the dataset. 
+	Figure \ref{img:histogram_surfstatus} shows that road surface status suffers from class imbalance. But classifying road surface status is not a goal in this project. It is interesting to see if precipitation type have class imbalance as well, since classifying precipitation type is a goal in this project. Figure \ref{img:histogram_prectype} shows the distribution of precipitation type in the dataset. 
 	
 	\begin{figure}[H] 
 	\centering
 	\includegraphics[width=1\textwidth]{media/histogram_prectype.png}
 	\caption{Histogram showing the distribution of the different types of precipitation in the data (see table \ref{table:occurences_prectype} to see what each code means).}
-	\label{img:correlations_featureengi}
+	\label{img:histogram_prectype}
 	\end{figure}
 
 	The exact number of occurences and a translation of what each code means is shown in table \ref{table:occurences_prectype}.
@@ -129,9 +129,9 @@ Although little to no overall performance improvement was made using the transfo
 		\end{tabular}
 	\end{table}
 
-	From what can be seen in table \ref{table:occurences_prectype}, precipitation type also have a significant class imbalance. The biggest difference is between no precipitation and rain and snow mixed, the former appears about 300 times more often than that the latter.
+	From what can be seen in table \ref{table:occurences_prectype}, precipitation type also have a significant class imbalance. The biggest difference is between no precipitation and rain and snow mixed, the former appears about 300 times more often in the dataset than that the latter.
 
-	An experiment was carried out to see if the class imbalance problem can be mitigated by using random oversampling or Smote as oversampling techniques (see information on oversampling techniques in \ref{sec:imbalancedtheory}). Smote runs on the default settings as seen in \cite{WEBSITE:23}. Both random oversampling and Smote were compared to a scenario where oversampling is not used. All three scenarios run the holdout classification spot-checking setup, to classify precipitation type. Holdout was used instead of $k$-fold in the three scenarios since it proved cumbersome to integrate oversampling with $k$-fold.
+	An experiment was carried out to see if the class imbalance problem can be mitigated by using random oversampling or Smote as oversampling techniques (see information on oversampling techniques in \ref{sec:imbalancedtheory}). Smote runs on the default settings as seen in \cite{WEBSITE:23}. Both random oversampling and Smote were compared to a scenario where oversampling is not used. All three scenarios run the holdout classification spot-checking setup, to classify precipitation type. Holdout was used instead of cross-validation in the three scenarios since it proved cumbersome to integrate oversampling techniques with cross-validation.
 
 	\begin{table}[H]
 	\centering
@@ -139,7 +139,7 @@ Although little to no overall performance improvement was made using the transfo
 		\begin{tabular}[5]{l | c | c | c | c}
     			Algorithm & Accuracy & $\overline{Precision}$ & $\overline{Recall}$ & $\overline{F1}$ \\
     			\hline
-			LR & 0.81 & 0.24 & 0.21 & 0.21  \\
+			Logistic regression & 0.81 & 0.24 & 0.21 & 0.21  \\
 			kNN & 0.86 & 0.51 & 0.35 & 0.39  \\
 			CART & 0.86 & 0.53 & 0.36 & 0.40 \\
 			NB & 0.82 & 0.44 & 0.26 & 0.26  \\
@@ -157,7 +157,7 @@ Although little to no overall performance improvement was made using the transfo
 		\begin{tabular}[5]{l | c | c | c | c}
     			Algorithm & Accuracy & $\overline{Precision}$ & $\overline{Recall}$ & $\overline{F1}$ \\
     			\hline
-			LR & 0.48 & 0.33 & 0.55 & 0.31 \\
+			Logistic regression & 0.48 & 0.33 & 0.55 & 0.31 \\
 			kNN & 0.57 &  0.31 & 0.52 &  0.31 \\
 			CART & 0.63 & 0.33 & 0.54 &  0.34 \\
 			NB &  0.52 & 0.36 & 0.54 & 0.31 \\
@@ -187,8 +187,8 @@ Although little to no overall performance improvement was made using the transfo
 		\end{tabular}
 	\end{table}
 	
-	Table \ref{table:no_oversampling} and \ref{table:random_oversampling} shows the effects of using random oversampling versus no oversampling: total average accuracy and precision is reduced, total average recall is higher, and total average $F1$ score is similar to the case when oversampling is not used. In the case of using Smote as oversampling technique as shown in table \ref{table:smote_oversampling}, it proved to have similar effects of using random oversampling. 
+	Table \ref{table:no_oversampling} and \ref{table:random_oversampling} shows the effects of using random oversampling versus no oversampling: total average accuracy and precision is reduced, total average recall is higher, and total average $\overline{F1}$ score is similar to the case when oversampling is not used. In the case of using Smote as oversampling technique as shown in table \ref{table:smote_oversampling}, it proved to have similar effects of using random oversampling. 
 
-	Both precision and recall are important in this project when it comes to evaulating classification algorithm performance. Since no improvement was made on the collective score of precision and recall: $F1$, and overall accuracy was reduced when either of the oversampling techniques were tested, oversampling was ruled out as a possible solution to handle imbalanced classes. 
+	Both precision and recall are important in this project when it comes to evaulating classification algorithm performance. Since no improvement was made on the collective score of precision and recall: $\overline{F1}$, and overall accuracy was reduced when either of the oversampling techniques were tested, oversampling was ruled out as a possible solution to handle imbalanced classes. 
 
 	Since the multiclass classification problem is but one of four subtasks in this project, additional effort was not put in to investigate if the imbalanced dataset problem can be solved in other ways.
